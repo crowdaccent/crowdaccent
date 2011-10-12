@@ -1,0 +1,30 @@
+Here is the suggested git philosophy for our work -
+
+a) Start working on the local branch
+b) Push the local branch to remote
+c) Anyone who wants to contribute on same work checkouts the same branch
+d) Merges from the remote for the same branch
+e) Start making his/her own changes
+f) Once changes are made, commits are pushed first to local remote branch
+g) Commits are then made to master, by mutual consent by bhalla and max. 
+
+
+Here is the example -
+
+i) Start with working on your own branch - naming convention - <initial>-<describe-what-is-the-work>
+Desription of the work should not be full sentence but enough to remind the work. for example - mk_enable_user_auth
+
+So we start with creating a branch by - git checkout -b mk_enable_user_auth when we are in master branch.
+
+ii) We can work on same branch - Kapil created branch say - kb_enabling_input_form .. He then pushes that to remote by command -
+
+git push origin kb_enabling_input_form
+
+Mahendra then if he wants to add/edit/ work further on that will checkout that branch first by - git checkout kb_enabling_input form
+then will do - git fetch and then git merge origin/kb_enabling_input_form ..This is same as git pull but sometimes its good to watch it in every step.
+
+iii) We will ONLY merge to master after we both have discussed and agreed upon the changes. Its two person agreeing should not be hard. We can do it either
+through email/chat and then finally one of us pushes the changes to master. This is just to make sure we are on same page. We agree every step of the way and do
+not diverge and waste time implementing which we may have to then redo. 
+
+The basic reasoning is master branch is from where we will branch off our release candidate 0.1 for example. So that needs to be as clean as possible.
