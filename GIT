@@ -8,6 +8,10 @@ e) Start making his/her own changes
 f) Once changes are made, commits are pushed first to local remote branch
 g) Commits are then made to master, by mutual consent by bhalla and max. 
 
+Based on our discussion, during the initial phase of development the changes to the master are more frequent. 
+Working on branches initially may be an additional overhead. It has been decided to work on master branch till we 
+reach a stage where code is stable i.e. individual is able to work independently without worrying about any changes which may have 
+been checked-in in master while he is working on the branch.
 
 Here is the example -
 
