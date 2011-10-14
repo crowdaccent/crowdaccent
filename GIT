@@ -32,3 +32,15 @@ through email/chat and then finally one of us pushes the changes to master. This
 not diverge and waste time implementing which we may have to then redo. 
 
 The basic reasoning is master branch is from where we will branch off our release candidate 0.1 for example. So that needs to be as clean as possible.
+
+GIT check-in should have comments in following format:
+
+Description: 
+Defect#(if any):
+Reviewed By: 
+Notes to QA:
+
+Initially we will use Description only. We may add/delete more check-in information subsequently.
+
+Description should be 'describe in english what you have done'. e.g. If added a functionaly describing that functionality. If it is a bug fix, describe what the issue technically and the fix. 
+Comments like edited, added files doesn't convey any information. It is available as part of the check.

@@ -5,17 +5,10 @@ Directory structure
 
 Here is the proposed directory structure: 
   
-   |-code
-   |---build
-   |---deploy
-   |---scripts
-   |---src
-   |-docs
-   |---coding_guidelines
-   |---functional_specs
-   |---qa_test_plans
-   |---release_notes
-   |---technical_docs
+   |-build
+   |-deploy
+   |-scripts
+   |-src
    |-third-party
 
 
