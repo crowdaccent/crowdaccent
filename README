@@ -16,6 +16,7 @@ Here is the proposed directory structure:
    |---qa_test_plans
    |---release_notes
    |---technical_docs
+   |-third-party
 
 
 The top level directories will be created as project submodules. 
