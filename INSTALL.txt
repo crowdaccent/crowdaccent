@@ -43,6 +43,11 @@ Checkout the project from: https://github.com/crowdaccent/crowdaccent.git
 BUILD AND DEPLOY
 ----------------
 
+Use maven's build target jetty:run to run build and run the project under jetty server.
+ 
 
 DEBUGGING
 ---------
+
+Add environment variable as MAVEN_OPTS = "-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=n" 
+to run the server in debug mode as jetty:run
