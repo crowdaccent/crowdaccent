@@ -1,0 +1,48 @@
+This file contains information about pre-requisites for project, developer environment setup, building, deploying and debugging project.
+
+PRE-REQUISITES
+--------------
+
+Install Java
+============
+Download and install java from 
+http://www.oracle.com/technetwork/java/javaee/downloads/index.html
+
+Install Eclipse 
+===============
+Download and extract eclipse from 
+http://eclipse.org/downloads/ 
+
+Add following to eclipse.ini
+-Xms512m
+-Xmx1024m
+-XX:+UseParallelGC
+-XX:PermSize=256M
+-XX:MaxPermSize=512M
+
+Software for Eclipse
+====================
+EGit
+====
+http://download.eclipse.org/egit/updates
+
+Scala
+=====
+http://download.scala-ide.org/releases-29/2.0.0-beta
+
+Maven
+=====
+
+http://download.eclipse.org/technology/m2e/releases
+
+CHECK-OUT PROJECT
+-----------------
+
+Checkout the project from: https://github.com/crowdaccent/crowdaccent.git
+
+BUILD AND DEPLOY
+----------------
+
+
+DEBUGGING
+---------
