@@ -20,7 +20,7 @@ Add following to eclipse.ini
 -XX:PermSize=256M
 -XX:MaxPermSize=512M
 
-Software for Eclipse
+Software for Eclipse (Install using update software feature)
 ====================
 EGit
 ====
