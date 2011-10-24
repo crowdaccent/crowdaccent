@@ -36,6 +36,11 @@
 			<url>http://scala-tools.org/repo-snapshots</url>
 			<snapshots />
 		</repository>
+		<repository>
+			<id>crowdaccent.releases</id>
+			<name>CrowdAccent Releases repository</name>
+			<url>http://repo.crowdaccent.com/releases</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -56,6 +61,11 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>0.9.26</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>mturk</artifactId>
+			<version>1.2.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
