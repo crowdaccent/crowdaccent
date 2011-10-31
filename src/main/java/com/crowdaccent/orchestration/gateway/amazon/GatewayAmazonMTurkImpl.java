@@ -7,7 +7,6 @@ import com.crowdaccent.orchestration.gateway.HITResponse;
 
 public class GatewayAmazonMTurkImpl implements Gateway {
 
-	@Override
 	public HITResponse createHIT(HITRequest hRequest) {
 		String operation = hRequest.getOperation();
 		String title = hRequest.getTitle();

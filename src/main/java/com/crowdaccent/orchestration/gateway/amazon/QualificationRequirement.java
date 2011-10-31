@@ -1,4 +1,4 @@
-package com.crowdaccent.amazon;
+package com.crowdaccent.orchestration.gateway.amazon;
 
 public class QualificationRequirement {
 

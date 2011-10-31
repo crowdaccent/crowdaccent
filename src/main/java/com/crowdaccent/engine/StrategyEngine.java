@@ -1,4 +1,4 @@
-package crowdaccent.engine;
+package com.crowdaccent.engine;
 
 public class StrategyEngine {
 
