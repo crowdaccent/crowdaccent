@@ -45,6 +45,21 @@ BUILD AND DEPLOY
 
 Use maven's build target jetty:run to run build and run the project under jetty server.
  
+Credentials to fetch the jars
+-----------------------------
+
+Need to add following to the ~/.m2/settings.xml file as the repository is not public
+but password protected one. 
+
+<settings>
+  <servers>
+    <server>
+	        <id>crowdaccent.releases</id>
+			<username>releaseman</username>
+			<password>crowdman</password>
+	</server>
+  </servers>
+</settings>
 
 DEBUGGING
 ---------
