@@ -32,13 +32,15 @@ class Boot {
 
     // where to search snippet
     LiftRules.addToPackages("com.crowdaccent")
-    Schemifier.schemify(true, Schemifier.infoF _, User)
+    Schemifier.schemify(true, Schemifier.infoF _, User, Product)
 
     // Build SiteMap
     def sitemap() = SiteMap(
       Menu("Home") / "index" >> User.AddUserMenusAfter, // Simple menu form
       // Menu with special Link
-      Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
+      Menu(Loc("Product", Link(List("product"), true, "/product/index"), 
+	       "Product")),
+	  Menu(Loc("Static", Link(List("static"), true, "/static/index"), 
 	       "Static Content")))
 
     LiftRules.setSiteMapFunc(() => User.sitemapMutator(sitemap()))
