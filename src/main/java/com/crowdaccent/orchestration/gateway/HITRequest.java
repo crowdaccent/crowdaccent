@@ -1,22 +1,21 @@
 package com.crowdaccent.orchestration.gateway;
 
-import com.crowdaccent.orchestration.gateway.amazon.QualificationRequirement;
-import com.crowdaccent.orchestration.gateway.amazon.Reward;
+import com.amazonaws.mturk.requester.QualificationRequirement;
 
 public class HITRequest {
 
 	private String operation = null;
-	private String hitTypeId = null
+	private String hitTypeId = null;
 	private String title = null;
 	private String description = null;
 	private String question = null;
 	private Double reward = null;
-	private int assignmentDurationInSecs = 10;
-	private int lifeTimeInSeconds = 60; 
+	private Long assignmentDurationInSecs = 10L;
+	private Long lifeTimeInSeconds = 60L; 
 	private String keywords = null;
-	private int maxAssignments = 100;
-	private int autoApprovalDelaySecs = 60;  
-	private QualificationRequirement qualificationRequirement = null; 
+	private Integer maxAssignments = 100;
+	private Long autoApprovalDelaySecs = 60L;  
+	private QualificationRequirement[] qualificationRequirements = null; 
 	private String requestorAnnotation = "experimental";
 	private String[] responseGroup = null; 
 	
@@ -66,19 +65,19 @@ public class HITRequest {
 		this.reward = reward;
 	}
 	
-	public int getAssignmentDurationInSecs() {
+	public Long getAssignmentDurationInSecs() {
 		return assignmentDurationInSecs;
 	}
 	
-	public void setAssignmentDurationInSecs(int assignmentDurationInSecs) {
+	public void setAssignmentDurationInSecs(Long assignmentDurationInSecs) {
 		this.assignmentDurationInSecs = assignmentDurationInSecs;
 	}
 	
-	public int getLifeTimeInSeconds() {
+	public Long getLifeTimeInSeconds() {
 		return lifeTimeInSeconds;
 	}
 	
-	public void setLifeTimeInSeconds(int lifeTimeInSeconds) {
+	public void setLifeTimeInSeconds(Long lifeTimeInSeconds) {
 		this.lifeTimeInSeconds = lifeTimeInSeconds;
 	}
 	
@@ -90,28 +89,28 @@ public class HITRequest {
 		this.keywords = keywords;
 	}
 	
-	public int getMaxAssignments() {
+	public Integer getMaxAssignments() {
 		return maxAssignments;
 	}
 	
-	public void setMaxAssignments(int maxAssignments) {
+	public void setMaxAssignments(Integer maxAssignments) {
 		this.maxAssignments = maxAssignments;
 	}
 	
-	public int getAutoApprovalDelaySecs() {
+	public Long getAutoApprovalDelaySecs() {
 		return autoApprovalDelaySecs;
 	}
 	
-	public void setAutoApprovalDelaySecs(int autoApprovalDelaySecs) {
+	public void setAutoApprovalDelaySecs(Long autoApprovalDelaySecs) {
 		this.autoApprovalDelaySecs = autoApprovalDelaySecs;
 	}
 	
-	public QualificationRequirement getQualificationRequirement() {
-		return qualificationRequirement;
+	public QualificationRequirement[] getQualificationRequirement() {
+		return qualificationRequirements;
 	}
 	public void setQualificationRequirement(
-			QualificationRequirement qualificationRequirement) {
-		this.qualificationRequirement = qualificationRequirement;
+			QualificationRequirement[] qualificationRequirement) {
+		this.qualificationRequirements = qualificationRequirement;
 	}
 
 	public String getRequestorAnnotation() {

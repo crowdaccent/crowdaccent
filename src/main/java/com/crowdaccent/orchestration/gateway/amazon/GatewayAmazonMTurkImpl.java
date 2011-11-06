@@ -1,10 +1,10 @@
 package com.crowdaccent.orchestration.gateway.amazon;
 
-import com.amazonaws.mturk.requester.HIT;
 import com.amazonaws.mturk.service.axis.RequesterService;
 import com.amazonaws.mturk.util.PropertiesClientConfig;
-import com.crowdaccent.orchestration.gateway.Gateway;
+import com.amazonaws.mturk.requester.HIT;
 
+import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
 import com.crowdaccent.orchestration.gateway.HITResponse;
 
@@ -21,7 +21,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 		HIT hit = this.createHIT(hRequest);
 		HITResponse response = new HITResponse();
 		response.setSyncResponse(hit);
-		return resp;
+		return response;
 	}
 
 	/**
