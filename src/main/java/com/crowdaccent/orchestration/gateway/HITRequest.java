@@ -20,11 +20,11 @@ public class HITRequest {
 	private String requestorAnnotation = "experimental";
 	private String[] responseGroup = null; 
 	
-	public String getHitTypeId() {
+	public String getHITTypeId() {
 		return hitTypeId;
 	}
 	
-	public void setHitTypeId(String hitTypeId) {
+	public void setHITTypeId(String hitTypeId) {
 		this.hitTypeId = hitTypeId;
 	}
 	

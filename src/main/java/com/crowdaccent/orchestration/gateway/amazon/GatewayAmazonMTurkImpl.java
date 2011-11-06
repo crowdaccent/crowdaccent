@@ -31,7 +31,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	 */
 	private HIT createHIT(HITRequest hRequest) {
 
-		return service.createHIT(hRequest.getHitTypeId(), // HITTypeId 
+		return service.createHIT(hRequest.getHITTypeId(), // HITTypeId 
 	    		hRequest.getTitle(), 
 	    		hRequest.getDescription(), 
 	    		hRequest.getKeywords(), // keywords 
