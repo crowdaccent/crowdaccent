@@ -2,14 +2,23 @@ package com.crowdaccent.orchestration.gateway;
 
 public class HITResponse {
 	
-	private String asyncResp = null;
+	private HIT syncResp = null;
+	private HIT asyncResp = null;
 
-	public String getAsyncResp() {
+	public HIT getSyncResp() {
+		return syncResp;
+	}
+
+	public void setSyncResp(HIT hit) {
+		this.syncResp = hit;
+	}
+	
+	public HIT getAsyncResp() {
 		return asyncResp;
 	}
 
-	public void setAsyncResp(String asyncResp) {
-		this.asyncResp = asyncResp;
+	public void setAsyncResp(HIT hit) {
+		this.asyncResp = hit;
 	}
 	
 
