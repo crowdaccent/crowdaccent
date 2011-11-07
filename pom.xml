@@ -17,6 +17,7 @@
 		<maven.scaladoc.vscaladocVersion>1.2-m1</maven.scaladoc.vscaladocVersion>
 		<vscaladoc.links.liftweb.pathsufix>scaladocs/</vscaladoc.links.liftweb.pathsufix>
 		<vscaladoc.links.liftweb.baseurl>http://scala-tools.org/mvnsites-snapshots/liftweb</vscaladoc.links.liftweb.baseurl>
+		<amazon-aws-version>1.2.2.1</amazon-aws-version>
 	</properties>
 
 	<repositories>
@@ -64,8 +65,18 @@
 		</dependency>
 		<dependency>
 			<groupId>com.amazonaws</groupId>
-			<artifactId>mturk</artifactId>
-			<version>1.2.2.1</version>
+			<artifactId>java-aws-mturk</artifactId>
+			<version>${amazon-aws-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-mturk-dataschema</artifactId>
+			<version>${amazon-aws-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-mturk-wsdl</artifactId>
+			<version>${amazon-aws-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
