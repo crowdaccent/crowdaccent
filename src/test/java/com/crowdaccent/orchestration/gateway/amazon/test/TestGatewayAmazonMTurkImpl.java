@@ -1,8 +1,10 @@
 package com.crowdaccent.orchestration.gateway.amazon.test;
 
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+import static org.junit.Assert.assertNotNull;
 
+import org.junit.Test;
+
+import com.amazonaws.mturk.service.axis.RequesterService;
 import com.crowdaccent.orchestration.gateway.HITRequest;
 import com.crowdaccent.orchestration.gateway.HITResponse;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
@@ -11,22 +13,23 @@ import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
  * @author kbhalla
  *
  */
-public class TestGatewayAmazonMTurkImpl extends TestCase {
+public class TestGatewayAmazonMTurkImpl {
 
 	
-	/** Test to chec
+	/** Test to check HIT creation.
 	 * @throws Exception
 	 */
+	@Test
 	public void testCreateProductCategorizationHIT() throws Exception {
 		GatewayAmazonMTurkImpl gwMturk = new GatewayAmazonMTurkImpl();
 		
 		HITRequest hRequest = new HITRequest();
 		
-		hRequest.setHITTypeId("");
+		//hRequest.setHITTypeId("");
 	    hRequest.setTitle("Product Categorization"); 
 	    hRequest.setDescription("Provide possible categories of the products");
 	    hRequest.setKeywords("women,fashion,garment"); // keywords 
-	    hRequest.setQuestion("Select all the possible categories that describes the given product"); 
+	    hRequest.setQuestion(RequesterService.getBasicFreeTextQuestion("Select all the possible categories that describes the given product")); 
 	    hRequest.setReward(.01);
 	    hRequest.setAssignmentDurationInSecs((long) (3*60*60));
 	    hRequest.setAutoApprovalDelaySecs((long) (72*60*60));

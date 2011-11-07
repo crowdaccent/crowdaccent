@@ -13,7 +13,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	private RequesterService service;
 	
 	public GatewayAmazonMTurkImpl() {
-		service = new RequesterService(new PropertiesClientConfig("properties/mturk.properties"));
+		service = new RequesterService(new PropertiesClientConfig("props/mturk.properties"));
 	}
 	
 	public HITResponse createProductCategorizationHIT(HITRequest hRequest) {
