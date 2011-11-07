@@ -43,6 +43,11 @@ public class TestGatewayAmazonMTurkImpl {
 		
 		assertNotNull(hit);
 		assertNotNull(hit.getSyncResponse().getHITId());
+		System.out.println("Created HIT: " + hit.getSyncResponse().getHITId());
+		System.out.println("HIT location: ");
+		
+		System.out.println("https://workersandbox.mturk.com/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
+
 		
 	}
 }
