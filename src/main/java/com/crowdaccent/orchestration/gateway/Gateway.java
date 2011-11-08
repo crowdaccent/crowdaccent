@@ -8,5 +8,10 @@ public interface Gateway {
 	 * @return
 	 */
 	public HITResponse createProductCategorizationHIT(HITRequest hrequest);
+
+	/** Returns websiteURL
+	 * @return String website URL
+	 */
+	public String getWebsiteURL();
 	
 }

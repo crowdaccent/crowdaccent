@@ -35,7 +35,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	    		hRequest.getTitle(), 
 	    		hRequest.getDescription(), 
 	    		hRequest.getKeywords(), // keywords 
-	            hRequest.getQuestion(), 
+	    		RequesterService.getBasicFreeTextQuestion(hRequest.getQuestion()), 
 	            hRequest.getReward(), 
 	            hRequest.getAssignmentDurationInSecs(), 
 	            hRequest.getAutoApprovalDelaySecs(), 
@@ -45,5 +45,13 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	            hRequest.getQualificationRequirement(),
 	            hRequest.getResponseGroup()  // responseGroup
 	          );		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.orchestration.gateway.Gateway#getWebsiteURL()
+	 */
+	@Override
+	public String getWebsiteURL() {
+		return this.service.getWebsiteURL();
 	}
 }

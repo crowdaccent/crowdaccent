@@ -4,7 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.amazonaws.mturk.service.axis.RequesterService;
+import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
 import com.crowdaccent.orchestration.gateway.HITResponse;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
@@ -20,7 +20,7 @@ public class TestGatewayAmazonMTurkImpl {
 	 */
 	@Test
 	public void testCreateProductCategorizationHIT() throws Exception {
-		GatewayAmazonMTurkImpl gwMturk = new GatewayAmazonMTurkImpl();
+		Gateway gateway = new GatewayAmazonMTurkImpl();
 		
 		HITRequest hRequest = new HITRequest();
 		
@@ -28,7 +28,7 @@ public class TestGatewayAmazonMTurkImpl {
 	    hRequest.setTitle("Product Categorization"); 
 	    hRequest.setDescription("Provide possible categories of the products");
 	    hRequest.setKeywords("women,fashion,garment"); // keywords 
-	    hRequest.setQuestion(RequesterService.getBasicFreeTextQuestion("Select all the possible categories that describes the given product")); 
+	    hRequest.setQuestion("Select all the possible categories that describes the given product"); 
 	    hRequest.setReward(.01);
 	    hRequest.setAssignmentDurationInSecs((long) (3*60*60));
 	    hRequest.setAutoApprovalDelaySecs((long) (72*60*60));
@@ -38,14 +38,14 @@ public class TestGatewayAmazonMTurkImpl {
 	    hRequest.setQualificationRequirement(null);
 	    hRequest.setResponseGroup(null);
 		
-		HITResponse hit = gwMturk.createProductCategorizationHIT(hRequest);
+		HITResponse hit = gateway.createProductCategorizationHIT(hRequest);
 		
 		assertNotNull(hit);
 		assertNotNull(hit.getSyncResponse().getHITId());
 
 		System.out.println("Created HIT: " + hit.getSyncResponse().getHITId());
 		System.out.println("HIT location: ");
-		System.out.println(service.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
+		System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
 		
 	}
 }
