@@ -35,7 +35,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	    		hRequest.getTitle(), 
 	    		hRequest.getDescription(), 
 	    		hRequest.getKeywords(), // keywords 
-	    		this.service.getBasicFreeTextQuestion(hRequest.getQuestion()), 
+	    		hRequest.getQuestion(), 
 	            hRequest.getReward(), 
 	            hRequest.getAssignmentDurationInSecs(), 
 	            hRequest.getAutoApprovalDelaySecs(), 
