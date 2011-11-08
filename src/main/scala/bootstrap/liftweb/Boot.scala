@@ -32,7 +32,7 @@ class Boot {
 
     // where to search snippet
     LiftRules.addToPackages("com.crowdaccent")
-    Schemifier.schemify(true, Schemifier.infoF _, User, Product)
+    Schemifier.schemify(true, Schemifier.infoF _, User)
 
     // Build SiteMap
     def sitemap() = SiteMap(
