@@ -1,24 +1,24 @@
 package com.crowdaccent.orchestration.gateway.amazon;
 
-import com.amazonaws.mturk.service.axis.RequesterService;
 import com.amazonaws.mturk.util.PropertiesClientConfig;
 import com.amazonaws.mturk.requester.HIT;
 
+import com.crowdaccent.orchestration.Requester;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
 import com.crowdaccent.orchestration.gateway.HITResponse;
 
 public class GatewayAmazonMTurkImpl implements Gateway {
 
-	private RequesterService service;
+	private Requester service;
 	
 	public GatewayAmazonMTurkImpl() {
-		service = new RequesterService(new PropertiesClientConfig("props/mturk.properties"));
+		service = new Requester(new PropertiesClientConfig("props/mturk.properties"));
 	}
 	
 	public HITResponse createProductCategorizationHIT(HITRequest hRequest) {
 		
-		HIT hit = this.createHIT(hRequest);
+		HIT hit = this.createBasicFreeTextHIT(hRequest);
 		HITResponse response = new HITResponse();
 		response.setSyncResponse(hit);
 		return response;
@@ -29,13 +29,13 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	 * @param hRequest
 	 * @return
 	 */
-	private HIT createHIT(HITRequest hRequest) {
+	private HIT createBasicFreeTextHIT(HITRequest hRequest) {
 
-		return service.createHIT(hRequest.getHITTypeId(), // HITTypeId 
+		return this.service.createHIT(hRequest.getHITTypeId(), // HITTypeId 
 	    		hRequest.getTitle(), 
 	    		hRequest.getDescription(), 
 	    		hRequest.getKeywords(), // keywords 
-	    		RequesterService.getBasicFreeTextQuestion(hRequest.getQuestion()), 
+	    		this.service.getBasicFreeTextQuestion(hRequest.getQuestion()), 
 	            hRequest.getReward(), 
 	            hRequest.getAssignmentDurationInSecs(), 
 	            hRequest.getAutoApprovalDelaySecs(), 
