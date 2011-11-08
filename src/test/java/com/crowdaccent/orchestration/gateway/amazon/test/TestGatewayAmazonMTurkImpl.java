@@ -14,7 +14,6 @@ import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
  *
  */
 public class TestGatewayAmazonMTurkImpl {
-
 	
 	/** Test to check HIT creation.
 	 * @throws Exception
@@ -43,11 +42,10 @@ public class TestGatewayAmazonMTurkImpl {
 		
 		assertNotNull(hit);
 		assertNotNull(hit.getSyncResponse().getHITId());
+
 		System.out.println("Created HIT: " + hit.getSyncResponse().getHITId());
 		System.out.println("HIT location: ");
-		
-		System.out.println("https://workersandbox.mturk.com/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
-
+		System.out.println(service.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
 		
 	}
 }
