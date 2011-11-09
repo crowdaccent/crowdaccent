@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.crowdaccent.orchestration.gateway.amazon.test;
+package com.crowdaccent.service;
 
 import static org.junit.Assert.assertNotNull;
 

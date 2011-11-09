@@ -51,7 +51,7 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.GET, value = "/createHIT/{id}")
 	public ModelAndView createHIT(@PathVariable String id){
 		ModelAndView m = new ModelAndView();
-		Product p = productService.getById(id);
+		Product p = productService.createHIT(id);
 		m.addObject(p);
 		return m;
 	}

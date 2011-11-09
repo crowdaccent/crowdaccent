@@ -33,5 +33,10 @@ public interface ProductService {
 	 * @return
 	 */
 	public List<Product> getNumProducts(int number);
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Product createHIT(String id);
 
 }
