@@ -7,7 +7,14 @@ public interface Gateway {
 	 * @param hrequest
 	 * @return
 	 */
-	public HITResponse createProductCategorizationHIT(HITRequest hrequest);
+	public HITResponse createBasicFreeTextHIT(HITRequest hrequest);
+	
+	/**
+	 * 
+	 * @param hrequest
+	 * @return
+	 */
+	public HITResponse createComplexFreeTextHIT(HITRequest hrequest);
 
 	/** Returns websiteURL
 	 * @return String website URL

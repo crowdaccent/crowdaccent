@@ -1,5 +1,7 @@
 package com.crowdaccent.orchestration.gateway;
 
+import java.util.List;
+
 import com.amazonaws.mturk.requester.QualificationRequirement;
 
 public class HITRequest {
@@ -18,9 +20,11 @@ public class HITRequest {
 	private QualificationRequirement[] qualificationRequirements = null; 
 	private String requestorAnnotation = "experimental";
 	private String[] responseGroup = null; 
+	private String displayName = null;
+	private String[] items = null;
 	
 	public String getHITTypeId() {
-		return hitTypeId;
+		return this.hitTypeId;
 	}
 	
 	public void setHITTypeId(String hitTypeId) {
@@ -28,21 +32,21 @@ public class HITRequest {
 	}
 	
 	public String getOperation() {
-		return operation;
+		return this.operation;
 	}
 	public void setOperation(String operation) {
 		this.operation = operation;
 	}
 	
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
 	
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 	
 	public void setDescription(String description) {
@@ -50,7 +54,7 @@ public class HITRequest {
 	}
 	
 	public String getQuestion() {
-		return question;
+		return this.question;
 	}
 	
 	public void setQuestion(String question) {
@@ -58,7 +62,7 @@ public class HITRequest {
 	}
 	
 	public Double getReward() {
-		return reward;
+		return this.reward;
 	}
 	
 	public void setReward(Double reward) {
@@ -66,7 +70,7 @@ public class HITRequest {
 	}
 	
 	public Long getAssignmentDurationInSecs() {
-		return assignmentDurationInSecs;
+		return this.assignmentDurationInSecs;
 	}
 	
 	public void setAssignmentDurationInSecs(Long assignmentDurationInSecs) {
@@ -74,7 +78,7 @@ public class HITRequest {
 	}
 	
 	public Long getLifeTimeInSeconds() {
-		return lifeTimeInSeconds;
+		return this.lifeTimeInSeconds;
 	}
 	
 	public void setLifeTimeInSeconds(Long lifeTimeInSeconds) {
@@ -82,7 +86,7 @@ public class HITRequest {
 	}
 	
 	public String getKeywords() {
-		return keywords;
+		return this.keywords;
 	}
 	
 	public void setKeywords(String keywords) {
@@ -90,7 +94,7 @@ public class HITRequest {
 	}
 	
 	public Integer getMaxAssignments() {
-		return maxAssignments;
+		return this.maxAssignments;
 	}
 	
 	public void setMaxAssignments(Integer maxAssignments) {
@@ -98,7 +102,7 @@ public class HITRequest {
 	}
 	
 	public Long getAutoApprovalDelaySecs() {
-		return autoApprovalDelaySecs;
+		return this.autoApprovalDelaySecs;
 	}
 	
 	public void setAutoApprovalDelaySecs(Long autoApprovalDelaySecs) {
@@ -106,7 +110,7 @@ public class HITRequest {
 	}
 	
 	public QualificationRequirement[] getQualificationRequirement() {
-		return qualificationRequirements;
+		return this.qualificationRequirements;
 	}
 	public void setQualificationRequirement(
 			QualificationRequirement[] qualificationRequirement) {
@@ -114,17 +118,33 @@ public class HITRequest {
 	}
 
 	public String getRequestorAnnotation() {
-		return requestorAnnotation;
+		return this.requestorAnnotation;
 	}
 	public void setRequestorAnnotation(String requestorAnnotation) {
 		this.requestorAnnotation = requestorAnnotation;
 	}
 
 	public String[] getResponseGroup() {
-		return responseGroup;
+		return this.responseGroup;
 	}
 
 	public void setResponseGroup(String[] responseGroup) {
 		this.responseGroup = responseGroup;
+	}
+
+	public String getDisplayName() {
+		return this.displayName;
+	}
+	
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	public String[] getListItems() {
+		return this.items;
+	}
+	
+	public void setListItems(String[] items) {
+		this.items = items;
 	}
 }

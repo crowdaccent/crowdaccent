@@ -14,7 +14,7 @@ public class Requester extends RequesterServiceRaw {
 		super(config);
 	}
 	
-	public HIT createHIT(String hitTypeId, String title, String description, String keywords, String question, Double reward, 
+	public HIT createBasicFreeTextHIT(String hitTypeId, String title, String description, String keywords, String question, Double reward, 
 			Long assignmentDurationInSeconds, Long autoApprovalDelayInSeconds, Long lifetimeInSeconds, Integer maxAssignments, 
 			String requesterAnnotation, QualificationRequirement[] qualificationRequirements, String[] responseGroup)
 					throws ServiceException {		
@@ -23,7 +23,7 @@ public class Requester extends RequesterServiceRaw {
 	    		title, 
 	    		description, 
 	    		keywords, // keywords 
-	    		getBasicFreeTextQuestion(question), 
+	    		this.getBasicFreeTextQuestion(question), 
 	    		reward, 
 	            assignmentDurationInSeconds, 
 	            autoApprovalDelayInSeconds, 
@@ -35,25 +35,46 @@ public class Requester extends RequesterServiceRaw {
 	          );
 		
 	}
-	
+
+	public HIT createComplexFreeTextHIT(String hitTypeId, String title, String description, String keywords, String question, Double reward, 
+			Long assignmentDurationInSeconds, Long autoApprovalDelayInSeconds, Long lifetimeInSeconds, Integer maxAssignments, 
+			String requesterAnnotation, QualificationRequirement[] qualificationRequirements, String[] responseGroup,
+			String displayName, String[] items)
+					throws ServiceException {		
+		return super.createHIT(hitTypeId, // HITTypeId 
+	    		title, 
+	    		description, 
+	    		keywords, // keywords 
+	    		this.getComplexFreeTextQuestion(question, displayName, title, items), 
+	    		reward, 
+	            assignmentDurationInSeconds, 
+	            autoApprovalDelayInSeconds, 
+	            lifetimeInSeconds, 
+	            maxAssignments, 
+	            requesterAnnotation, // requesterAnnotation 
+	            qualificationRequirements,
+	            responseGroup  // responseGroup
+	          );
+		
+	}
 	public String getBasicFreeTextQuestion(String question) {
 		String q = "";
 		q += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 		q += "<QuestionForm xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd\">";
-		q += "  <Question>"; 
+		q += "  <Question>";
 		q += "    <QuestionIdentifier>1</QuestionIdentifier>";
 		q += "    <QuestionContent>";
 		q += "      <Text>" + question + "</Text>";
-		q += "    </QuestionContent>"; 
+		q += "    </QuestionContent>";
 		q += "    <AnswerSpecification>";
 		q += "      <FreeTextAnswer/>";
-		q += "    </AnswerSpecification>"; 
+		q += "    </AnswerSpecification>";
 		q += "  </Question>";
 		q += "</QuestionForm>";
 		return q;
 	}
 
-	public String getComplexFreeTextQuestion(String question, String displayName, String title, List<String> items) {
+	public String getComplexFreeTextQuestion(String question, String displayName, String title, String[] items) {
 		String q = "";
 		q += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 		q += "<QuestionForm xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd\">";
@@ -65,9 +86,9 @@ public class Requester extends RequesterServiceRaw {
 		q += "      <Title>" + title + "</Title>";
 		q += "      <Text>" + question + "</Text>";
 		q += "      <List>";
-		for (String item : items) {
-		q += "      	<ListItem>" + item + "</ListItem>";
-		}
+		for (int i = 0; i < items.length; i++) {
+	        q += "      <ListItem>"+ items[i]+ "</ListItem>";
+		} 
 		q += "      </List>";
 		q += "    </QuestionContent>"; 
 		q += "    <AnswerSpecification>";

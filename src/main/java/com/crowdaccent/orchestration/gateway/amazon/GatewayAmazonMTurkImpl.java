@@ -16,22 +16,30 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 		service = new Requester(new PropertiesClientConfig("props/mturk.properties"));
 	}
 	
-	public HITResponse createProductCategorizationHIT(HITRequest hRequest) {
+	public HITResponse createBasicFreeTextHIT(HITRequest hRequest) {
 		
-		HIT hit = this.createBasicFreeTextHIT(hRequest);
+		HIT hit = this.createBasicFreeTextTask(hRequest);
 		HITResponse response = new HITResponse();
 		response.setSyncResponse(hit);
 		return response;
 	}
 
+	public HITResponse createComplexFreeTextHIT(HITRequest hRequest) {
+		
+		HIT hit = this.createComplexFreeTextTask(hRequest);
+		HITResponse response = new HITResponse();
+		response.setSyncResponse(hit);
+		return response;
+	}
+	
 	/**
 	 * 
 	 * @param hRequest
 	 * @return
 	 */
-	private HIT createBasicFreeTextHIT(HITRequest hRequest) {
+	private HIT createBasicFreeTextTask(HITRequest hRequest) {
 
-		return this.service.createHIT(hRequest.getHITTypeId(), // HITTypeId 
+		return this.service.createBasicFreeTextHIT(hRequest.getHITTypeId(), // HITTypeId 
 	    		hRequest.getTitle(), 
 	    		hRequest.getDescription(), 
 	    		hRequest.getKeywords(), // keywords 
@@ -47,6 +55,26 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	          );		
 	}
 
+	private HIT createComplexFreeTextTask(HITRequest hRequest) {
+
+		return this.service.createComplexFreeTextHIT(hRequest.getHITTypeId(), // HITTypeId 
+	    		hRequest.getTitle(), 
+	    		hRequest.getDescription(), 
+	    		hRequest.getKeywords(), // keywords 
+	    		hRequest.getQuestion(), 
+	            hRequest.getReward(), 
+	            hRequest.getAssignmentDurationInSecs(), 
+	            hRequest.getAutoApprovalDelaySecs(), 
+	            hRequest.getLifeTimeInSeconds(), 
+	            hRequest.getMaxAssignments(), 
+	            hRequest.getRequestorAnnotation(), // requesterAnnotation 
+	            hRequest.getQualificationRequirement(),
+	            hRequest.getResponseGroup(),  // responseGroup
+	            hRequest.getDisplayName(),
+				hRequest.getListItems()
+	          );		
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.orchestration.gateway.Gateway#getWebsiteURL()
 	 */
