@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.crowdaccent.repository;
+package com.crowdaccent.service;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import com.crowdaccent.entity.Product;
  * @author kbhalla
  *
  */
-public interface ProductDAO {
+public interface ProductService {
 	/**
 	 * @param product
 	 */

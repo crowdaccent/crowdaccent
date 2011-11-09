@@ -9,7 +9,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.crowdaccent.entity.Product;
@@ -39,7 +38,7 @@ public class ProductDAOImpl implements ProductDAO {
 	public void save(Product product) {
 		Session s = this.sessionFactory.getCurrentSession();
 		s.saveOrUpdate(product);
-		s.flush();
+		//s.close();
 	}
 
 	/*
@@ -75,6 +74,17 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> getAll() {
 		Session s = this.sessionFactory.getCurrentSession();
 		Query query = s.createQuery("from Product product");
+		return query.list();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.repository.ProductDAO#getNumProducts(java.lang.Long)
+	 */
+	@Override
+	public List<Product> getNumProducts(int number) {
+		Session s = this.sessionFactory.getCurrentSession();
+		Query query = s.createQuery("from Product product");
+		query.setMaxResults(number);
 		return query.list();
 	}
 

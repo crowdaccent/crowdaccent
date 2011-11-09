@@ -3,9 +3,6 @@
  */
 package com.crowdaccent.orchestration.gateway.amazon.test;
 
-
-import static org.junit.Assert.assertNotNull;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -17,43 +14,32 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.crowdaccent.entity.Product;
-import com.crowdaccent.repository.ProductDAO;
+import com.crowdaccent.service.ProductService;
 
 /**
  * @author kbhalla
- *
+ * 
  */
 @TransactionConfiguration(defaultRollback = false, transactionManager = "transactionManager")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:**/applicationContext.xml"})
-public class TestProductDAO extends
+@ContextConfiguration(locations = { "classpath:**/applicationContext.xml" })
+public class TestProductService extends
 		AbstractTransactionalJUnit4SpringContextTests {
-	private ProductDAO productDAO;
-	private Long id;
-	
+	private ProductService productService;
+
+	/**
+	 * @param productService the productService to set
+	 */
 	@Autowired
-	public void setProductDAO(ProductDAO productDAO){
-		this.productDAO = productDAO;
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
 	}
 	@Test
-	public void createProduct(){
-		Product p = new Product();
-		p.setCategory("apparal");
-		productDAO.save(p);
-		id = p.getId();
-		assertNotNull(p.getId());
+	public void listProducts(){
+		List<Product> products = productService.getNumProducts(5);
+		for(Product p:products){
+			System.out.println("Product " + p.getId() + p.getImageURL());
+		}
 	}
-	@Test
-	public void listProduct(){
-		List<Product> products;
-		products = productDAO.getAll();
-		assertNotNull(products);
-		System.out.println("Products = " + products.size());
-	}
-	@Test
-	public void delete(){
-		Product p = new Product();
-		p.setId (id);
-		productDAO.delete(p);
-	}
+
 }

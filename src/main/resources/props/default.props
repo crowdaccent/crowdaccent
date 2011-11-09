@@ -1,6 +1,6 @@
 # Properties in this file will be read when running in dev mode
 jdbc.driverClassName=com.mysql.jdbc.Driver
-jdbc.url=jdbc:mysql://localhost/foo
+jdbc.url=jdbc:mysql://localhost/crowdaccent
 jdbc.username=root
 jdbc.password=colors
 hibernate.dialect=org.hibernate.dialect.MySQLDialect
