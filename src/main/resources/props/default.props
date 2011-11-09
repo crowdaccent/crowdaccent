@@ -1,5 +1,9 @@
 # Properties in this file will be read when running in dev mode
-db.driver=com.mysql.jdbc.Driver
-db.url=jdbc:mysql://localhost/crowdaccent
-db.user=root
-db.password=colors
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://localhost/foo
+jdbc.username=root
+jdbc.password=colors
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+hibernate.hbm2ddl.auto=update
+hibernate.show_sql=true
+hibernate.format_sql=true
