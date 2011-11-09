@@ -5,5 +5,5 @@ jdbc.username=root
 jdbc.password=colors
 hibernate.dialect=org.hibernate.dialect.MySQLDialect
 hibernate.hbm2ddl.auto=update
-hibernate.show_sql=true
+hibernate.show_sql=false
 hibernate.format_sql=true

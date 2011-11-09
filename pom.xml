@@ -27,6 +27,13 @@
 		<javax.persistence.version>2.0.0</javax.persistence.version>
 		<apache.commons.dbcp.version>1.2.2.osgi</apache.commons.dbcp.version>
 		<javax.transaction.version>1.1.0</javax.transaction.version>
+		<codehaus.jackson.version>1.4.3</codehaus.jackson.version>
+		<codehaus.jackson.mapper.version>${codehaus.jackson.version}</codehaus.jackson.mapper.version>
+		<thoughworks.xstream.version>1.3.1</thoughworks.xstream.version>
+		<com.mysql.jdbc.version>5.1.6</com.mysql.jdbc.version>
+		<org.junit.version>4.9.0</org.junit.version>
+		<org.mortbay.jetty.server.version>6.1.9</org.mortbay.jetty.server.version>
+		<slf4j.log4j.version>1.6.1</slf4j.log4j.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -75,11 +82,6 @@
 			<version>2.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>0.9.26</version>
-		</dependency>
-		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>java-aws-mturk</artifactId>
 			<version>${amazon-aws-version}</version>
@@ -91,21 +93,9 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.7</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.scala-tools.testing</groupId>
 			<artifactId>specs_2.9.1</artifactId>
 			<version>1.6.9</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mortbay.jetty</groupId>
-			<artifactId>jetty</artifactId>
-			<version>6.1.25</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- for LiftConsole -->
@@ -114,11 +104,6 @@
 			<artifactId>scala-compiler</artifactId>
 			<version>${scala.version}</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -230,6 +215,41 @@
 			<groupId>javax.transaction</groupId>
 			<artifactId>com.springsource.javax.transaction</artifactId>
 			<version>${javax.transaction.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>com.springsource.org.codehaus.jackson</artifactId>
+			<version>${codehaus.jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>com.springsource.org.codehaus.jackson.mapper</artifactId>
+			<version>${codehaus.jackson.mapper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>com.springsource.com.thoughtworks.xstream</artifactId>
+			<version>${thoughworks.xstream.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mysql.jdbc</groupId>
+			<artifactId>com.springsource.com.mysql.jdbc</artifactId>
+			<version>${com.mysql.jdbc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit</groupId>
+			<artifactId>com.springsource.org.junit</artifactId>
+			<version>${org.junit.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>com.springsource.org.mortbay.jetty.server</artifactId>
+			<version>${org.mortbay.jetty.server.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>com.springsource.slf4j.log4j</artifactId>
+			<version>${slf4j.log4j.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
