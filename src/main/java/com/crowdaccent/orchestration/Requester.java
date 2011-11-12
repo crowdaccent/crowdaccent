@@ -198,7 +198,7 @@ public class Requester extends RequesterServiceRaw {
         q += "          </Selection>";
         q += "          <Selection>";
         q += "              <SelectionIdentifier>3</SelectionIdentifier>";
-        q += "              <Text>"+qContent[0].getItems()[1]+"</Text>";
+        q += "              <Text>"+qContent[0].getItems()[2]+"</Text>";
         q += "          </Selection>";       
         q += "      </Selections>";
         q += "      </SelectionAnswer>";
@@ -227,7 +227,7 @@ public class Requester extends RequesterServiceRaw {
         q += "          </Selection>";
         q += "          <Selection>";
         q += "              <SelectionIdentifier>Level2</SelectionIdentifier>";
-        q += "              <Text>"+qContent[1].getItems()[1]+"</Text>";
+        q += "              <Text>"+qContent[1].getItems()[2]+"</Text>";
         q += "          </Selection>";       
         q += "      </Selections>";
         q += "      </SelectionAnswer>";
@@ -279,7 +279,7 @@ public class Requester extends RequesterServiceRaw {
         q += "    </QuestionContent>"; 
         q += "    <AnswerSpecification>";
         q += "      <SelectionAnswer>";
-        q += "      <MinSelectionCount>3</MinSelectionCount>";
+        q += "      <MinSelectionCount>2</MinSelectionCount>";
         q += "      <StyleSuggestion>checkbox</StyleSuggestion>";
         q += "      <Selections>";
         q += "          <Selection>";
@@ -290,10 +290,6 @@ public class Requester extends RequesterServiceRaw {
         q += "              <SelectionIdentifier>2</SelectionIdentifier>";
         q += "              <Text>"+qContent[0].getItems()[1]+"</Text>";
         q += "          </Selection>";
-        q += "          <Selection>";
-        q += "              <SelectionIdentifier>3</SelectionIdentifier>";
-        q += "              <Text>"+qContent[0].getItems()[1]+"</Text>";
-        q += "          </Selection>";       
         q += "      </Selections>";
         q += "      </SelectionAnswer>";
         q += "    </AnswerSpecification>"; 
@@ -320,7 +316,7 @@ public class Requester extends RequesterServiceRaw {
         q += "          </Selection>";
         q += "          <Selection>";
         q += "              <SelectionIdentifier>Level2</SelectionIdentifier>";
-        q += "              <Text>"+qContent[1].getItems()[1]+"</Text>";
+        q += "              <Text>"+qContent[1].getItems()[2]+"</Text>";
         q += "          </Selection>";       
         q += "      </Selections>";
         q += "      </SelectionAnswer>";
