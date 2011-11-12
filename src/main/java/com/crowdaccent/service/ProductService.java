@@ -38,5 +38,10 @@ public interface ProductService {
 	 * @return
 	 */
 	public Product createHIT(String id);
-
+    /**
+     * @param id
+     * @return
+     */
+    public Product createIntroductionHIT(String id);
+	
 }

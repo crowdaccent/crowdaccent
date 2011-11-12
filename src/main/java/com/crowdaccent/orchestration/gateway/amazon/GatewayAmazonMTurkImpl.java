@@ -31,7 +31,15 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 		response.setSyncResponse(hit);
 		return response;
 	}
-	
+
+	public HITResponse createIntroductionHIT(HITRequest hRequest) {
+        
+        HIT hit = this.createIntroductionTask(hRequest);
+        HITResponse response = new HITResponse();
+        response.setSyncResponse(hit);
+        return response;
+    }
+	   
 	/**
 	 * 
 	 * @param hRequest
@@ -73,6 +81,28 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	            hRequest.getDisplayName(),
 				hRequest.getListItems()
 	          );		
+	}
+
+	private HIT createIntroductionTask(HITRequest hRequest) {
+
+        return this.service.createIntroductionHIT(hRequest.getHITTypeId(), // HITTypeId 
+            hRequest.getTitle(), 
+            hRequest.getDescription(), 
+            hRequest.getKeywords(), // keywords 
+            hRequest.getQuestion(), 
+            hRequest.getReward(), 
+            hRequest.getAssignmentDurationInSecs(), 
+            hRequest.getAutoApprovalDelaySecs(), 
+            hRequest.getLifeTimeInSeconds(), 
+            hRequest.getMaxAssignments(), 
+            hRequest.getRequestorAnnotation(), // requesterAnnotation 
+            hRequest.getQualificationRequirement(),
+            hRequest.getResponseGroup(),  // responseGroup
+            hRequest.getDisplayName(),
+            hRequest.getListItems(),
+            hRequest.getOverviewContent(),
+            hRequest.getQuestionContent()
+          );        
 	}
 	
 	/* (non-Javadoc)

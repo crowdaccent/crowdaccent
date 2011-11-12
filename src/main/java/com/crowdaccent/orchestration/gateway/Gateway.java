@@ -16,6 +16,13 @@ public interface Gateway {
 	 */
 	public HITResponse createComplexFreeTextHIT(HITRequest hrequest);
 
+	   /**
+     * 
+     * @param hrequest
+     * @return
+     */
+    public HITResponse createIntroductionHIT(HITRequest hrequest);
+
 	/** Returns websiteURL
 	 * @return String website URL
 	 */

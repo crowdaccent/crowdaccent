@@ -56,4 +56,11 @@ public class ProductController {
 		return m;
 	}
 
+   @RequestMapping(method = RequestMethod.GET, value = "/createIntroductionHIT/{id}")
+    public ModelAndView createIntroductionHIT(@PathVariable String id){
+        ModelAndView m = new ModelAndView();
+        Product p = productService.createIntroductionHIT(id);
+        m.addObject(p);
+        return m;
+    }
 }

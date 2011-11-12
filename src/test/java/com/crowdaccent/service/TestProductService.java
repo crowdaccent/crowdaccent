@@ -60,7 +60,17 @@ public class TestProductService extends
 				break;
 			}
 		}
-
 	}
 
+   @Test
+    public void createIntroductionHIT() {
+        List<Product> products = productService.getNumProducts(1);
+        for (Product p : products) {
+            if (p.getImageURL() != null) {
+                productService.createIntroductionHIT(p.getId()+"");
+                assertNotNull(p.getHitURL());
+                break;
+            }
+        }
+    }
 }

@@ -1,8 +1,8 @@
 package com.crowdaccent.orchestration.gateway;
 
-import java.util.List;
-
 import com.amazonaws.mturk.requester.QualificationRequirement;
+import com.crowdaccent.orchestration.gateway.amazon.Overview;
+import com.crowdaccent.orchestration.gateway.amazon.Question;
 
 public class HITRequest {
 
@@ -22,6 +22,8 @@ public class HITRequest {
 	private String[] responseGroup = null; 
 	private String displayName = null;
 	private String[] items = null;
+	private Overview oContent = null;
+	private Question[] qContent = null; 
 	
 	public String getHITTypeId() {
 		return this.hitTypeId;
@@ -147,4 +149,21 @@ public class HITRequest {
 	public void setListItems(String[] items) {
 		this.items = items;
 	}
+
+    public Overview getOverviewContent() {
+        return this.oContent;
+    }
+    
+    public void setOverviewContent(Overview oContent) {
+        this.oContent = oContent;
+    }
+
+    public Question[] getQuestionContent() {
+        return this.qContent;
+    }
+
+    public void setQuestionContent(Question[] qContent) {
+        this.qContent = qContent;
+    }
+
 }
