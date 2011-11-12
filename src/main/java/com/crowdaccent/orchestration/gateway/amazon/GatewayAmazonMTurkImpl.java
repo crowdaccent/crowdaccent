@@ -39,7 +39,15 @@ public class GatewayAmazonMTurkImpl implements Gateway {
         response.setSyncResponse(hit);
         return response;
     }
-	   
+
+	public HITResponse createIntroductionHITWithImage(HITRequest hRequest) {
+        
+        HIT hit = this.createIntroductionTaskWithImage(hRequest);
+        HITResponse response = new HITResponse();
+        response.setSyncResponse(hit);
+        return response;
+    }
+
 	/**
 	 * 
 	 * @param hRequest
@@ -104,6 +112,28 @@ public class GatewayAmazonMTurkImpl implements Gateway {
             hRequest.getQuestionContent()
           );        
 	}
+
+	private HIT createIntroductionTaskWithImage(HITRequest hRequest) {
+
+        return this.service.createIntroductionHITWithImage(hRequest.getHITTypeId(), // HITTypeId 
+        hRequest.getTitle(), 
+        hRequest.getDescription(), 
+        hRequest.getKeywords(), // keywords 
+        hRequest.getQuestion(), 
+        hRequest.getReward(), 
+        hRequest.getAssignmentDurationInSecs(), 
+        hRequest.getAutoApprovalDelaySecs(), 
+        hRequest.getLifeTimeInSeconds(), 
+        hRequest.getMaxAssignments(), 
+        hRequest.getRequestorAnnotation(), // requesterAnnotation 
+        hRequest.getQualificationRequirement(),
+        hRequest.getResponseGroup(),  // responseGroup
+        hRequest.getDisplayName(),
+        hRequest.getListItems(),
+        hRequest.getOverviewContent(),
+        hRequest.getQuestionContent()
+      );        
+   }
 	
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.orchestration.gateway.Gateway#getWebsiteURL()
