@@ -143,7 +143,7 @@ public class ProductServiceImpl implements ProductService {
         question[0].setDisplayName("Image URL");
         question[0].setRequired(true);
         question[0].setTitle("Image URL");
-        question[0].setQuestion("Please copy and paste the url : "+ p.getImageURL() + "on your browser and press enter. Then answer the following");
+        question[0].setQuestion("Please copy and paste the url : "+ p.getImageURL() + " on your browser and press enter. Then answer the following");
         
         String items[] = new String[3];
         items[0] = "Does the image downloads on Firefox browser without javascript and page not found error?";
@@ -161,7 +161,7 @@ public class ProductServiceImpl implements ProductService {
         items2[0] = "Is this the correct category associated with the product in the image?";
         items2[1] = "Is this the correct category associated with the product in the image?";
         items2[2] = "Is this the correct category associated with the product in the image?";
-        question[1].setItems(items);
+        question[1].setItems(items2);
 
         question[2].setQuestionId(3);
         question[2].setQuestion("Provide provide your comments to help us improve our tasks");
