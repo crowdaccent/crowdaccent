@@ -9,6 +9,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.amazonaws.mturk.requester.Comparator;
+import com.amazonaws.mturk.requester.QualificationRequirement;
 import com.crowdaccent.entity.Product;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
@@ -113,8 +115,8 @@ public class ProductServiceImpl implements ProductService {
         Product p = this.getById(id);
         Gateway gw = new GatewayAmazonMTurkImpl();
         HITRequest hRequest = new HITRequest();
-        hRequest.setTitle(p.getSubject());
-        hRequest.setDescription(p.getSummary());
+        hRequest.setTitle("Product Image and Category Validation");
+        hRequest.setDescription("Validate categories of the products");
         hRequest.setKeywords(p.getCategory()); // keywords
         hRequest.setReward(.1);
         hRequest.setAssignmentDurationInSecs((long) (3 * 60 * 60));
@@ -138,7 +140,6 @@ public class ProductServiceImpl implements ProductService {
         question[1] = new Question();
         question[2] = new Question();
 
-        System.out.println("Question Before ::" + question.length + " : " + question[0]);
         question[0].setQuestionId(1);
         question[0].setDisplayName("Image URL");
         question[0].setRequired(true);
@@ -166,9 +167,14 @@ public class ProductServiceImpl implements ProductService {
         question[2].setQuestionId(3);
         question[2].setQuestion("Provide provide your comments to help us improve our tasks");
 
-        System.out.println("Question After ::" + question.toString());
         hRequest.setQuestionContent(question);
-        
+
+        QualificationRequirement qualificationRequirement[] = new QualificationRequirement[1];
+        qualificationRequirement[0] = new QualificationRequirement();
+        qualificationRequirement[0].setQualificationTypeId("00000000000000000060");
+        qualificationRequirement[0].setComparator(Comparator.EqualTo);
+        qualificationRequirement[0].setIntegerValue(1);
+ 
         HITResponse hit = gw.createIntroductionHIT(hRequest);
         
         p.setHitCreated(new Date());
@@ -180,4 +186,91 @@ public class ProductServiceImpl implements ProductService {
         return p;
     }
 
+
+    /* (non-Javadoc)
+     * @see com.crowdaccent.service.ProductService#createIntroductionHIT(java.lang.String)
+     */
+    @Override
+    public Product createIntroductionHITWithImage(String id) {
+        Product p = this.getById(id);
+        Gateway gw = new GatewayAmazonMTurkImpl();
+        HITRequest hRequest = new HITRequest();
+        hRequest.setTitle("Product Image and Category Validation");
+        hRequest.setDescription("Validate categories of the products");
+        hRequest.setKeywords(p.getCategory()); // keywords
+        hRequest.setReward(.1);
+        hRequest.setAssignmentDurationInSecs((long) (3 * 60 * 60));
+        hRequest.setAutoApprovalDelaySecs((long) (72 * 60 * 60));
+        hRequest.setLifeTimeInSeconds(new Long(24 * 60 * 60));
+        hRequest.setMaxAssignments(10);
+        hRequest.setRequestorAnnotation(null);
+        hRequest.setQualificationRequirement(null);
+        hRequest.setResponseGroup(null);
+        hRequest.setDisplayName("Testing Products");
+        
+        Overview overview = new Overview();
+        overview.setTitle("Product Image URL and Category Validation");
+        
+        String information[] = new String[9];
+        information[0] = "Image :";
+        information[1] = p.getImageURL();
+        information[2] = p.getSubject();
+        information[3] = "300";
+        information[4] = "400";
+        information[5] = "image-id";
+        information[6] = "1";
+        information[7] = p.getSubject();
+        information[8] = p.getSummary();
+        
+        overview.setInformation(information);
+        hRequest.setOverviewContent(overview);
+        
+        Question question[] = new Question[3];
+        question[0] = new Question();
+        question[1] = new Question();
+        question[2] = new Question();
+
+        question[0].setQuestionId(1);
+        question[0].setDisplayName("Image URL");
+        question[0].setRequired(true);
+        question[0].setQuestion("Now answer the following questions:");
+
+        String items1[] = new String[2];
+        items1[0] = "Does the image loads correctly for you?";
+        items1[1] = "Does the the title and description matches with the image?";
+        question[0].setItems(items1);
+
+        question[1].setQuestionId(2);
+        question[1].setDisplayName("Category Validation");
+        question[1].setRequired(true);
+        question[1].setQuestion("The existing categorization hierarchy associated with the product is : " + p.getCategory());
+
+        String items2[] = new String[3];
+        items2[0] = "Is this the correct category associated with the product in the image?";
+        items2[1] = "Is this the correct category associated with the product in the image?";
+        items2[2] = "Is this the correct category associated with the product in the image?";
+        question[1].setItems(items2);
+
+        question[2].setQuestionId(3);
+        question[2].setQuestion("Please provide us your comments to help improve our tasks");
+
+        hRequest.setQuestionContent(question);
+        
+        QualificationRequirement qualificationRequirement[] = new QualificationRequirement[1];
+        qualificationRequirement[0] = new QualificationRequirement();
+        qualificationRequirement[0].setQualificationTypeId("00000000000000000060");
+        qualificationRequirement[0].setComparator(Comparator.EqualTo);
+        qualificationRequirement[0].setIntegerValue(1);
+        
+        hRequest.setQualificationRequirement(qualificationRequirement);
+        HITResponse hit = gw.createIntroductionHITWithImage(hRequest);
+        
+        p.setHitCreated(new Date());
+        p.setHitURL(gw.getWebsiteURL()
+                + "/mturk/preview?groupId="
+                + hit.getSyncResponse().getHITTypeId());
+        
+        this.save(p);
+        return p;
+    }
 }

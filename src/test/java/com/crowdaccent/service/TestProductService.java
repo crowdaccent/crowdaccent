@@ -64,7 +64,7 @@ public class TestProductService extends
 
    @Test
     public void createIntroductionHIT() {
-        List<Product> products = productService.getNumProducts(5);
+        List<Product> products = productService.getNumProducts(1);
         for (Product p : products) {
             if (p.getImageURL() != null) {
                 productService.createIntroductionHIT(p.getId()+"");
@@ -74,4 +74,18 @@ public class TestProductService extends
             }
         }
     }
+   
+   @Test
+   public void createIntroductionHITWithImage() {
+       List<Product> products = productService.getNumProducts(1);
+       for (Product p : products) {
+           if (p.getImageURL() != null) {
+               productService.createIntroductionHITWithImage(p.getId()+"");
+               assertNotNull(p.getHitURL());
+               _log.info("Hit URL " + p.getHitURL());
+               break;
+           }
+       }
+   }
+   
 }

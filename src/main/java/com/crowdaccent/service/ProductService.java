@@ -43,5 +43,10 @@ public interface ProductService {
      * @return
      */
     public Product createIntroductionHIT(String id);
+    /**
+     * @param id
+     * @return
+     */
+    public Product createIntroductionHITWithImage(String id);
 	
 }
