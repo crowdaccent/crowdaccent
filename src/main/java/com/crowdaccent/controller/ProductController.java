@@ -63,4 +63,12 @@ public class ProductController {
         m.addObject(p);
         return m;
     }
+   
+   @RequestMapping(method = RequestMethod.GET, value = "/createIntroductionHITWithImage/{id}")
+   public ModelAndView createIntroductionHITWithImage(@PathVariable String id){
+       ModelAndView m = new ModelAndView();
+       Product p = productService.createIntroductionHITWithImage(id);
+       m.addObject(p);
+       return m;
+   }
 }

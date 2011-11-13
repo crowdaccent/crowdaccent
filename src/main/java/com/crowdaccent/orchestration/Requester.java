@@ -1,5 +1,7 @@
 package com.crowdaccent.orchestration;
 
+import org.apache.axis.utils.XMLUtils;
+
 import com.amazonaws.mturk.requester.HIT;
 import com.amazonaws.mturk.requester.QualificationRequirement;
 import com.amazonaws.mturk.requester.QualificationType;
@@ -217,18 +219,14 @@ public class Requester extends RequesterServiceRaw {
         q += "      <MinSelectionCount>1</MinSelectionCount>";
         q += "      <StyleSuggestion>radiobutton</StyleSuggestion>";
         q += "      <Selections>";
-        q += "          <Selection>";
-        q += "              <SelectionIdentifier>Level0</SelectionIdentifier>";
-        q += "              <Text>"+qContent[1].getItems()[0]+"</Text>";
-        q += "          </Selection>";
-        q += "          <Selection>";
-        q += "              <SelectionIdentifier>Level1</SelectionIdentifier>";
-        q += "              <Text>"+qContent[1].getItems()[1]+"</Text>";
-        q += "          </Selection>";
-        q += "          <Selection>";
-        q += "              <SelectionIdentifier>Level2</SelectionIdentifier>";
-        q += "              <Text>"+qContent[1].getItems()[2]+"</Text>";
-        q += "          </Selection>";       
+        
+        for (int i = 0; i < qContent[1].getItems().length; i++){
+        	q += "          <Selection>";
+        	q += "              <SelectionIdentifier>Level"+ i +"</SelectionIdentifier>";
+        	q += "              <Text>"+ XMLUtils.xmlEncodeString(qContent[1].getItems()[i])+"</Text>";
+        	q += "          </Selection>";
+        }
+        
         q += "      </Selections>";
         q += "      </SelectionAnswer>";
         q += "    </AnswerSpecification>"; 
@@ -306,18 +304,14 @@ public class Requester extends RequesterServiceRaw {
         q += "      <MinSelectionCount>1</MinSelectionCount>";
         q += "      <StyleSuggestion>radiobutton</StyleSuggestion>";
         q += "      <Selections>";
-        q += "          <Selection>";
-        q += "              <SelectionIdentifier>Level0</SelectionIdentifier>";
-        q += "              <Text>"+qContent[1].getItems()[0]+"</Text>";
-        q += "          </Selection>";
-        q += "          <Selection>";
-        q += "              <SelectionIdentifier>Level1</SelectionIdentifier>";
-        q += "              <Text>"+qContent[1].getItems()[1]+"</Text>";
-        q += "          </Selection>";
-        q += "          <Selection>";
-        q += "              <SelectionIdentifier>Level2</SelectionIdentifier>";
-        q += "              <Text>"+qContent[1].getItems()[2]+"</Text>";
-        q += "          </Selection>";       
+
+        for (int i = 0; i < qContent[1].getItems().length; i++){
+			q += "          <Selection>";
+			q += "              <SelectionIdentifier>Level"+ i +"</SelectionIdentifier>";
+			q += "              <Text>" + XMLUtils.xmlEncodeString(qContent[1].getItems()[i]) + "</Text>";
+			q += "          </Selection>";
+		}
+        
         q += "      </Selections>";
         q += "      </SelectionAnswer>";
         q += "    </AnswerSpecification>"; 

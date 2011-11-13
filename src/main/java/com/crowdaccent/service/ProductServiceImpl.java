@@ -6,8 +6,8 @@ package com.crowdaccent.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
 
+import org.apache.axis.utils.XMLUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -217,14 +217,14 @@ public class ProductServiceImpl implements ProductService {
         
         String information[] = new String[9];
         information[0] = "Image :";
-        information[1] = p.getImageURL();
-        information[2] = p.getSubject();
+        information[1] = XMLUtils.xmlEncodeString(p.getImageURL());
+        information[2] = XMLUtils.xmlEncodeString(p.getSubject());
         information[3] = "300";
         information[4] = "400";
         information[5] = "image-id";
         information[6] = "1";
-        information[7] = p.getSubject();
-        information[8] = p.getSummary();
+        information[7] = XMLUtils.xmlEncodeString(p.getSubject());
+        information[8] = XMLUtils.xmlEncodeString(p.getSummary());
         
         overview.setInformation(information);
         hRequest.setOverviewContent(overview);
@@ -247,14 +247,14 @@ public class ProductServiceImpl implements ProductService {
         question[1].setQuestionId(2);
         question[1].setDisplayName("Category Validation");
         question[1].setRequired(true);
-        question[1].setQuestion("The existing categorization hierarchy associated with the product is : " + p.getCategory());
+        question[1].setQuestion("The existing categorization hierarchy associated with the product is : "  + XMLUtils.xmlEncodeString(p.getCategory()));
         List<String> categories = new ArrayList<String>();
         categories = Arrays.asList(p.getCategory().split(">"));
 
         String items2[] = new String[categories.size()];
         int questionNo = 0;
         for (String category: categories){
-        	items2[questionNo++] = "Is "+ category +"  the correct category associated with the product in the image?";
+        	items2[questionNo++] = "Is "+ XMLUtils.xmlEncodeString(category) +"  the correct category associated with the product in the image?";
         }
         
         question[1].setItems(items2);
@@ -281,4 +281,12 @@ public class ProductServiceImpl implements ProductService {
         this.save(p);
         return p;
     }
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.ProductService#getNumValidProducts(int)
+	 */
+	@Override
+	public List<Product> getNumValidProducts(int number) {
+		return this.productDAO.getNumValidProducts(number);
+	}
 }

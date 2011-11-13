@@ -48,5 +48,11 @@ public interface ProductService {
      * @return
      */
     public Product createIntroductionHITWithImage(String id);
+
+    /** Returns number of products with valid image and URL.
+	 * @param number number of products to return.
+	 * @return List of Products.
+	 */
+	public List<Product> getNumValidProducts(int number);
 	
 }

@@ -29,9 +29,17 @@ public interface ProductDAO {
 	 * @return
 	 */
 	public List<Product> getAll();
-	/**
-	 * @return
+
+	/** Returns limited number of products.
+	 * @param number number of products to return.
+	 * @return List of Products.
 	 */
 	public List<Product> getNumProducts(int number);
+	
+	/** Returns number of products with valid image and URL.
+	 * @param number number of products to return.
+	 * @return List of Products.
+	 */
+	public List<Product> getNumValidProducts(int number);
 
 }
