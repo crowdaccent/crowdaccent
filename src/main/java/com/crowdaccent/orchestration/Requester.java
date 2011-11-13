@@ -336,7 +336,6 @@ public class Requester extends RequesterServiceRaw {
     }
 
 	public String getWebsiteURL() {
-		// TODO Auto-generated method stub
 	    return this.config.getWorkerWebsiteURL();
 	}
 	

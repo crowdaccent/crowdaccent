@@ -3,11 +3,15 @@
  */
 package com.crowdaccent.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import scala.actors.threadpool.Arrays;
 
 import com.amazonaws.mturk.requester.Comparator;
 import com.amazonaws.mturk.requester.QualificationRequirement;
@@ -244,11 +248,15 @@ public class ProductServiceImpl implements ProductService {
         question[1].setDisplayName("Category Validation");
         question[1].setRequired(true);
         question[1].setQuestion("The existing categorization hierarchy associated with the product is : " + p.getCategory());
+        List<String> categories = new ArrayList<String>();
+        categories = Arrays.asList(p.getCategory().split(">"));
 
-        String items2[] = new String[3];
-        items2[0] = "Is this the correct category associated with the product in the image?";
-        items2[1] = "Is this the correct category associated with the product in the image?";
-        items2[2] = "Is this the correct category associated with the product in the image?";
+        String items2[] = new String[categories.size()];
+        int questionNo = 0;
+        for (String category: categories){
+        	items2[questionNo++] = "Is "+ category +"  the correct category associated with the product in the image?";
+        }
+        
         question[1].setItems(items2);
 
         question[2].setQuestionId(3);
