@@ -2,10 +2,17 @@ package com.crowdaccent.orchestration;
 
 import org.apache.axis.utils.XMLUtils;
 
+import com.amazonaws.mturk.requester.AssignmentStatus;
+import com.amazonaws.mturk.requester.GetAssignmentsForHITResult;
+import com.amazonaws.mturk.requester.GetAssignmentsForHITSortProperty;
+import com.amazonaws.mturk.requester.GetReviewableHITsResult;
+import com.amazonaws.mturk.requester.GetReviewableHITsSortProperty;
 import com.amazonaws.mturk.requester.HIT;
 import com.amazonaws.mturk.requester.QualificationRequirement;
 import com.amazonaws.mturk.requester.QualificationType;
 import com.amazonaws.mturk.requester.QualificationTypeStatus;
+import com.amazonaws.mturk.requester.ReviewableHITStatus;
+import com.amazonaws.mturk.requester.SortDirection;
 import com.amazonaws.mturk.service.axis.RequesterServiceRaw;
 import com.amazonaws.mturk.service.exception.ServiceException;
 import com.amazonaws.mturk.util.ClientConfig;
@@ -14,7 +21,11 @@ import com.crowdaccent.orchestration.gateway.amazon.Question;
 
 public class Requester extends RequesterServiceRaw {
 
-	public Requester(ClientConfig config) {
+    //-------------------------------------------------------------
+    // Constants
+    //-------------------------------------------------------------
+
+    public Requester(ClientConfig config) {
 		super(config);
 	}
 	
@@ -24,20 +35,19 @@ public class Requester extends RequesterServiceRaw {
 					throws ServiceException {		
 		
 		return super.createHIT(hitTypeId, // HITTypeId 
-	    		title, 
-	    		description, 
-	    		keywords, // keywords 
-	    		this.getBasicFreeTextQuestion(question), 
-	    		reward, 
-	            assignmentDurationInSeconds, 
-	            autoApprovalDelayInSeconds, 
-	            lifetimeInSeconds, 
-	            maxAssignments, 
-	            requesterAnnotation, // requesterAnnotation 
-	            qualificationRequirements,
-	            responseGroup  // responseGroup
-	          );
-		
+    		title, 
+    		description, 
+    		keywords, // keywords 
+    		this.getBasicFreeTextQuestion(question), 
+    		reward, 
+            assignmentDurationInSeconds, 
+            autoApprovalDelayInSeconds, 
+            lifetimeInSeconds, 
+            maxAssignments, 
+            requesterAnnotation, // requesterAnnotation 
+            qualificationRequirements,
+            responseGroup  // responseGroup
+          );		
 	}
 
 	public HIT createComplexFreeTextHIT(String hitTypeId, String title, String description, String keywords, String question, Double reward, 
@@ -46,20 +56,19 @@ public class Requester extends RequesterServiceRaw {
 			String displayName, String[] items)
 					throws ServiceException {		
 		return super.createHIT(hitTypeId, // HITTypeId 
-	    		title, 
-	    		description, 
-	    		keywords, // keywords 
-	    		this.getComplexFreeTextQuestion(question, displayName, title, items), 
-	    		reward, 
-	            assignmentDurationInSeconds, 
-	            autoApprovalDelayInSeconds, 
-	            lifetimeInSeconds, 
-	            maxAssignments, 
-	            requesterAnnotation, // requesterAnnotation 
-	            qualificationRequirements,
-	            responseGroup  // responseGroup
-	          );
-		
+    		title, 
+    		description, 
+    		keywords, // keywords 
+    		this.getComplexFreeTextQuestion(question, displayName, title, items), 
+    		reward, 
+            assignmentDurationInSeconds, 
+            autoApprovalDelayInSeconds, 
+            lifetimeInSeconds, 
+            maxAssignments, 
+            requesterAnnotation, // requesterAnnotation 
+            qualificationRequirements,
+            responseGroup  // responseGroup
+          );		
 	}
 
 	public HIT createIntroductionHIT(String hitTypeId, String title, String description, String keywords, String question, Double reward, 
@@ -80,8 +89,7 @@ public class Requester extends RequesterServiceRaw {
             requesterAnnotation, // requesterAnnotation 
             qualificationRequirements,
             responseGroup  // responseGroup
-          );
-    
+          );   
 	}
 
 	public HIT createIntroductionHITWithImage(String hitTypeId, String title, String description, String keywords, String question, Double reward, 
@@ -90,36 +98,49 @@ public class Requester extends RequesterServiceRaw {
             String displayName, String[] items, Overview oContent, Question[] qContent)
                     throws ServiceException {       
         return super.createHIT(hitTypeId, // HITTypeId 
-        title, 
-        description, 
-        keywords, // keywords 
-        this.getIntroductionHITQuestionWithImage(oContent, qContent), 
-        reward, 
-        assignmentDurationInSeconds, 
-        autoApprovalDelayInSeconds, 
-        lifetimeInSeconds, 
-        maxAssignments, 
-        requesterAnnotation, // requesterAnnotation 
-        qualificationRequirements,
-        responseGroup  // responseGroup
-      );
+            title, 
+            description, 
+            keywords, // keywords 
+            this.getIntroductionHITQuestionWithImage(oContent, qContent), 
+            reward, 
+            assignmentDurationInSeconds, 
+            autoApprovalDelayInSeconds, 
+            lifetimeInSeconds, 
+            maxAssignments, 
+            requesterAnnotation, // requesterAnnotation 
+            qualificationRequirements,
+            responseGroup  // responseGroup
+          );
 	}
-	
+
+    public GetReviewableHITsResult getReviewableHITs(String hitTypeId, ReviewableHITStatus status, 
+            SortDirection sortDirection, GetReviewableHITsSortProperty sortProperty, 
+            Integer pageNumber, Integer pageSize)
+          throws ServiceException { 
+        return super.getReviewableHITs(hitTypeId, status, sortDirection, sortProperty, pageNumber, pageSize);
+    }
+
+    public GetAssignmentsForHITResult getAssignmentsForHIT(String hitId, SortDirection sortDirection, AssignmentStatus[] status, 
+            GetAssignmentsForHITSortProperty sortProperty, Integer pageNumber, Integer pageSize, String[] responseGroup)
+          throws ServiceException { 
+        return super.getAssignmentsForHIT(hitId, sortDirection, status, sortProperty, pageNumber, pageSize, responseGroup);
+    }
+    
 	public QualificationType createQualificationType(String name, String keywords, String description,
       QualificationTypeStatus status, Long retryDelayInSeconds, String test, String answerKey,
       Long testDurationInSeconds, Boolean autoGranted, Integer autoGrantedValue) 
     throws ServiceException { 
     
     return super.createQualificationType(name, 
-            keywords, 
-            description, 
-            status, 
-            retryDelayInSeconds, 
-            test, 
-            answerKey, 
-            testDurationInSeconds, 
-            autoGranted, 
-            autoGrantedValue);
+        keywords, 
+        description, 
+        status, 
+        retryDelayInSeconds, 
+        test, 
+        answerKey, 
+        testDurationInSeconds, 
+        autoGranted, 
+        autoGrantedValue);
 	}
 	
 	public String getBasicFreeTextQuestion(String question) {
