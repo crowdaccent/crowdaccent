@@ -126,6 +126,11 @@ public class Requester extends RequesterServiceRaw {
         return super.getAssignmentsForHIT(hitId, sortDirection, status, sortProperty, pageNumber, pageSize, responseGroup);
     }
     
+    public void notifyWorkers(String subject, String messageText, String[] workerId) 
+            throws ServiceException {
+        super.notifyWorkers(subject, messageText, workerId);
+    }
+    
 	public QualificationType createQualificationType(String name, String keywords, String description,
       QualificationTypeStatus status, Long retryDelayInSeconds, String test, String answerKey,
       Long testDurationInSeconds, Boolean autoGranted, Integer autoGrantedValue) 

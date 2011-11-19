@@ -28,6 +28,15 @@ public interface Gateway {
     * @return
     */
    public HITResponse createIntroductionHITWithImage(HITRequest hrequest);
+   
+   /**
+    * 
+    * @param subject
+    * @param messageText
+    * @param workerId
+    */
+   public void notifyWorkers(String subject, String messageText, String[] workerId); 
+
     
 	/** Returns websiteURL
 	 * @return String website URL

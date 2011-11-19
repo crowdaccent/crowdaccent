@@ -16,6 +16,11 @@ import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
 import com.crowdaccent.orchestration.gateway.HITResponse;
 
+/**
+ * 
+ * @author mkutare
+ *
+ */
 public class GatewayAmazonMTurkImpl implements Gateway {
 
 	private Requester service;
@@ -38,11 +43,11 @@ public class GatewayAmazonMTurkImpl implements Gateway {
       AssignmentStatus.Submitted
     };
 	
-	public GatewayAmazonMTurkImpl() {
+    public GatewayAmazonMTurkImpl() {
 		service = new Requester(new PropertiesClientConfig("props/mturk.properties"));
 	}
 	
-    public HITResponse createBasicFreeTextHIT(HITRequest hRequest) {
+	public HITResponse createBasicFreeTextHIT(HITRequest hRequest) {
     	
     	HIT hit = this.createBasicFreeTextTask(hRequest);
     	HITResponse response = new HITResponse();
@@ -102,6 +107,11 @@ public class GatewayAmazonMTurkImpl implements Gateway {
     public Assignment[] getSubmittedAssignmentsResultsForHIT(String hitId, Integer pageNumber, Integer pageSize, boolean getFullResponse) { 
         
         return this.getSubmittedAssignmentsResultsForHITWithResponseGroup(hitId, pageNumber, pageSize, getFullResponse);
+    }
+
+    public void notifyWorkers(String subject, String messageText, String[] workerId) {
+        
+        this.sendNotificationWorkers(subject, messageText, workerId);
     }
 
     
@@ -253,7 +263,11 @@ public class GatewayAmazonMTurkImpl implements Gateway {
         return result.getAssignment();
     }   
     
-       
+    private void sendNotificationWorkers(String subject, String messageText, String[] workerId) {
+        
+        this.service.notifyWorkers(subject, messageText, workerId);
+    }
+
     /* (non-Javadoc)
      * @see com.crowdaccent.orchestration.gateway.Gateway#getWebsiteURL()
      */
