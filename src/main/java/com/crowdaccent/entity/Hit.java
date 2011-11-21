@@ -6,8 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Table;
 
 /**
  * HIT Entity.
@@ -16,17 +20,25 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
+@Table(appliesTo="Hit", indexes = { @Index(name="IDX_HIT_ID", columnNames={"hit_id"} ) } )
 public class Hit {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(length = 200)
+	
+	@ManyToOne
+	private Product product;
+	
+	@Column(length = 200, nullable = false)
 	private String hit_id;
+	
 	@Column(length = 512)
 	private String hit_type_id;
+	
 	@Temporal(TemporalType.TIMESTAMP)
     @Column
     private Date creation_time;
+	
 	@Column(length = 512)
 	private String title;
 	@Column(columnDefinition = "TEXT")
@@ -35,23 +47,26 @@ public class Hit {
     private String keywords;
     @Column(length = 512)
     private String hit_status;
-    @Column(length = 512)
+   
+    @Column
     private Long reward;
-    @Column(length = 512)
+    @Column
     private Long life_time_in_secs;
-    @Column(length = 512)
+    @Column
     private Long max_assignments;
-    @Column(length = 512)
+    @Column
     private Long auto_approval_delay_in_secs;
-    @Column(length = 512)
+    @Column
     private Long num_similar_hits;
+    
     @Column(length = 512)
     private String hit_review_status;
-    @Column(length = 512)
+    
+    @Column
     private Long number_of_assignments_pending;
-    @Column(length = 512)
+    @Column
     private Long number_of_assignments_available;
-    @Column(length = 512)
+    @Column
     private Long number_of_assignments_completed;
     /**
      * @return the id
@@ -257,5 +272,17 @@ public class Hit {
     public void setNumber_of_assignments_completed(Long number_of_assignments_completed) {
         this.number_of_assignments_completed = number_of_assignments_completed;
     }
+	/**
+	 * @return the product
+	 */
+	public Product getProduct() {
+		return product;
+	}
+	/**
+	 * @param product the product to set
+	 */
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 
 }
