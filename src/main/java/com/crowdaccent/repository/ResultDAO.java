@@ -5,7 +5,6 @@ package com.crowdaccent.repository;
 
 import java.util.List;
 
-import com.crowdaccent.entity.Assignment;
 import com.crowdaccent.entity.Result;
 
 /**
@@ -25,7 +24,7 @@ public interface ResultDAO {
 	 * @param id
 	 * @return
 	 */
-	public Assignment getById(String id);
+	public Result getById(String id);
 	/**
 	 * @return
 	 */

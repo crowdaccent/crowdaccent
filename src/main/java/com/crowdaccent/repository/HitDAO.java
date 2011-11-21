@@ -15,11 +15,11 @@ public interface HitDAO {
 	/**
 	 * @param product
 	 */
-	public void save(Hit assignment);
+	public void save(Hit hit);
 	/**
 	 * @param product
 	 */
-	public void delete(Hit assignment);
+	public void delete(Hit hit);
 	/**
 	 * @param id
 	 * @return
