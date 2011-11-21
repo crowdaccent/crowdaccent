@@ -1,0 +1,40 @@
+/**
+ * 
+ */
+package com.crowdaccent.repository;
+
+import java.util.List;
+
+import com.crowdaccent.entity.Assignment;
+import com.crowdaccent.entity.Result;
+
+/**
+ * @author mkutare
+ *
+ */
+public interface ResultDAO {
+	/**
+	 * @param product
+	 */
+	public void save(Result result);
+	/**
+	 * @param product
+	 */
+	public void delete(Result result);
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Assignment getById(String id);
+	/**
+	 * @return
+	 */
+	public List<Result> getAll();
+
+	/** Returns limited number of assignments.
+	 * @param number number of assignments to return.
+	 * @return List of Assignments.
+	 */
+	public List<Result> getNumResults(int number);
+	
+}
