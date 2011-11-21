@@ -82,7 +82,7 @@ public class TestProductService extends
 
 	@Test
 	public void createIntroductionHITWithImage() {
-		List<Product> products = productService.getNumValidProducts(1000);
+		List<Product> products = productService.getNumValidProducts(3);
 		int num = 0;
 		for (Product p : products) {
 			_log.info("Creating HIT for product id " + p.getId());

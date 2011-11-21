@@ -4,14 +4,13 @@
 package com.crowdaccent.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.axis.utils.XMLUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import scala.actors.threadpool.Arrays;
 
 import com.amazonaws.mturk.requester.Comparator;
 import com.amazonaws.mturk.requester.QualificationRequirement;
