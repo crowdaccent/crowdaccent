@@ -10,7 +10,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * HIT Entity.
+ * Result Entity.
  * 
  * @author mkutare
  * 
