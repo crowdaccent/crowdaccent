@@ -20,7 +20,7 @@ public class Result {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(length = 200)
+	@Column(length = 256)
 	private String hit_id;
 	@Column(length = 512)
 	private String hit_type_id;
@@ -31,19 +31,19 @@ public class Result {
     @Column(length = 512)
     private String keywords;
     @Column(length = 512)
-    private Long reward;    
+    private Double reward;    
     @Temporal(TemporalType.TIMESTAMP)
     @Column
     private Date creation_time;
     @Column(length = 512)
-    private Long max_assignments;
+    private Integer max_assignments;
     @Column(length = 512)
-    private Long auto_approval_delay_in_secs;
+    private Integer auto_approval_delay_in_secs;
     //Data from Assignment data structure
     @Column(length = 512)
-    private Long num_similar_hits;
+    private Integer num_similar_hits;
     @Column(length = 512)
-    private Long life_time_in_secs;
+    private Integer life_time_in_secs;
     //Extra data apart from Assignment and HIT data structure
     @Column(length = 512)
     private String requester_annotation;
@@ -76,7 +76,7 @@ public class Result {
     private String requester_feedback;
     //Data for worker
     @Column(length = 512)
-    private Long work_time_in_secs;
+    private Integer work_time_in_secs;
     @Column(length = 512)
     private String life_time_approval_rate;
     @Column(length = 512)
@@ -91,11 +91,11 @@ public class Result {
     @Column(length = 512)
     private String hit_review_status;
     @Column(length = 512)
-    private Long number_of_assignments_pending;
+    private Integer number_of_assignments_pending;
     @Column(length = 512)
-    private Long number_of_assignments_available;
+    private Integer number_of_assignments_available;
     @Column(length = 512)
-    private Long number_of_assignments_completed;
+    private Integer number_of_assignments_completed;
     /**
      * @return the id
      */
@@ -195,61 +195,61 @@ public class Result {
     /**
      * @return the reward
      */
-    public Long getReward() {
+    public Double getReward() {
         return reward;
     }
     /**
      * @param reward the reward to set
      */
-    public void setReward(Long reward) {
+    public void setReward(Double reward) {
         this.reward = reward;
     }
     /**
      * @return the life_time_in_secs
      */
-    public Long getLife_time_in_secs() {
+    public Integer getLife_time_in_secs() {
         return life_time_in_secs;
     }
     /**
      * @param life_time_in_secs the life_time_in_secs to set
      */
-    public void setLife_time_in_secs(Long life_time_in_secs) {
+    public void setLife_time_in_secs(Integer life_time_in_secs) {
         this.life_time_in_secs = life_time_in_secs;
     }
     /**
      * @return the max_assignments
      */
-    public Long getMax_assignments() {
+    public Integer getMax_assignments() {
         return max_assignments;
     }
     /**
      * @param max_assignments the max_assignments to set
      */
-    public void setMax_assignments(Long max_assignments) {
+    public void setMax_assignments(Integer max_assignments) {
         this.max_assignments = max_assignments;
     }
     /**
      * @return the auto_approval_delay_in_secs
      */
-    public Long getAuto_approval_delay_in_secs() {
+    public Integer getAuto_approval_delay_in_secs() {
         return auto_approval_delay_in_secs;
     }
     /**
      * @param auto_approval_delay_in_secs the auto_approval_delay_in_secs to set
      */
-    public void setAuto_approval_delay_in_secs(Long auto_approval_delay_in_secs) {
+    public void setAuto_approval_delay_in_secs(Integer auto_approval_delay_in_secs) {
         this.auto_approval_delay_in_secs = auto_approval_delay_in_secs;
     }
     /**
      * @return the num_similar_hits
      */
-    public Long getNum_similar_hits() {
+    public Integer getNum_similar_hits() {
         return num_similar_hits;
     }
     /**
      * @param num_similar_hits the num_similar_hits to set
      */
-    public void setNum_similar_hits(Long num_similar_hits) {
+    public void setNum_similar_hits(Integer num_similar_hits) {
         this.num_similar_hits = num_similar_hits;
     }
     /**
@@ -267,37 +267,37 @@ public class Result {
     /**
      * @return the number_of_assignments_pending
      */
-    public Long getNumber_of_assignments_pending() {
+    public Integer getNumber_of_assignments_pending() {
         return number_of_assignments_pending;
     }
     /**
      * @param number_of_assignments_pending the number_of_assignments_pending to set
      */
-    public void setNumber_of_assignments_pending(Long number_of_assignments_pending) {
+    public void setNumber_of_assignments_pending(Integer number_of_assignments_pending) {
         this.number_of_assignments_pending = number_of_assignments_pending;
     }
     /**
      * @return the number_of_assignments_available
      */
-    public Long getNumber_of_assignments_available() {
+    public Integer getNumber_of_assignments_available() {
         return number_of_assignments_available;
     }
     /**
      * @param number_of_assignments_available the number_of_assignments_available to set
      */
-    public void setNumber_of_assignments_available(Long number_of_assignments_available) {
+    public void setNumber_of_assignments_available(Integer number_of_assignments_available) {
         this.number_of_assignments_available = number_of_assignments_available;
     }
     /**
      * @return the number_of_assignments_completed
      */
-    public Long getNumber_of_assignments_completed() {
+    public Integer getNumber_of_assignments_completed() {
         return number_of_assignments_completed;
     }
     /**
      * @param number_of_assignments_completed the number_of_assignments_completed to set
      */
-    public void setNumber_of_assignments_completed(Long number_of_assignments_completed) {
+    public void setNumber_of_assignments_completed(Integer number_of_assignments_completed) {
         this.number_of_assignments_completed = number_of_assignments_completed;
     }
     /**
@@ -435,13 +435,13 @@ public class Result {
     /**
      * @return the work_time_in_secs
      */
-    public Long getWork_time_in_secs() {
+    public Integer getWork_time_in_secs() {
         return work_time_in_secs;
     }
     /**
      * @param work_time_in_secs the work_time_in_secs to set
      */
-    public void setWork_time_in_secs(Long work_time_in_secs) {
+    public void setWork_time_in_secs(Integer work_time_in_secs) {
         this.work_time_in_secs = work_time_in_secs;
     }
     /**
