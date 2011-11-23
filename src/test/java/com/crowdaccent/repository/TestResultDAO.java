@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -75,7 +76,7 @@ public class TestResultDAO extends
         Date auto_approval_time = auto.parse("Sun Nov 21 10:03:46 GMT 2011");
         r.setAccept_time(auto_approval_time);
         DateFormat app = new SimpleDateFormat("E MMM dd HH:mm:ss z y");
-        Date approval_time = app.parse("Sun Nov 21 10:03:46 GMT 2011");
+        Date approval_time = app.parse("Sun Nov 21 00:00:00 GMT 2011");
         r.setApproval_time(approval_time);
 		DateFormat rej = new SimpleDateFormat("E MMM dd HH:mm:ss z y");
         Date rejection_time = rej.parse("Sun Nov 21 10:03:46 GMT 2011");
@@ -97,6 +98,12 @@ public class TestResultDAO extends
 		List<Result> results;
 		results = resultDAO.getAll();
 		assertNotNull(results);
+		for (Result r: results){
+			SimpleDateFormat sdf = new SimpleDateFormat("E MMM dd HH:mm:ss z y");
+			TimeZone tz = TimeZone.getTimeZone("GMT");
+			sdf.setTimeZone(tz);
+			_log.info("Approval date " + sdf.format(r.getApproval_time()));
+		}
 		_log.info("Results = " + results.size());
 	}
 
