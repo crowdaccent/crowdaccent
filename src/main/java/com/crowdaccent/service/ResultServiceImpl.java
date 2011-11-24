@@ -5,6 +5,7 @@ package com.crowdaccent.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.mturk.requester.Assignment;
@@ -22,6 +23,7 @@ import com.crowdaccent.repository.ResultDAO;
 @Service
 public class ResultServiceImpl implements ResultService {
 	private ResultDAO resultDAO;
+	
 	
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.ResultService#save(com.crowdaccent.entity.Result)
@@ -124,4 +126,12 @@ public class ResultServiceImpl implements ResultService {
         // TODO Auto-generated method stub
         return null;
     }
+
+	/**
+	 * @param resultDAO the resultDAO to set
+	 */
+    @Autowired
+    public void setResultDAO(ResultDAO resultDAO) {
+		this.resultDAO = resultDAO;
+	}
 }
