@@ -107,6 +107,17 @@ public class TestResultDAO extends
 		_log.info("Results = " + results.size());
 	}
 
+    @Test
+    public void getNumResults() {
+        List<Result> results;
+        results = resultDAO.getNumResults(2);
+        assertNotNull(results);
+        for (Result r: results){
+            _log.info("Results : " + r.getAnswers());
+        }
+        _log.info("Results = " + results.size());
+    }
+	
 	@Test
 	public void delete() {
 		Result r = new Result();
