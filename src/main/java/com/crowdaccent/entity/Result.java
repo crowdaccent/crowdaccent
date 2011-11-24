@@ -39,6 +39,8 @@ public class Result {
     private Integer max_assignments;
     @Column(length = 512)
     private Integer auto_approval_delay_in_secs;
+    @Column
+    private Integer assignment_duration_in_secs;
     //Data from Assignment data structure
     @Column(length = 512)
     private Integer num_similar_hits;
@@ -395,6 +397,18 @@ public class Result {
      */
     public void setAuto_approval_time(Date auto_approval_time) {
         this.auto_approval_time = auto_approval_time;
+    }
+    /**
+     * @return the assignment_duration_in_secs
+     */
+    public Integer getAssignment_duration_in_secs() {
+        return assignment_duration_in_secs;
+    }
+    /**
+     * @param assignment_duration_in_secs the assignment_duration_in_secs to set
+     */
+    public void setAssignment_duration_in_secs(Integer assignment_duration_in_secs) {
+        this.assignment_duration_in_secs = assignment_duration_in_secs;
     }
     /**
      * @return the approval_time
