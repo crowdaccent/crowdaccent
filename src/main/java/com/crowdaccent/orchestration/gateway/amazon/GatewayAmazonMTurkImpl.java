@@ -79,24 +79,24 @@ public class GatewayAmazonMTurkImpl implements Gateway {
         return response;
     }
 
-    public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId, Integer pageNum, Integer pageSize) {
+    public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId) {
         
-        return this.getReviewableHITsWithCreationSortOrderAndPageDetails(hitTypeId, pageNum, pageSize);
+        return this.getReviewableHITsWithCreationSortOrderAndPageDetails(hitTypeId);
     }
     
-    public HIT[] getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(String hitTypeId, Integer pageNum, Integer pageSize) {
+    public HIT[] getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(String hitTypeId) {
    
-        return this.getReviewableHITsDetailsWithCreationSortOrderAndPageDetails(hitTypeId, pageNum, pageSize);
+        return this.getReviewableHITsDetailsWithCreationSortOrderAndPageDetails(hitTypeId);
     }
 
-    public GetAssignmentsForHITResult getAllAssignmentsHITResults(String hitId, Integer pageNumber, Integer pageSize, boolean getFullResponse) {
+    public GetAssignmentsForHITResult getAllAssignmentsHITResults(String hitId, Integer pageNumber, boolean getFullResponse) {
         
-        return this.getAssignmentsForHITWithResponseGroup(hitId, pageNumber, pageSize, getFullResponse);
+        return this.getAssignmentsForHITWithResponseGroup(hitId, pageNumber, getFullResponse);
     }
 
-    public Assignment[] getAllAssignmentsForHIT(String hitId, Integer pageNumber, Integer pageSize, boolean getFullResponse) {
+    public Assignment[] getAllAssignmentsForHIT(String hitId, Integer pageNumber, boolean getFullResponse) {
         
-        return this.getAssignmentsResultsForHITWithResponseGroup(hitId, pageNumber, pageSize, getFullResponse);
+        return this.getAssignmentsResultsForHITWithResponseGroup(hitId, pageNumber, getFullResponse);
     }
 
     public GetAssignmentsForHITResult getSubmittedAssignmentsForHITResults(String hitId, Integer pageNumber, Integer pageSize, boolean getFullResponse) { 
@@ -202,24 +202,21 @@ public class GatewayAmazonMTurkImpl implements Gateway {
           );        
     }
    
-    private GetReviewableHITsResult getReviewableHITsWithCreationSortOrderAndPageDetails(String hitTypeId, Integer pageNum, Integer pageSize) {
+    private GetReviewableHITsResult getReviewableHITsWithCreationSortOrderAndPageDetails(String hitTypeId) {
          
         return this.service.getReviewableHITs(hitTypeId, // HITTypeId
             ReviewableHITStatus.Reviewable,
             SortDirection.Ascending,
-            GetReviewableHITsSortProperty.CreationTime,
-            pageNum,
-            pageSize
-        );
+            GetReviewableHITsSortProperty.CreationTime);
     }   
 
-    private HIT[] getReviewableHITsDetailsWithCreationSortOrderAndPageDetails(String hitTypeId, Integer pageNum, Integer pageSize) {
+    private HIT[] getReviewableHITsDetailsWithCreationSortOrderAndPageDetails(String hitTypeId) {
         
-        GetReviewableHITsResult result = this.getReviewableHITsWithCreationSortOrderAndPageDetails(hitTypeId, pageNum, pageSize);
+        GetReviewableHITsResult result = this.getReviewableHITsWithCreationSortOrderAndPageDetails(hitTypeId);
         return result.getHIT();
     } 
     
-    private GetAssignmentsForHITResult getAssignmentsForHITWithResponseGroup(String hitId, Integer pageNumber, Integer pageSize, 
+    private GetAssignmentsForHITResult getAssignmentsForHITWithResponseGroup(String hitId, Integer pageNumber,
             boolean getFullResponse) {
         
         // Include AssignmentFeedback in response
@@ -232,12 +229,12 @@ public class GatewayAmazonMTurkImpl implements Gateway {
             };
         }
         return this.service.getAssignmentsForHIT(hitId, SortDirection.Ascending, DEFAULT_ASSIGNMENT_STATUS, GetAssignmentsForHITSortProperty.AcceptTime, 
-                pageNumber, pageSize, responseGroup);
+                pageNumber, DEFAULT_PAGE_NUM, responseGroup);
     }
     
-    private Assignment[] getAssignmentsResultsForHITWithResponseGroup(String hitId, Integer pageNumber, Integer pageSize, boolean getFullResponse) {
+    private Assignment[] getAssignmentsResultsForHITWithResponseGroup(String hitId, Integer pageNumber, boolean getFullResponse) {
     
-        GetAssignmentsForHITResult result = this.getAssignmentsForHITWithResponseGroup(hitId, pageNumber, pageSize, getFullResponse);
+        GetAssignmentsForHITResult result = this.getAssignmentsForHITWithResponseGroup(hitId, pageNumber, getFullResponse);
         return result.getAssignment();
     }   
 
