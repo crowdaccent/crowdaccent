@@ -44,7 +44,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
     };
 	
     public GatewayAmazonMTurkImpl() {
-		service = new Requester(new PropertiesClientConfig("props/mturk.properties"));
+		service = new Requester(new PropertiesClientConfig("META-INF/spring/mturk.properties"));
 	}
 	
 	public HITResponse createBasicFreeTextHIT(HITRequest hRequest) {
