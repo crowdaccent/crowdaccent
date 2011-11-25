@@ -291,4 +291,20 @@ public class ProductServiceImpl implements ProductService {
 	public void setHitDAO(HitDAO hitDAO) {
 		this.hitDAO = hitDAO;
 	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.ProductService#findProductEntries(int, int)
+	 */
+	@Override
+	public List<Product> findProductEntries(int firstResult, int sizeNo) {
+		return productDAO.findProductEntries(firstResult,sizeNo);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.ProductService#countProducts()
+	 */
+	@Override
+	public Float countProducts() {
+		return productDAO.countProducts();
+	}
 }

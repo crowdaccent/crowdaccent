@@ -106,4 +106,23 @@ public class ProductDAOImpl implements ProductDAO {
 				setMaxResults(number).list();
 	}
 
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.repository.ProductDAO#countProducts()
+	 */
+	@Override
+	public Float countProducts() {
+		Session s = this.sessionFactory.getCurrentSession();
+		return new Float((Long)s.createQuery("SELECT COUNT(o) FROM Product o").list().get(0));
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.repository.ProductDAO#findProductEntries(int, int)
+	 */
+	@Override
+	public List<Product> findProductEntries(int firstResult, int sizeNo) {
+		Session s = this.sessionFactory.getCurrentSession();
+		return (List<Product>)s.createCriteria(Product.class).setFirstResult(firstResult).
+				setMaxResults(sizeNo).list();
+	}
+
 }

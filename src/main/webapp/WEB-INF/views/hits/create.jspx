@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_com_crowdaccent_domain_Hit" modelAttribute="hit" path="/hits" render="${empty dependencies}" z="rkjCW4r4VGbUvoePU3VhkamdDLU=">
+        <field:select field="product" id="c_com_crowdaccent_domain_Hit_product" itemValue="id" items="${products}" path="/products" z="sLX3uo0IvCwKNfOPXnLEevs0twQ="/>
+        <field:input field="description" id="c_com_crowdaccent_domain_Hit_description" z="lytzdHd6teY6BqCgEqZTy519qCU="/>
+        <field:input field="hit_id" id="c_com_crowdaccent_domain_Hit_hit_id" z="3gi602TYmQJrFk+VKVHHrBfMG3M="/>
+        <field:input field="hit_url" id="c_com_crowdaccent_domain_Hit_hit_url" z="VHIJ0LYwjt3bJyZAtnPtMsm5eZw="/>
+        <field:input field="title" id="c_com_crowdaccent_domain_Hit_title" z="TYr+OYcgGPrO3adK/h/P3NEj+pA="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_com_crowdaccent_domain_Hit" render="${not empty dependencies}" z="FW2Q60J8oKL+7jlIMsrnV9PLjaQ="/>
+</div>

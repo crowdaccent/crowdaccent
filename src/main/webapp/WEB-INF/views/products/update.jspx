@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_com_crowdaccent_Product" modelAttribute="product" path="/products" versionField="Version" z="CqcRSOlBUnKltVSgvcOkjYgjpd0=">
+        <field:input field="category" id="c_com_crowdaccent_Product_category" z="rlinw5BKCieRcMx/aBXxrKpXk9Q="/>
+        <field:datetime dateTimePattern="${product_datecreated_date_format}" field="dateCreated" id="c_com_crowdaccent_Product_dateCreated" z="gaMspkxR8df/mFZ7HNNdQVFsbxM="/>
+        <field:input field="imageURL" id="c_com_crowdaccent_Product_imageURL" z="yqNhxkn7k8M2VpM2ZSkh09xhgCM="/>
+        <field:input field="subject" id="c_com_crowdaccent_Product_subject" z="/Vm+0+ezbLRW1darCsbM50+NTAg="/>
+        <field:input field="summary" id="c_com_crowdaccent_Product_summary" z="sQNxuN+OOvJ8C1t2KloEdqvEKH4="/>
+    </form:update>
+</div>

@@ -54,5 +54,15 @@ public interface ProductService {
 	 * @return List of Products.
 	 */
 	public List<Product> getNumValidProducts(int number);
+	/**
+	 * @param firstResult
+	 * @param sizeNo
+	 * @return
+	 */
+	public List<Product> findProductEntries(int firstResult, int sizeNo);
+	/**
+	 * @return
+	 */
+	public Float countProducts();
 	
 }

@@ -41,5 +41,15 @@ public interface ProductDAO {
 	 * @return List of Products.
 	 */
 	public List<Product> getNumValidProducts(int number);
+	/**
+	 * @return
+	 */
+	public Float countProducts();
+	/**
+	 * @param firstResult
+	 * @param sizeNo
+	 * @return
+	 */
+	public List<Product> findProductEntries(int firstResult, int sizeNo);
 
 }

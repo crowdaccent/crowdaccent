@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_crowdaccent_domain_Hit" items="${hits}" z="/nHwCeWJPWuWwrp3BLLlz4zgMYs=">
+        <table:table data="${hits}" id="l_com_crowdaccent_domain_Hit" path="/hits" z="UQpOiDVJa0ZkkzqMAB3md5qK/6g=">
+            <table:column id="c_com_crowdaccent_domain_Hit_product" property="product" z="XQcY8D3JgF/OZflrcBYazhoT39M="/>
+            <table:column id="c_com_crowdaccent_domain_Hit_description" property="description" z="Kl9LM2TtmJObyWoAiwRdL3H5QPs="/>
+            <table:column id="c_com_crowdaccent_domain_Hit_hit_id" property="hit_id" z="u6MlMbWaW8I57AjjmioyRoFdDXg="/>
+            <table:column id="c_com_crowdaccent_domain_Hit_hit_url" property="hit_url" z="vPVUZOL4Y3Y9efWm1gHB076B/1Y="/>
+            <table:column id="c_com_crowdaccent_domain_Hit_title" property="title" z="gGeToWE2dFHWNwP8G2z+XTGonrw="/>
+        </table:table>
+    </page:list>
+</div>

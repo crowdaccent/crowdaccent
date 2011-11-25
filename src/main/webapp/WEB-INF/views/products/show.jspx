@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_com_crowdaccent_Product" object="${product}" path="/products" z="/0zGE7dgsvGYA+fAatb6yTOeOf0=">
+        <field:display field="category" id="s_com_crowdaccent_Product_category" object="${product}" z="Xm4b0/J5WNGYwxe9w2lqTdfxp9g="/>
+        <field:display date="true" dateTimePattern="${product_datecreated_date_format}" field="dateCreated" id="s_com_crowdaccent_Product_dateCreated" object="${product}" z="UwTnT16vsR6xARQ/CNhNN2/jRiQ="/>
+        <field:display field="imageURL" id="s_com_crowdaccent_Product_imageURL" object="${product}" z="boZ/DTOBINfPlugbDyQaDw7S3hE="/>
+        <field:display field="subject" id="s_com_crowdaccent_Product_subject" object="${product}" z="MtExedtnwjzBxizXT3ammWdT0wU="/>
+        <field:display field="summary" id="s_com_crowdaccent_Product_summary" object="${product}" z="JPthdqgKK4cDivG7z3SxlfZysfk="/>
+    </page:show>
+</div>
