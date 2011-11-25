@@ -41,7 +41,7 @@ public interface Gateway {
     * @param pageSize
     * @return
     */
-   public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId, Integer pageNum, Integer pageSize);
+   public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId);
    
    /**
     * 
@@ -50,7 +50,7 @@ public interface Gateway {
     * @param pageSize
     * @return
     */
-   public HIT[] getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(String hitTypeId, Integer pageNum, Integer pageSize);
+   public HIT[] getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(String hitTypeId);
 
    /**
     * 
@@ -60,7 +60,7 @@ public interface Gateway {
     * @param getFullResponse
     * @return
     */
-   public GetAssignmentsForHITResult getAllAssignmentsHITResults(String hitId, Integer pageNumber, Integer pageSize, boolean getFullResponse);
+   public GetAssignmentsForHITResult getAllAssignmentsHITResults(String hitId, Integer pageNumber, boolean getFullResponse);
 
    /**
     * 
@@ -70,7 +70,7 @@ public interface Gateway {
     * @param getFullResponse
     * @return
     */
-   public Assignment[] getAllAssignmentsForHIT(String hitId, Integer pageNumber, Integer pageSize, boolean getFullResponse);
+   public Assignment[] getAllAssignmentsForHIT(String hitId, Integer pageNumber, boolean getFullResponse);
 
    /**
     * 
