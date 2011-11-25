@@ -47,36 +47,24 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 		service = new Requester(new PropertiesClientConfig("props/mturk.properties"));
 	}
 	
-	public HITResponse createBasicFreeTextHIT(HITRequest hRequest) {
+	public HIT createBasicFreeTextHIT(HITRequest hRequest) {
     	
-    	HIT hit = this.createBasicFreeTextTask(hRequest);
-    	HITResponse response = new HITResponse();
-    	response.setSyncResponse(hit);
-    	return response;
+    	return this.createBasicFreeTextTask(hRequest);
     }
     
-    public HITResponse createComplexFreeTextHIT(HITRequest hRequest) {
+    public HIT createComplexFreeTextHIT(HITRequest hRequest) {
     	
-    	HIT hit = this.createComplexFreeTextTask(hRequest);
-    	HITResponse response = new HITResponse();
-    	response.setSyncResponse(hit);
-    	return response;
+    	return this.createComplexFreeTextTask(hRequest);
     }
     
-    public HITResponse createIntroductionHIT(HITRequest hRequest) {
+    public HIT createIntroductionHIT(HITRequest hRequest) {
         
-        HIT hit = this.createIntroductionTask(hRequest);
-        HITResponse response = new HITResponse();
-        response.setSyncResponse(hit);
-        return response;
+        return this.createIntroductionTask(hRequest);
     }
     
-    public HITResponse createIntroductionHITWithImage(HITRequest hRequest) {
+    public HIT createIntroductionHITWithImage(HITRequest hRequest) {
         
-        HIT hit = this.createIntroductionTaskWithImage(hRequest);
-        HITResponse response = new HITResponse();
-        response.setSyncResponse(hit);
-        return response;
+        return this.createIntroductionTaskWithImage(hRequest);
     }
 
     public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId) {

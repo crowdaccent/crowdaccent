@@ -13,12 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.mturk.requester.Comparator;
+import com.amazonaws.mturk.requester.HIT;
 import com.amazonaws.mturk.requester.QualificationRequirement;
 import com.crowdaccent.entity.Hit;
 import com.crowdaccent.entity.Product;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
-import com.crowdaccent.orchestration.gateway.HITResponse;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
@@ -31,7 +31,20 @@ import com.crowdaccent.repository.ProductDAO;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
-	private ProductDAO productDAO;
+
+    private static final String[] DEFAULT_ASSIGNMENT_RESPONSE_GROUP = new String [] { 
+        "Minimal", 
+        "AssignmentFeedback" 
+    };
+
+    private static final String[] DEFAULT_HIT_RESPONSE_GROUP = new String [] { 
+        "Minimal", 
+        "HITDetail", 
+        "HITQuestion", 
+        "HITAssignmentSummary" 
+    };    
+    
+    private ProductDAO productDAO;
 	private HitDAO hitDAO;
 	
 	/* (non-Javadoc)
@@ -74,6 +87,14 @@ public class ProductServiceImpl implements ProductService {
 		this.productDAO = productDAO;
 	}
 
+	/**
+	 * @param productDAO the productDAO to set
+	 */
+    @Autowired
+    public void setHitDAO(HitDAO hitDAO) {
+        this.hitDAO = hitDAO;
+    }
+	
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.ProductService#getNumProducts(int)
 	 */
@@ -99,13 +120,28 @@ public class ProductServiceImpl implements ProductService {
 		hrequest.setAutoApprovalDelaySecs((long) (72 * 60 * 60));
 		hrequest.setLifeTimeInSeconds(new Long(24 * 60 * 60));
 		hrequest.setMaxAssignments(10);
-		hrequest.setRequestorAnnotation(null);
-		hrequest.setQualificationRequirement(null);
-		hrequest.setResponseGroup(null);
-		HITResponse hit = gw.createBasicFreeTextHIT(hrequest);
+		hrequest.setRequestorAnnotation("/crowdaccent?lowcomplexity=1");
+        
+		QualificationRequirement qualificationRequirement[] = new QualificationRequirement[1];
+        qualificationRequirement[0] = new QualificationRequirement();
+        qualificationRequirement[0].setQualificationTypeId("00000000000000000060");
+        qualificationRequirement[0].setComparator(Comparator.EqualTo);
+        qualificationRequirement[0].setIntegerValue(1);
+        
+        hrequest.setQualificationRequirement(qualificationRequirement);
+		hrequest.setResponseGroup(DEFAULT_HIT_RESPONSE_GROUP);
+		HIT hit = gw.createBasicFreeTextHIT(hrequest);
 		
-		p.setDateCreated(new Date());
-		this.save(p);
+		Hit h = new Hit();
+		h.setHit_id(hit.getHITId());
+		h.setHit_type_id(hit.getHITTypeId());
+		h.setTitle(hit.getTitle());
+		h.setDescription(hit.getDescription());
+		h.setKeywords(hit.getKeywords());
+		
+		hitDAO.save(h);
+	    p.setDateCreated(new Date());
+        this.save(p);
 		return p;
 	}
 
@@ -177,8 +213,16 @@ public class ProductServiceImpl implements ProductService {
         qualificationRequirement[0].setComparator(Comparator.EqualTo);
         qualificationRequirement[0].setIntegerValue(1);
  
-        HITResponse hit = gw.createIntroductionHIT(hRequest);
+        HIT hit = gw.createIntroductionHIT(hRequest);
         
+        Hit h = new Hit();
+        h.setHit_id(hit.getHITId());
+        h.setHit_type_id(hit.getHITTypeId());
+        h.setTitle(hit.getTitle());
+        h.setDescription(hit.getDescription());
+        h.setKeywords(hit.getKeywords());
+        
+        hitDAO.save(h);
         p.setDateCreated(new Date());
         this.save(p);
         return p;
@@ -265,14 +309,53 @@ public class ProductServiceImpl implements ProductService {
         qualificationRequirement[0].setIntegerValue(1);
         
         hRequest.setQualificationRequirement(qualificationRequirement);
-        HITResponse hit = gw.createIntroductionHITWithImage(hRequest);
+        HIT hit = gw.createIntroductionHITWithImage(hRequest);
         
         Hit h = new Hit();
-        h.setProduct(p);
-        h.setCreation_time(new Date());
-        h.setHit_id(hit.getSyncResponse().getHITId());
+        h.setHit_id(hit.getHITId());
+        h.setHit_type_id(hit.getHITTypeId());
+        h.setTitle(hit.getTitle());
+        h.setDescription(hit.getDescription());
+        h.setKeywords(hit.getKeywords());
         h.setHit_url(gw.getWebsiteURL());
+        
+        if(hit.getHITStatus() != null) {
+            h.setHit_status(hit.getHITStatus().getValue());
+        }
+        if(hit.getHITReviewStatus() != null) {
+          h.setHit_review_status(hit.getHITReviewStatus().getValue());
+        }
+        if(hit.getCreationTime() != null) {
+          h.setCreation_time(hit.getCreationTime().getTime());
+        }
+        if(hit.getAutoApprovalDelayInSeconds() != null) {
+            h.setAuto_approval_delay_in_secs(hit.getAutoApprovalDelayInSeconds().intValue());
+        }
+        if(hit.getMaxAssignments() != null) {
+            h.setMax_assignments(hit.getMaxAssignments());
+        }
+        if(hit.getReward() != null) {
+            h.setReward(hit.getReward().getAmount().doubleValue());
+        }
+        if(hit.getNumberOfSimilarHITs() != null) {
+            h.setNum_similar_hits(hit.getNumberOfSimilarHITs());
+        }
+        if(hit.getNumberOfAssignmentsAvailable() != null) {
+            h.setNumber_of_assignments_available(hit.getNumberOfAssignmentsAvailable());
+        }
+        if(hit.getNumberOfAssignmentsAvailable() != null) {
+            h.setNumber_of_assignments_available(hit.getNumberOfAssignmentsAvailable());
+        }
+        if(hit.getNumberOfAssignmentsCompleted() != null) {
+            h.setNumber_of_assignments_completed(hit.getNumberOfAssignmentsCompleted());
+        }
+        if(hit.getNumberOfAssignmentsPending() != null) {
+            h.setNumber_of_assignments_pending(hit.getNumberOfAssignmentsPending());
+        }
+
         hitDAO.save(h);
+        p.setDateCreated(new Date());
+        this.save(p);
         return p;
     }
 
@@ -282,13 +365,5 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getNumValidProducts(int number) {
 		return this.productDAO.getNumValidProducts(number);
-	}
-
-	/**
-	 * @param hitDAO the hitDAO to set
-	 */
-	@Autowired
-	public void setHitDAO(HitDAO hitDAO) {
-		this.hitDAO = hitDAO;
 	}
 }

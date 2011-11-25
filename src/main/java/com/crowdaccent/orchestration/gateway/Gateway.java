@@ -12,27 +12,27 @@ public interface Gateway {
 	 * @param hrequest
 	 * @return
 	 */
-	public HITResponse createBasicFreeTextHIT(HITRequest hrequest);
+	public HIT createBasicFreeTextHIT(HITRequest hrequest);
 	
 	/**
 	 * 
 	 * @param hrequest
 	 * @return
 	 */
-	public HITResponse createComplexFreeTextHIT(HITRequest hrequest);
+	public HIT createComplexFreeTextHIT(HITRequest hrequest);
 
 	 /**
      * 
      * @param hrequest
      * @return
      */
-    public HITResponse createIntroductionHIT(HITRequest hrequest);
+    public HIT createIntroductionHIT(HITRequest hrequest);
 
     /** 
     * @param hrequest
     * @return
     */
-   public HITResponse createIntroductionHITWithImage(HITRequest hrequest);
+   public HIT createIntroductionHITWithImage(HITRequest hrequest);
    
    /**
     * 
