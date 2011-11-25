@@ -27,6 +27,18 @@ public class Requester extends RequesterServiceRaw {
     public static final int DEFAULT_PAGE_NUM = 1;
     public static final int DEFAULT_PAGE_SIZE = 10;
     
+    private static final String[] DEFAULT_ASSIGNMENT_RESPONSE_GROUP = new String [] { 
+        "Minimal", 
+        "AssignmentFeedback" 
+    };
+
+    private static final String[] DEFAULT_HIT_RESPONSE_GROUP = new String [] { 
+        "Minimal", 
+        "HITDetail", 
+        "HITQuestion", 
+        "HITAssignmentSummary" 
+    };
+      
     public Requester(ClientConfig config) {
 		super(config);
 	}

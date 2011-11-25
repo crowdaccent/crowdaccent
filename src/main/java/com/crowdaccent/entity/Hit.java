@@ -6,7 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,10 +24,7 @@ public class Hit {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	@ManyToOne
-	private Product product;
-	
+		
 	@Column(length = 200, nullable = false)
 	private String hit_id;
 	
@@ -106,6 +102,18 @@ public class Hit {
      */
     public void setHit_type_id(String hit_type_id) {
         this.hit_type_id = hit_type_id;
+    }
+    /**
+     * @return the hit_url
+     */
+    public String getHit_url() {
+        return hit_url;
+    }
+    /**
+     * @param hit_url the hit_url to set
+     */
+    public void setHit_url(String hit_url) {
+        this.hit_url = hit_url;
     }
     /**
      * @return the creation_time
@@ -275,29 +283,4 @@ public class Hit {
     public void setNumber_of_assignments_completed(Integer number_of_assignments_completed) {
         this.number_of_assignments_completed = number_of_assignments_completed;
     }
-	/**
-	 * @return the product
-	 */
-	public Product getProduct() {
-		return product;
-	}
-	/**
-	 * @param product the product to set
-	 */
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	/**
-	 * @return the hit_url
-	 */
-	public String getHit_url() {
-		return hit_url;
-	}
-	/**
-	 * @param hit_url the hit_url to set
-	 */
-	public void setHit_url(String hit_url) {
-		this.hit_url = hit_url;
-	}
-
 }

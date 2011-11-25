@@ -5,10 +5,10 @@ import junit.framework.TestCase;
 import org.junit.Test;
 
 import com.amazonaws.mturk.requester.Comparator;
+import com.amazonaws.mturk.requester.HIT;
 import com.amazonaws.mturk.requester.QualificationRequirement;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
-import com.crowdaccent.orchestration.gateway.HITResponse;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
@@ -42,14 +42,14 @@ public class TestGatewayAmazonMTurkImpl extends TestCase {
 	    hRequest.setQualificationRequirement(null);
 	    hRequest.setResponseGroup(null);
 		
-		HITResponse hit = gateway.createBasicFreeTextHIT(hRequest);
+		HIT hit = gateway.createBasicFreeTextHIT(hRequest);
 		
 		assertNotNull(hit);
-		assertNotNull(hit.getSyncResponse().getHITId());
+		assertNotNull(hit.getHITId());
 
-		System.out.println("Created HIT: " + hit.getSyncResponse().getHITId());
+		System.out.println("Created HIT: " + hit.getHITId());
 		System.out.println("HIT location: ");
-		System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
+		System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getHITTypeId());
 		
 	}
 	
@@ -78,14 +78,14 @@ public class TestGatewayAmazonMTurkImpl extends TestCase {
 	    }
 	    hRequest.setListItems(items);
 		
-		HITResponse hit = gateway.createComplexFreeTextHIT(hRequest);
+		HIT hit = gateway.createComplexFreeTextHIT(hRequest);
 		
 		assertNotNull(hit);
-		assertNotNull(hit.getSyncResponse().getHITId());
+		assertNotNull(hit.getHITId());
 
-		System.out.println("Created HIT: " + hit.getSyncResponse().getHITId());
+		System.out.println("Created HIT: " + hit.getHITId());
 		System.out.println("HIT location: ");
-		System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
+		System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getHITTypeId());
 		
 	}
 
@@ -158,14 +158,14 @@ public class TestGatewayAmazonMTurkImpl extends TestCase {
         qualificationRequirement[0].setIntegerValue(1);
         
         hRequest.setQualificationRequirement(qualificationRequirement);
-        HITResponse hit = gateway.createIntroductionHIT(hRequest);
+        HIT hit = gateway.createIntroductionHIT(hRequest);
         
         assertNotNull(hit);
-        assertNotNull(hit.getSyncResponse().getHITId());
+        assertNotNull(hit.getHITId());
 
-        System.out.println("Created HIT: " + hit.getSyncResponse().getHITId());
+        System.out.println("Created HIT: " + hit.getHITId());
         System.out.println("HIT location: ");
-        System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
+        System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getHITTypeId());
     }
 	
 	public void testCreateIntroductionHITWithImage() throws Exception {
@@ -243,13 +243,13 @@ public class TestGatewayAmazonMTurkImpl extends TestCase {
         qualificationRequirement[0].setIntegerValue(1);
         
         hRequest.setQualificationRequirement(qualificationRequirement);
-        HITResponse hit = gateway.createIntroductionHITWithImage(hRequest);
+        HIT hit = gateway.createIntroductionHITWithImage(hRequest);
         
         assertNotNull(hit);
-        assertNotNull(hit.getSyncResponse().getHITId());
+        assertNotNull(hit.getHITId());
 
-        System.out.println("Created HIT: " + hit.getSyncResponse().getHITId());
+        System.out.println("Created HIT: " + hit.getHITId());
         System.out.println("HIT location: ");
-        System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getSyncResponse().getHITTypeId());
+        System.out.println(gateway.getWebsiteURL() + "/mturk/preview?groupId=" + hit.getHITTypeId());
     }
 }
