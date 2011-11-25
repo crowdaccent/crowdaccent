@@ -33,11 +33,6 @@ public class Product {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date dateCreated;
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column
-	private Date hitCreated;
-	@Column(length = 512)
-	private String hitURL;
 
 	@PrePersist
 	protected void onCreate() {
@@ -134,33 +129,4 @@ public class Product {
 		this.dateCreated = dateCreated;
 	}
 
-	/**
-	 * @return the hitCreated
-	 */
-	public Date getHitCreated() {
-		return hitCreated;
-	}
-
-	/**
-	 * @param hitCreated
-	 *            the hitCreated to set
-	 */
-	public void setHitCreated(Date hitCreated) {
-		this.hitCreated = hitCreated;
-	}
-
-	/**
-	 * @return the hitURL
-	 */
-	public String getHitURL() {
-		return hitURL;
-	}
-
-	/**
-	 * @param hitURL
-	 *            the hitURL to set
-	 */
-	public void setHitURL(String hitURL) {
-		this.hitURL = hitURL;
-	}
 }
