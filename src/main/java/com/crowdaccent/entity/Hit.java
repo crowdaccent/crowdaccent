@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -34,7 +35,10 @@ public class Hit {
 	
 	@Column(length = 512)
 	private String hit_type_id;
-	
+
+	@Column(length = 512)
+    private String hit_url;
+
 	@Temporal(TemporalType.TIMESTAMP)
     @Column
     private Date creation_time;
