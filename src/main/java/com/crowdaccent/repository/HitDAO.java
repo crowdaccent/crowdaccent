@@ -29,11 +29,16 @@ public interface HitDAO {
 	 * @return
 	 */
 	public List<Hit> getAll();
-
 	/** Returns limited number of hits.
 	 * @param number number of hits to return.
 	 * @return List of Assignments.
 	 */
 	public List<Hit> getNumHits(int number);
+	/**
+	 * 
+	 * @param hit_id
+	 * @return
+	 */
+	public Hit getByHitId(String hit_id);
 	
 }
