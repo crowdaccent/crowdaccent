@@ -6,6 +6,7 @@ package com.crowdaccent.repository;
 import java.util.List;
 
 import com.crowdaccent.entity.Hit;
+import com.crowdaccent.entity.Product;
 
 /**
  * @author mkutare
@@ -40,5 +41,34 @@ public interface HitDAO {
 	 * @return
 	 */
 	public Hit getByHitId(String hit_id);
+	/**
+	 * @return
+	 */
+	public Float countHits();
+	/**
+	 * @param firstResult
+	 * @param sizeNo
+	 * @return
+	 */
+	public List<Hit> findHitEntries(int firstResult, int sizeNo);
+	/**
+	 * @param id
+	 * @param firstResult
+	 * @param sizeNo
+	 * @return
+	 */
+	public List<Hit> findHitEntriesByProduct(Long id, int firstResult,
+			int sizeNo);
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Float countHitsByProduct(Long id);
+	/**
+	 * @param id
+	 * @return
+	 */
+	public List<Hit> getAllByProduct(Long id);
+
 	
 }

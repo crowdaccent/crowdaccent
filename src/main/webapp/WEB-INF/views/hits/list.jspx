@@ -4,7 +4,7 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:list id="pl_com_crowdaccent_Hit" items="${hits}" z="/nHwCeWJPWuWwrp3BLLlz4zgMYs=">
         <table:table data="${hits}" id="l_com_crowdaccent_Hit" path="/hits" z="UQpOiDVJa0ZkkzqMAB3md5qK/6g=">
-            <table:column id="c_com_crowdaccent_Hit_product" property="product" z="XQcY8D3JgF/OZflrcBYazhoT39M="/>
+            <!--table:column id="c_com_crowdaccent_Hit_product" property="product" z="XQcY8D3JgF/OZflrcBYazhoT39M="/-->
             <table:column id="c_com_crowdaccent_Hit_description" property="description" z="Kl9LM2TtmJObyWoAiwRdL3H5QPs="/>
             <table:column id="c_com_crowdaccent_Hit_hit_id" property="hit_id" z="u6MlMbWaW8I57AjjmioyRoFdDXg="/>
             <table:column id="c_com_crowdaccent_Hit_hit_url" property="hit_url" z="vPVUZOL4Y3Y9efWm1gHB076B/1Y="/>

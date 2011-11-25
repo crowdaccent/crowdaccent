@@ -7,7 +7,6 @@
   <jsp:directive.attribute name="multipart" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if this is a multipart form (default: false)" />
   <jsp:directive.attribute name="label" type="java.lang.String" required="false" rtexprvalue="true" description="The label used for this object, will default to a message bundle if not supplied" />
   <jsp:directive.attribute name="idField" type="java.lang.String" required="false" rtexprvalue="true" description="Specify the field name of the id field (default 'id')" />
-  <jsp:directive.attribute name="versionField" type="java.lang.String" required="false" rtexprvalue="true" description="Specify the field name of the version field (default 'version'). If specified 'none' the version field will not be inlcuded (versionField='none')." />
   <jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
   <jsp:directive.attribute name="openPane" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Control if the title pane is opened or closed by default (default: true)" />
   <jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)" />
@@ -18,9 +17,6 @@
     </c:if>
     <c:if test="${empty idField}">
       <c:set value="id" var="idField" />
-    </c:if>
-    <c:if test="${empty versionField}">
-      <c:set value="version" var="versionField" />
     </c:if>
     <c:set var="enctype" value="application/x-www-form-urlencoded"/>
     <c:if test="${multipart}">
@@ -38,9 +34,6 @@
           <input id="proceed" type="submit" value="${fn:escapeXml(save_button)}" />
         </div>
         <form:hidden id="_${fn:escapeXml(idField)}_id" path="${fn:escapeXml(idField)}" />
-        <c:if test="${versionField ne 'none'}">
-          <form:hidden id="_${fn:escapeXml(versionField)}_id" path="${fn:escapeXml(versionField)}" />
-        </c:if>
       </form:form>
     </util:panel>
   </c:if>

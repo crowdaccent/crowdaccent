@@ -304,6 +304,7 @@ public class ProductServiceImpl implements ProductService {
         HIT hit = gw.createIntroductionHITWithImage(hRequest);
         
         Hit h = new Hit();
+        h.setProduct(p);
         h.setHit_id(hit.getHITId());
         h.setHit_type_id(hit.getHITTypeId());
         h.setTitle(hit.getTitle());
@@ -346,8 +347,6 @@ public class ProductServiceImpl implements ProductService {
         }
 
         hitDAO.save(h);
-        p.setDateCreated(new Date());
-        this.save(p);
         return p;
     }
 

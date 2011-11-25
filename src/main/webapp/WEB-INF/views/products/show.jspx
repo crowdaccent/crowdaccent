@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"  xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_crowdaccent_Product" object="${product}" path="/products" z="/0zGE7dgsvGYA+fAatb6yTOeOf0=">
@@ -9,4 +9,8 @@
         <field:display field="subject" id="s_com_crowdaccent_Product_subject" object="${product}" z="MtExedtnwjzBxizXT3ammWdT0wU="/>
         <field:display field="summary" id="s_com_crowdaccent_Product_summary" object="${product}" z="JPthdqgKK4cDivG7z3SxlfZysfk="/>
     </page:show>
+    <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+            <menu:item id="i_product_hit_new" messageCode="global_menu_new" url="/products/createIntroductionHITWithImage/${product.id}" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
+            <menu:item id="i_product_hit_list" messageCode="global_menu_list" url="/hits/listByProduct/${product.id}?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
+    </menu:menu>
 </div>

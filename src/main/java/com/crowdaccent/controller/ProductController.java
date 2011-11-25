@@ -78,11 +78,10 @@ public class ProductController {
     }
    
    @RequestMapping(method = RequestMethod.GET, value = "/createIntroductionHITWithImage/{id}")
-   public ModelAndView createIntroductionHITWithImage(@PathVariable String id){
+   public String createIntroductionHITWithImage(@PathVariable String id, HttpServletRequest httpServletRequest){
        ModelAndView m = new ModelAndView();
        Product p = productService.createIntroductionHITWithImage(id);
-       m.addObject(p);
-       return m;
+       return "redirect:/hits/listByProduct/" + encodeUrlPathSegment(p.getId().toString(), httpServletRequest);
    }
    
    @RequestMapping(method = RequestMethod.POST)
@@ -162,7 +161,7 @@ public class ProductController {
    }
    
    void addDateTimeFormatPatterns(Model uiModel) {
-       uiModel.addAttribute("product_datecreated_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+       uiModel.addAttribute("product_datecreated_date_format", DateTimeFormat.patternForStyle("SL", LocaleContextHolder.getLocale()));
    }
    
    String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

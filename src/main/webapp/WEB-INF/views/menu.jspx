@@ -8,7 +8,7 @@
             <menu:item id="i_product_list" messageCode="global_menu_list" url="/products?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
         </menu:category>
         <menu:category id="c_hit" z="QLEhCWjtAJLKS7uadE3v/4vszlY=">
-            <menu:item id="i_hit_new" messageCode="global_menu_new" url="/hits?form" z="Gu7/H6pO9e/Z/NHM8DGFGsH1Wi0="/>
+            <!-- <menu:item id="i_hit_new" messageCode="global_menu_new" url="/hits?form" z="Gu7/H6pO9e/Z/NHM8DGFGsH1Wi0="/>-->
             <menu:item id="i_hit_list" messageCode="global_menu_list" url="/hits?page=1&amp;size=${empty param.size ? 10 : param.size}" z="jOqbYYM/IPTZygDMt1qvSFhCgRY="/>
         </menu:category>
     </menu:menu>

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,6 +25,9 @@ public class Hit {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@ManyToOne
+	private Product product;
 		
 	@Column(length = 200, nullable = false)
 	private String hit_id;
@@ -283,4 +287,16 @@ public class Hit {
     public void setNumber_of_assignments_completed(Integer number_of_assignments_completed) {
         this.number_of_assignments_completed = number_of_assignments_completed;
     }
+	/**
+	 * @return the product
+	 */
+	public Product getProduct() {
+		return product;
+	}
+	/**
+	 * @param product the product to set
+	 */
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 }
