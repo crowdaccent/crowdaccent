@@ -87,8 +87,8 @@ public class TestProductService extends
 		for (Product p : products) {
 			_log.info("Creating HIT for product id " + p.getId());
 			productService.createIntroductionHITWithImage(p.getId() + "");
-			assertNotNull(p.getHitURL());
-			_log.info("HIT URL " + p.getHitURL());
+			assertNotNull(p.getImageURL());
+			_log.info("Existing Product Category " + p.getCategory());
 			num++;
 		}
 		_log.info("Total hits created = " + num);

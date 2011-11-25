@@ -101,11 +101,7 @@ public class ProductServiceImpl implements ProductService {
 		hrequest.setResponseGroup(null);
 		HITResponse hit = gw.createBasicFreeTextHIT(hrequest);
 		
-		p.setHitCreated(new Date());
-		p.setHitURL(gw.getWebsiteURL()
-				+ "/mturk/preview?groupId="
-				+ hit.getSyncResponse().getHITTypeId());
-		
+		p.setDateCreated(new Date());
 		this.save(p);
 		return p;
 	}
@@ -180,11 +176,7 @@ public class ProductServiceImpl implements ProductService {
  
         HITResponse hit = gw.createIntroductionHIT(hRequest);
         
-        p.setHitCreated(new Date());
-        p.setHitURL(gw.getWebsiteURL()
-                + "/mturk/preview?groupId="
-                + hit.getSyncResponse().getHITTypeId());
-        
+        p.setDateCreated(new Date());
         this.save(p);
         return p;
     }
@@ -272,11 +264,7 @@ public class ProductServiceImpl implements ProductService {
         hRequest.setQualificationRequirement(qualificationRequirement);
         HITResponse hit = gw.createIntroductionHITWithImage(hRequest);
         
-        p.setHitCreated(new Date());
-        p.setHitURL(gw.getWebsiteURL()
-                + "/mturk/preview?groupId="
-                + hit.getSyncResponse().getHITTypeId());
-        
+        p.setDateCreated(new Date());
         this.save(p);
         return p;
     }
