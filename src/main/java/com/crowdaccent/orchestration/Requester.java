@@ -24,7 +24,9 @@ public class Requester extends RequesterServiceRaw {
     //-------------------------------------------------------------
     // Constants
     //-------------------------------------------------------------
-
+    public static final int DEFAULT_PAGE_NUM = 1;
+    public static final int DEFAULT_PAGE_SIZE = 10;
+    
     public Requester(ClientConfig config) {
 		super(config);
 	}
@@ -114,10 +116,9 @@ public class Requester extends RequesterServiceRaw {
 	}
 
     public GetReviewableHITsResult getReviewableHITs(String hitTypeId, ReviewableHITStatus status, 
-            SortDirection sortDirection, GetReviewableHITsSortProperty sortProperty, 
-            Integer pageNumber, Integer pageSize)
+            SortDirection sortDirection, GetReviewableHITsSortProperty sortProperty)
           throws ServiceException { 
-        return super.getReviewableHITs(hitTypeId, status, sortDirection, sortProperty, pageNumber, pageSize);
+        return super.getReviewableHITs(hitTypeId, status, sortDirection, sortProperty, DEFAULT_PAGE_NUM, DEFAULT_PAGE_SIZE);
     }
 
     public GetAssignmentsForHITResult getAssignmentsForHIT(String hitId, SortDirection sortDirection, AssignmentStatus[] status, 
