@@ -16,7 +16,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.crowdaccent.entity.Hit;
-import com.crowdaccent.entity.Result;
 
 /**
  * @author mkutare

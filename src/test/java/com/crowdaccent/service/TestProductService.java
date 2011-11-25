@@ -46,13 +46,11 @@ public class TestProductService extends
 		List<Product> products = productService.getNumValidProducts(10000);
 		int number = 0;
 		for (Product p : products) {
-			// _log.info("Product info " + p.getImageURL() + " :: " +
-			// p.getCategory());
 			assertNotNull(p.getCategory());
 			assertNotNull(p.getImageURL());
 			number++;
 		}
-		// _log.info("Total number of valid products in database " + number);
+		_log.info("Total number of valid products in database " + number);
 	}
 
 	@Test
@@ -61,7 +59,6 @@ public class TestProductService extends
 		for (Product p : products) {
 			if (p.getImageURL() != null) {
 				// productService.createHIT(p.getId()+"");
-				// assertNotNull(p.getHitURL());
 				break;
 			}
 		}
@@ -73,8 +70,6 @@ public class TestProductService extends
 		for (Product p : products) {
 			if (p.getImageURL() != null) {
 				// productService.createIntroductionHIT(p.getId()+"");
-				// assertNotNull(p.getHitURL());
-				// _log.info("Hit URL " + p.getHitURL());
 				break;
 			}
 		}
@@ -85,12 +80,12 @@ public class TestProductService extends
 		List<Product> products = productService.getNumValidProducts(3);
 		int num = 0;
 		for (Product p : products) {
-			_log.info("Creating HIT for product id " + p.getId());
-			productService.createIntroductionHITWithImage(p.getId() + "");
+			_log.warn("Creating HIT for product id " + p.getId());
+			this.productService.createIntroductionHITWithImage(p.getId() + "");
 			assertNotNull(p.getImageURL());
-			_log.info("Existing Product Category " + p.getCategory());
+			_log.warn("Existing Product Category " + p.getCategory());
 			num++;
 		}
-		_log.info("Total hits created = " + num);
+		_log.warn("Total hits created = " + num);
 	}
 }

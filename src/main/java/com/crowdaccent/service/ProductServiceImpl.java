@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.amazonaws.mturk.requester.Comparator;
 import com.amazonaws.mturk.requester.QualificationRequirement;
+import com.crowdaccent.entity.Hit;
 import com.crowdaccent.entity.Product;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
@@ -21,6 +22,7 @@ import com.crowdaccent.orchestration.gateway.HITResponse;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
+import com.crowdaccent.repository.HitDAO;
 import com.crowdaccent.repository.ProductDAO;
 
 /**
@@ -30,6 +32,7 @@ import com.crowdaccent.repository.ProductDAO;
 @Service
 public class ProductServiceImpl implements ProductService {
 	private ProductDAO productDAO;
+	private HitDAO hitDAO;
 	
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.ProductService#save(com.crowdaccent.entity.Product)
@@ -264,8 +267,12 @@ public class ProductServiceImpl implements ProductService {
         hRequest.setQualificationRequirement(qualificationRequirement);
         HITResponse hit = gw.createIntroductionHITWithImage(hRequest);
         
-        p.setDateCreated(new Date());
-        this.save(p);
+        Hit h = new Hit();
+        h.setProduct(p);
+        h.setCreation_time(new Date());
+        h.setHit_id(hit.getSyncResponse().getHITId());
+        h.setHit_url(gw.getWebsiteURL());
+        hitDAO.save(h);
         return p;
     }
 
@@ -275,5 +282,13 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getNumValidProducts(int number) {
 		return this.productDAO.getNumValidProducts(number);
+	}
+
+	/**
+	 * @param hitDAO the hitDAO to set
+	 */
+	@Autowired
+	public void setHitDAO(HitDAO hitDAO) {
+		this.hitDAO = hitDAO;
 	}
 }

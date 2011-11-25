@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -287,6 +286,18 @@ public class Hit {
 	 */
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+	/**
+	 * @return the hit_url
+	 */
+	public String getHit_url() {
+		return hit_url;
+	}
+	/**
+	 * @param hit_url the hit_url to set
+	 */
+	public void setHit_url(String hit_url) {
+		this.hit_url = hit_url;
 	}
 
 }

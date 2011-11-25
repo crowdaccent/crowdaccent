@@ -10,14 +10,13 @@ import org.springframework.stereotype.Service;
 
 import com.amazonaws.mturk.requester.GetReviewableHITsResult;
 import com.amazonaws.mturk.requester.HIT;
-import com.crowdaccent.entity.Hit;
 import com.crowdaccent.entity.Assignment;
+import com.crowdaccent.entity.Hit;
 import com.crowdaccent.entity.Result;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.repository.AssignmentDAO;
 import com.crowdaccent.repository.HitDAO;
-import com.crowdaccent.repository.ProductDAO;
 import com.crowdaccent.repository.ResultDAO;
 
 /**

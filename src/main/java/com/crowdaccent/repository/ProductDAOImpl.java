@@ -44,7 +44,6 @@ public class ProductDAOImpl implements ProductDAO {
 	public void save(Product product) {
 		Session s = this.sessionFactory.getCurrentSession();
 		s.saveOrUpdate(product);
-		//s.close();
 	}
 
 	/*
