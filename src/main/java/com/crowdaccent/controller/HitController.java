@@ -130,7 +130,7 @@ public class HitController {
    }
    
    void addDateTimeFormatPatterns(Model uiModel) {
-       uiModel.addAttribute("hit_datecreated_date_format", DateTimeFormat.patternForStyle("F-", LocaleContextHolder.getLocale()));
+       uiModel.addAttribute("hit_datecreated_date_format", DateTimeFormat.patternForStyle("SL", LocaleContextHolder.getLocale()));
    }
    
    String encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
