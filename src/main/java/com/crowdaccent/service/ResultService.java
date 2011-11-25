@@ -36,11 +36,5 @@ public interface ResultService {
 	 * @param id
 	 * @return
 	 */
-	public Result getResultForHIT(String id);
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Result[] getResultsForHIT(String id);
+	public Result getResultsForHIT(String id);
 }

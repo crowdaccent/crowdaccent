@@ -63,15 +63,12 @@ public class TestResultService extends
 	
 	@Test
     public void getResultsForHIT() {
-        Result results[] = resultService.getResultsForHIT("244HGYQ4J3NACCYQGA6O5YIT14AOBN");
-        int number = 0;
-        for (Result r : results) {
-            _log.info("Result info " + r.getAnswers());
-            assertNotNull(r.getAssignment_id());
-            assertNotNull(r.getHit_id());
-            number++;
-        }
-        _log.info("Total number of answers for the HIT " + number);
+        Result results = resultService.getResultsForHIT("244HGYQ4J3NACCYQGA6O5YIT14AOBN");
+        _log.info("Result info " + results.getAnswers());
+        assertNotNull(results.getAssignment_id());
+        assertNotNull(results.getHit_id());
+        _log.info("Total number of answers available for the HIT " + results.getNumber_of_assignments_available());
+        _log.info("Total number of answers complete for the HIT " + results.getNumber_of_assignments_completed());
+        _log.info("Total number of answers pending for the HIT " + results.getNumber_of_assignments_pending());
 	}
-	
 }
