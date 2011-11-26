@@ -3,9 +3,13 @@
  */
 package com.crowdaccent.service;
 
+import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.crowdaccent.entity.Hit;
@@ -13,15 +17,19 @@ import com.crowdaccent.repository.HitDAO;
 
 /**
  * @author kbhalla
- *
+ * 
  */
 @Service
 public class HitServiceImpl implements HitService {
 
 	private HitDAO hitDAO;
-	
-	
-	/* (non-Javadoc)
+
+	public static final Logger _log = LoggerFactory
+			.getLogger(HitServiceImpl.class);
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.crowdaccent.service.HitService#save(com.crowdaccent.entity.Hit)
 	 */
 	@Override
@@ -29,15 +37,20 @@ public class HitServiceImpl implements HitService {
 		hitDAO.save(hit);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.crowdaccent.service.HitService#delete(com.crowdaccent.entity.Hit)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.crowdaccent.service.HitService#delete(com.crowdaccent.entity.Hit)
 	 */
 	@Override
 	public void delete(Hit hit) {
 		hitDAO.delete(hit);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.crowdaccent.service.HitService#getById(java.lang.String)
 	 */
 	@Override
@@ -45,7 +58,9 @@ public class HitServiceImpl implements HitService {
 		return hitDAO.getById(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.crowdaccent.service.HitService#getAll()
 	 */
 	@Override
@@ -53,7 +68,9 @@ public class HitServiceImpl implements HitService {
 		return hitDAO.getAll();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.crowdaccent.service.HitService#findHitEntries(int, int)
 	 */
 	@Override
@@ -61,7 +78,9 @@ public class HitServiceImpl implements HitService {
 		return hitDAO.findHitEntries(firstResult, sizeNo);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.crowdaccent.service.HitService#countHits()
 	 */
 	@Override
@@ -70,15 +89,20 @@ public class HitServiceImpl implements HitService {
 	}
 
 	/**
-	 * @param hitdao the hitdao to set
+	 * @param hitdao
+	 *            the hitdao to set
 	 */
 	@Autowired
 	public void setHitDAO(HitDAO hitDAO) {
 		this.hitDAO = hitDAO;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.crowdaccent.service.HitService#findHitEntriesByProduct(java.lang.Long, int, int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.crowdaccent.service.HitService#findHitEntriesByProduct(java.lang.
+	 * Long, int, int)
 	 */
 	@Override
 	public List<Hit> findHitEntriesByProduct(Long id, int firstResult,
@@ -86,20 +110,30 @@ public class HitServiceImpl implements HitService {
 		return hitDAO.findHitEntriesByProduct(id, firstResult, sizeNo);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.crowdaccent.service.HitService#countHitsByProduct(java.lang.Long)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.crowdaccent.service.HitService#countHitsByProduct(java.lang.Long)
 	 */
 	@Override
 	public Float countHitsByProduct(Long id) {
 		return hitDAO.countHitsByProduct(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.crowdaccent.service.HitService#getAllByProduct(java.lang.Long)
 	 */
 	@Override
 	public List<Hit> getAllByProduct(Long id) {
 		return hitDAO.getAllByProduct(id);
+	}
+
+	@Scheduled(cron = "05 * * * * ?")
+	public void runHourly() {
+		_log.info("Running Hourly Task : it is " + new Date());
 	}
 
 }
