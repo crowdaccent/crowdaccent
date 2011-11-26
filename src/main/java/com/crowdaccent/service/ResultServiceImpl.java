@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.amazonaws.mturk.requester.GetReviewableHITsResult;
 import com.amazonaws.mturk.requester.HIT;
 import com.crowdaccent.entity.Assignment;
 import com.crowdaccent.entity.Hit;
@@ -78,72 +77,75 @@ public class ResultServiceImpl implements ResultService {
 	    Result results = null;
 		Hit phit = hitDAO.getByHitId(hit_id);
         
-		GetReviewableHITsResult reviewableHit = gw.getReviewableHITsWithCreationTimeOrderAndPageDetails(phit.getHit_type_id());
-        
-		HIT hit[] = reviewableHit.getHIT();
-		for (int i = 0; i < hit.length; i++) {
+		HIT[] dhit = gw.getAllReviewableHITs(phit.getHit_type_id());
+		//TODO - All the hits that are reviewable and those that are already in the database are overlapping set.
+		//TODO - Take the difference of the once we got now and those that we have in db before updating the database
+		for (int i = 0; i < dhit.length; i++) {
 		    Hit rhit = new Hit();
 	        results = new Result();
-		    rhit.setHit_id(hit[i].getHITId());
-            results.setHit_id(hit[i].getHITId());
+		    rhit.setHit_id(dhit[i].getHITId());
+            results.setHit_id(dhit[i].getHITId());
 
-		    rhit.setHit_type_id(hit[i].getHITTypeId());
-	        results.setHit_type_id(hit[i].getHITTypeId());
+		    rhit.setHit_type_id(dhit[i].getHITTypeId());
+	        results.setHit_type_id(dhit[i].getHITTypeId());
 		    
-		    if(hit[i].getHITStatus() != null) {
-		        rhit.setHit_status(hit[i].getHITStatus().getValue());
-		        results.setHit_status(hit[i].getHITStatus().getValue());
-		    }
-		    
-		    if(hit[i].getCreationTime() != null) {
-		        rhit.setCreation_time(hit[i].getCreationTime().getTime());
-                results.setCreation_time(hit[i].getCreationTime().getTime());
+		    if(dhit[i].getHITStatus() != null) {
+		        rhit.setHit_status(dhit[i].getHITStatus().getValue());
+		        results.setHit_status(dhit[i].getHITStatus().getValue());
 		    }
 		    
-		    rhit.setTitle(hit[i].getTitle());
-            results.setTitle(hit[i].getTitle());
-		    rhit.setDescription(hit[i].getDescription());
-            results.setDescription(hit[i].getDescription());
-		    rhit.setKeywords(hit[i].getTitle());
-            results.setKeywords(hit[i].getKeywords());
-
-		    rhit.setMax_assignments(hit[i].getMaxAssignments());
-            results.setMax_assignments(hit[i].getMaxAssignments());
-
-		    rhit.setNum_similar_hits(hit[i].getNumberOfSimilarHITs());
-            results.setNum_similar_hits(hit[i].getNumberOfSimilarHITs());
-
-		    if(hit[i].getReward() != null) {
-		        rhit.setReward(hit[i].getReward().getAmount().doubleValue());
-	            results.setReward(hit[i].getReward().getAmount().doubleValue());
+		    if(dhit[i].getCreationTime() != null) {
+		        rhit.setCreation_time(dhit[i].getCreationTime().getTime());
+                results.setCreation_time(dhit[i].getCreationTime().getTime());
 		    }
 		    
-		    if(hit[i].getAutoApprovalDelayInSeconds() != null) {
-		        rhit.setAuto_approval_delay_in_secs(hit[i].getAutoApprovalDelayInSeconds().intValue());
-	            results.setAuto_approval_delay_in_secs(hit[i].getAutoApprovalDelayInSeconds().intValue());
+		    rhit.setTitle(dhit[i].getTitle());
+            results.setTitle(dhit[i].getTitle());
+		    rhit.setDescription(dhit[i].getDescription());
+            results.setDescription(dhit[i].getDescription());
+		    rhit.setKeywords(dhit[i].getTitle());
+            results.setKeywords(dhit[i].getKeywords());
+
+		    rhit.setMax_assignments(dhit[i].getMaxAssignments());
+            results.setMax_assignments(dhit[i].getMaxAssignments());
+
+		    rhit.setNum_similar_hits(dhit[i].getNumberOfSimilarHITs());
+            results.setNum_similar_hits(dhit[i].getNumberOfSimilarHITs());
+
+		    if(dhit[i].getReward() != null) {
+		        rhit.setReward(dhit[i].getReward().getAmount().doubleValue());
+	            results.setReward(dhit[i].getReward().getAmount().doubleValue());
 		    }
-		    if(hit[i].getHITReviewStatus() != null) {
-		        rhit.setHit_review_status(hit[i].getHITReviewStatus().getValue());
-	            results.setHit_review_status(hit[i].getHITReviewStatus().getValue());
+		    
+		    if(dhit[i].getAutoApprovalDelayInSeconds() != null) {
+		        rhit.setAuto_approval_delay_in_secs(dhit[i].getAutoApprovalDelayInSeconds().intValue());
+	            results.setAuto_approval_delay_in_secs(dhit[i].getAutoApprovalDelayInSeconds().intValue());
 		    }
-		    if(hit[i].getExpiration() != null) {
-		        results.setExpiration_time(hit[i].getExpiration().getTime());
+		    if(dhit[i].getHITReviewStatus() != null) {
+		        rhit.setHit_review_status(dhit[i].getHITReviewStatus().getValue());
+	            results.setHit_review_status(dhit[i].getHITReviewStatus().getValue());
 		    }
-		    if(hit[i].getAssignmentDurationInSeconds() != null) {
-	            results.setAssignment_duration_in_secs(hit[i].getAssignmentDurationInSeconds().intValue());
+		    if(dhit[i].getExpiration() != null) {
+		        results.setExpiration_time(dhit[i].getExpiration().getTime());
+		    }
+		    if(dhit[i].getAssignmentDurationInSeconds() != null) {
+	            results.setAssignment_duration_in_secs(dhit[i].getAssignmentDurationInSeconds().intValue());
 		    }    
-		    rhit.setNumber_of_assignments_available(hit[i].getNumberOfAssignmentsAvailable());
-            results.setNumber_of_assignments_pending(hit[i].getNumberOfAssignmentsPending());
-		    rhit.setNumber_of_assignments_completed(hit[i].getNumberOfAssignmentsCompleted());
-            results.setNumber_of_assignments_available(hit[i].getNumberOfAssignmentsAvailable());
-		    rhit.setNumber_of_assignments_pending(hit[i].getNumberOfAssignmentsPending());
-            results.setNumber_of_assignments_completed(hit[i].getNumberOfAssignmentsCompleted());
+		    rhit.setNumber_of_assignments_available(dhit[i].getNumberOfAssignmentsAvailable());
+            results.setNumber_of_assignments_pending(dhit[i].getNumberOfAssignmentsPending());
+		    rhit.setNumber_of_assignments_completed(dhit[i].getNumberOfAssignmentsCompleted());
+            results.setNumber_of_assignments_available(dhit[i].getNumberOfAssignmentsAvailable());
+		    rhit.setNumber_of_assignments_pending(dhit[i].getNumberOfAssignmentsPending());
+            results.setNumber_of_assignments_completed(dhit[i].getNumberOfAssignmentsCompleted());
 
-            results.setRequester_annotation(hit[i].getRequesterAnnotation());
+            results.setRequester_annotation(dhit[i].getRequesterAnnotation());
 
 		    hitDAO.save(rhit);
 
-		    com.amazonaws.mturk.requester.Assignment[] assign = gw.getAllAssignmentsForHIT(hit[i].getHITId(), reviewableHit.getPageNumber(), true);
+		    com.amazonaws.mturk.requester.Assignment[] assign = gw.getAllAssignmentsForHIT(dhit[i].getHITId());
+		    //TODO - All the assignments we got a hit and those that are already in the database are overlapping set.
+	        //TODO - Take the difference of the once we got now and those that we have in db before updating the database
+
 		    if(assign != null) {
                 for(int j = 0; j < assign.length; j++) {
                     Assignment judgement = new Assignment(); 
