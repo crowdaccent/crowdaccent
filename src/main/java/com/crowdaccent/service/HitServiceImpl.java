@@ -131,9 +131,9 @@ public class HitServiceImpl implements HitService {
 		return hitDAO.getAllByProduct(id);
 	}
 
-	@Scheduled(cron = "05 * * * * ?")
+	/*@Scheduled(cron = "05 * * * * ?")
 	public void runHourly() {
 		_log.info("Running Hourly Task : it is " + new Date());
-	}
+	}*/
 
 }
