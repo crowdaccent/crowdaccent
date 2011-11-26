@@ -128,9 +128,10 @@ public class Requester extends RequesterServiceRaw {
 	}
 
     public GetReviewableHITsResult getReviewableHITs(String hitTypeId, ReviewableHITStatus status, 
-            SortDirection sortDirection, GetReviewableHITsSortProperty sortProperty)
-          throws ServiceException { 
-        return super.getReviewableHITs(hitTypeId, status, sortDirection, sortProperty, DEFAULT_PAGE_NUM, DEFAULT_PAGE_SIZE);
+            SortDirection sortDirection, GetReviewableHITsSortProperty sortProperty, Integer pageNumber)
+          throws ServiceException {
+        if (pageNumber == 0) pageNumber = DEFAULT_PAGE_NUM;
+        return super.getReviewableHITs(hitTypeId, status, sortDirection, sortProperty, pageNumber, DEFAULT_PAGE_SIZE);
     }
 
     public GetAssignmentsForHITResult getAssignmentsForHIT(String hitId, SortDirection sortDirection, AssignmentStatus[] status, 

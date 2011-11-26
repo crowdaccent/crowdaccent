@@ -1,6 +1,7 @@
 package com.crowdaccent.orchestration.gateway;
 
 import com.amazonaws.mturk.requester.Assignment;
+import com.amazonaws.mturk.requester.AssignmentStatus;
 import com.amazonaws.mturk.requester.GetAssignmentsForHITResult;
 import com.amazonaws.mturk.requester.GetReviewableHITsResult;
 import com.amazonaws.mturk.requester.HIT;
@@ -41,7 +42,7 @@ public interface Gateway {
     * @param pageSize
     * @return
     */
-   public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId);
+   public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId, Integer pageNumber);
    
    /**
     * 
@@ -50,8 +51,15 @@ public interface Gateway {
     * @param pageSize
     * @return
     */
-   public HIT[] getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(String hitTypeId);
+   public HIT[] getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(String hitTypeId, Integer pageNumber);
 
+   /**
+    * 
+    * @param hitTypeId
+    * @return
+    */
+   public HIT[] getAllReviewableHITs(String hitTypeId);
+   
    /**
     * 
     * @param hitId
@@ -72,6 +80,14 @@ public interface Gateway {
     */
    public Assignment[] getAllAssignmentsForHIT(String hitId, Integer pageNumber, boolean getFullResponse);
 
+   /**
+    * 
+    * @param hitId
+    * @param status
+    * @return
+    */
+   public Assignment[] getAllAssignmentsForHIT(String hitId);
+   
    /**
     * 
     * @param hitId

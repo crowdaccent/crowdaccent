@@ -1,5 +1,9 @@
 package com.crowdaccent.orchestration.gateway.amazon;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import com.amazonaws.mturk.util.PropertiesClientConfig;
 import com.amazonaws.mturk.requester.Assignment;
 import com.amazonaws.mturk.requester.AssignmentStatus;
@@ -10,11 +14,11 @@ import com.amazonaws.mturk.requester.GetReviewableHITsSortProperty;
 import com.amazonaws.mturk.requester.HIT;
 import com.amazonaws.mturk.requester.ReviewableHITStatus;
 import com.amazonaws.mturk.requester.SortDirection;
+import com.amazonaws.mturk.service.exception.ServiceException;
 
 import com.crowdaccent.orchestration.Requester;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
-import com.crowdaccent.orchestration.gateway.HITResponse;
 
 /**
  * 
@@ -67,16 +71,39 @@ public class GatewayAmazonMTurkImpl implements Gateway {
         return this.createIntroductionTaskWithImage(hRequest);
     }
 
-    public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId) {
+    public GetReviewableHITsResult getReviewableHITsWithCreationTimeOrderAndPageDetails(String hitTypeId, Integer pageNumber) {
         
-        return this.getReviewableHITsWithCreationSortOrderAndPageDetails(hitTypeId);
+        return this.getReviewableHITsWithCreationSortOrderAndPageDetails(hitTypeId, pageNumber);
     }
     
-    public HIT[] getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(String hitTypeId) {
+    public HIT[] getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(String hitTypeId, Integer pageNumber) {
    
-        return this.getReviewableHITsDetailsWithCreationSortOrderAndPageDetails(hitTypeId);
+        return this.getReviewableHITsDetailsWithCreationSortOrderAndPageDetails(hitTypeId, pageNumber);
     }
 
+    
+    public HIT[] getAllReviewableHITs(String hitTypeId) {
+
+        List<HIT> results = new ArrayList<HIT>();
+        int pageNumber = 1;
+        do {
+            
+            HIT[] hit = this.getReviewableHITsDetailsWithCreationTimeSortOrderAndPageDetails(hitTypeId, pageNumber);
+            if (hit != null) {
+                // Add the results
+                Collections.addAll(results, hit);
+            }
+            // Check if we're on the last page or not
+            if (hit == null || hit.length < DEFAULT_PAGE_SIZE)
+                break;
+
+            pageNumber++;
+
+        } while (true);
+
+        return (HIT[]) results.toArray(new HIT[results.size()]);
+    }
+    
     public GetAssignmentsForHITResult getAllAssignmentsHITResults(String hitId, Integer pageNumber, boolean getFullResponse) {
         
         return this.getAssignmentsForHITWithResponseGroup(hitId, pageNumber, getFullResponse);
@@ -85,6 +112,30 @@ public class GatewayAmazonMTurkImpl implements Gateway {
     public Assignment[] getAllAssignmentsForHIT(String hitId, Integer pageNumber, boolean getFullResponse) {
         
         return this.getAssignmentsResultsForHITWithResponseGroup(hitId, pageNumber, getFullResponse);
+    }
+    
+    public Assignment[] getAllAssignmentsForHIT(String hitId) throws ServiceException {      
+
+        List<Assignment> results = new ArrayList<Assignment>();
+        int pageNumber = 1;
+
+        do {
+          GetAssignmentsForHITResult result = this.getAllAssignmentsHITResults(hitId, pageNumber, true);
+          Assignment[] assignment = result.getAssignment();
+
+          if (assignment != null) {
+            // Add the results
+            Collections.addAll(results, assignment);
+          }
+
+          // Check if we're on the last page or not
+          if (assignment == null || assignment.length < DEFAULT_PAGE_SIZE)
+            break;
+
+          pageNumber++;
+
+        } while (true);
+        return (Assignment[]) results.toArray(new Assignment[results.size()]);    
     }
 
     public GetAssignmentsForHITResult getSubmittedAssignmentsForHITResults(String hitId, Integer pageNumber, Integer pageSize, boolean getFullResponse) { 
@@ -190,17 +241,18 @@ public class GatewayAmazonMTurkImpl implements Gateway {
           );        
     }
    
-    private GetReviewableHITsResult getReviewableHITsWithCreationSortOrderAndPageDetails(String hitTypeId) {
+    private GetReviewableHITsResult getReviewableHITsWithCreationSortOrderAndPageDetails(String hitTypeId, Integer pageNumber) {
          
         return this.service.getReviewableHITs(hitTypeId, // HITTypeId
             ReviewableHITStatus.Reviewable,
             SortDirection.Ascending,
-            GetReviewableHITsSortProperty.CreationTime);
+            GetReviewableHITsSortProperty.CreationTime,
+            pageNumber);
     }   
 
-    private HIT[] getReviewableHITsDetailsWithCreationSortOrderAndPageDetails(String hitTypeId) {
+    private HIT[] getReviewableHITsDetailsWithCreationSortOrderAndPageDetails(String hitTypeId, Integer pageNumber) {
         
-        GetReviewableHITsResult result = this.getReviewableHITsWithCreationSortOrderAndPageDetails(hitTypeId);
+        GetReviewableHITsResult result = this.getReviewableHITsWithCreationSortOrderAndPageDetails(hitTypeId, pageNumber);
         return result.getHIT();
     } 
     
@@ -216,7 +268,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
                 "Minimal"
             };
         }
-        return this.service.getAssignmentsForHIT(hitId, SortDirection.Ascending, DEFAULT_ASSIGNMENT_STATUS, GetAssignmentsForHITSortProperty.AcceptTime, 
+        return this.service.getAssignmentsForHIT(hitId, SortDirection.Ascending, DEFAULT_ASSIGNMENT_STATUS, GetAssignmentsForHITSortProperty.SubmitTime, 
                 pageNumber, DEFAULT_PAGE_NUM, responseGroup);
     }
     
@@ -238,7 +290,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
                 "Minimal"
             };
         }
-        return this.service.getAssignmentsForHIT(hitId, SortDirection.Ascending, SUBMITTED_ASSIGNMENT_STATUS, GetAssignmentsForHITSortProperty.AcceptTime, 
+        return this.service.getAssignmentsForHIT(hitId, SortDirection.Ascending, SUBMITTED_ASSIGNMENT_STATUS, GetAssignmentsForHITSortProperty.SubmitTime, 
                 pageNumber, pageSize, responseGroup);
     }
     
