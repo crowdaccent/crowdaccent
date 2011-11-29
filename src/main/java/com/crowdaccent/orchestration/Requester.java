@@ -2,6 +2,10 @@ package com.crowdaccent.orchestration;
 
 import org.apache.axis.utils.XMLUtils;
 
+import com.amazonaws.mturk.addon.HITDataInput;
+import com.amazonaws.mturk.addon.HITDataReader;
+import com.amazonaws.mturk.addon.HITProperties;
+import com.amazonaws.mturk.addon.HITQuestion;
 import com.amazonaws.mturk.requester.AssignmentStatus;
 import com.amazonaws.mturk.requester.GetAssignmentsForHITResult;
 import com.amazonaws.mturk.requester.GetAssignmentsForHITSortProperty;
@@ -13,13 +17,15 @@ import com.amazonaws.mturk.requester.QualificationType;
 import com.amazonaws.mturk.requester.QualificationTypeStatus;
 import com.amazonaws.mturk.requester.ReviewableHITStatus;
 import com.amazonaws.mturk.requester.SortDirection;
+import com.amazonaws.mturk.service.axis.RequesterService;
 import com.amazonaws.mturk.service.axis.RequesterServiceRaw;
 import com.amazonaws.mturk.service.exception.ServiceException;
 import com.amazonaws.mturk.util.ClientConfig;
+import com.crowdaccent.orchestration.gateway.HITDataInputReader;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
 
-public class Requester extends RequesterServiceRaw {
+public class Requester extends RequesterService {
 
     //-------------------------------------------------------------
     // Constants
@@ -162,7 +168,7 @@ public class Requester extends RequesterServiceRaw {
         autoGrantedValue);
 	}
 	
-	public String getBasicFreeTextQuestion(String question) {
+	public static String getBasicFreeTextQuestion(String question) {
 		String q = "";
 		q += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 		q += "<QuestionForm xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd\">";
@@ -371,6 +377,18 @@ public class Requester extends RequesterServiceRaw {
 
 	public String getWebsiteURL() {
 	    return this.config.getWorkerWebsiteURL();
+	}
+
+	/**
+	 * @param hitProperties
+	 * @param hitDataInputReader
+	 * @param hitQuestion
+	 * @return
+	 */
+	public HIT createHIT(HITProperties hitProperties,
+			HITDataInput hitDataInputReader, HITQuestion hitQuestion) {
+		HIT hits[] = super.createHITs((HITDataReader)hitDataInputReader, hitProperties, hitQuestion);
+		return hits != null && hits.length > 0 ? hits[0] : null;
 	}
 	
 }
