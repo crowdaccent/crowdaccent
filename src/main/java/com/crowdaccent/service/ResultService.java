@@ -37,4 +37,8 @@ public interface ResultService {
 	 * @return
 	 */
 	public Result getResultsForHIT(String id);
+	/**
+	 * @param value
+	 */
+	public void getAsyncResultsForHIT(String id);
 }

@@ -65,7 +65,7 @@ public class TestResultService extends
 	
 	@Test
     public void getResultsForHIT() {
-        Result results = resultService.getResultsForHIT("25KL92HECWA6Y9LZ6760FP5K1VHIJU");
+        Result results = resultService.getResultsForHIT("2A3B3L0FBJ9IPH6PDM5VH5RPV8AMY8");
         _log.info("Result info " + results.getAnswers());
         if(results.getAssignment_id() != null) {
             assertNotNull(results.getAssignment_id());

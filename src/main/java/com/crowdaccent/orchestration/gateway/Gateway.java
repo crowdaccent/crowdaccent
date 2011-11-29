@@ -1,11 +1,9 @@
 package com.crowdaccent.orchestration.gateway;
 
 import com.amazonaws.mturk.addon.HITDataInput;
-import com.amazonaws.mturk.addon.HITDataReader;
 import com.amazonaws.mturk.addon.HITProperties;
 import com.amazonaws.mturk.addon.HITQuestion;
 import com.amazonaws.mturk.requester.Assignment;
-import com.amazonaws.mturk.requester.AssignmentStatus;
 import com.amazonaws.mturk.requester.GetAssignmentsForHITResult;
 import com.amazonaws.mturk.requester.GetReviewableHITsResult;
 import com.amazonaws.mturk.requester.HIT;
@@ -135,5 +133,17 @@ public interface Gateway {
 	 */
 	public HIT createIntroductionHITWithImage(HITProperties hitProperties,
 			HITDataInput hitDataInputReader, HITQuestion hitQuestion);
+
+	/**
+	 * @param hitTypeId
+	 * @param destination
+	 */
+	public void setNotificationEmail(String hitTypeId, String destination);
+
+	/**
+	 * @param hitTypeId
+	 * @param destination
+	 */
+	public void setNotificationURL(String hitTypeId, String destination);
 	
 }

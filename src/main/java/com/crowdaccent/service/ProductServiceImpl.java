@@ -342,6 +342,8 @@ public class ProductServiceImpl implements ProductService {
 		Gateway gw = new GatewayAmazonMTurkImpl();
 
 		HIT hit = gw.createIntroductionHITWithImage(hitProperties, hitDataInputReader, hitQuestion);
+		gw.setNotificationEmail(hit.getHITTypeId(), "bhallakapil@gmail.com");
+		//gw.setNotificationURL(hit.getHITTypeId(), "http://poc.crowdaccent.com/crowdaccent/notifications.json");
 		
 		persistHITData(p, gw.getWebsiteURL(), hit);
 		return p;

@@ -18,10 +18,8 @@ import com.amazonaws.mturk.requester.QualificationTypeStatus;
 import com.amazonaws.mturk.requester.ReviewableHITStatus;
 import com.amazonaws.mturk.requester.SortDirection;
 import com.amazonaws.mturk.service.axis.RequesterService;
-import com.amazonaws.mturk.service.axis.RequesterServiceRaw;
 import com.amazonaws.mturk.service.exception.ServiceException;
 import com.amazonaws.mturk.util.ClientConfig;
-import com.crowdaccent.orchestration.gateway.HITDataInputReader;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
 

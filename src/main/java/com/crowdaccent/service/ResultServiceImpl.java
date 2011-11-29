@@ -6,6 +6,7 @@ package com.crowdaccent.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.mturk.requester.HIT;
@@ -140,7 +141,7 @@ public class ResultServiceImpl implements ResultService {
 
             results.setRequester_annotation(dhit[i].getRequesterAnnotation());
 
-		    hitDAO.save(rhit);
+		    //hitDAO.save(rhit);
 
 		    com.amazonaws.mturk.requester.Assignment[] assign = gw.getAllAssignmentsForHIT(dhit[i].getHITId());
 		    //TODO - All the assignments we got a hit and those that are already in the database are overlapping set.
@@ -207,4 +208,13 @@ public class ResultServiceImpl implements ResultService {
     public void setAssignmenttDAO(AssignmentDAO assignmentDAO) {
         this.assignmentDAO = assignmentDAO;
     }
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.ResultService#getAsyncResultsForHIT(java.lang.String)
+	 */
+	@Override
+	@Async
+	public void getAsyncResultsForHIT(String id) {
+		this.getResultsForHIT(id);
+	}
 }

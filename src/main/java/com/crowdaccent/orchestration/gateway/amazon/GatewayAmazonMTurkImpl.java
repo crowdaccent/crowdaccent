@@ -9,11 +9,14 @@ import com.amazonaws.mturk.addon.HITProperties;
 import com.amazonaws.mturk.addon.HITQuestion;
 import com.amazonaws.mturk.requester.Assignment;
 import com.amazonaws.mturk.requester.AssignmentStatus;
+import com.amazonaws.mturk.requester.EventType;
 import com.amazonaws.mturk.requester.GetAssignmentsForHITResult;
 import com.amazonaws.mturk.requester.GetAssignmentsForHITSortProperty;
 import com.amazonaws.mturk.requester.GetReviewableHITsResult;
 import com.amazonaws.mturk.requester.GetReviewableHITsSortProperty;
 import com.amazonaws.mturk.requester.HIT;
+import com.amazonaws.mturk.requester.NotificationSpecification;
+import com.amazonaws.mturk.requester.NotificationTransport;
 import com.amazonaws.mturk.requester.ReviewableHITStatus;
 import com.amazonaws.mturk.requester.SortDirection;
 import com.amazonaws.mturk.service.exception.ServiceException;
@@ -322,6 +325,47 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	public HIT createIntroductionHITWithImage(HITProperties hitProperties,
 			HITDataInput hitDataInputReader, HITQuestion hitQuestion) {
 		return this.service.createHIT(hitProperties, hitDataInputReader, hitQuestion);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.orchestration.gateway.Gateway#setNotificationEmail(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void setNotificationEmail(String hitTypeId, String destination) {
+		Boolean active = true;
+		String version= "2006-05-05";
+		
+		NotificationSpecification notification = new NotificationSpecification();
+		notification.setTransport(NotificationTransport.Email);
+		notification.setDestination(destination);
+		notification.setVersion(version);
+		List<EventType> events = new ArrayList<EventType>();
+		events.add(EventType.HITReviewable);
+		
+		notification.setEventType(events.toArray(new EventType[0]));
+		
+		this.service.setHITTypeNotification(hitTypeId, notification, active);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.orchestration.gateway.Gateway#setNotificationURL(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void setNotificationURL(String hitTypeId, String destination) {
+		Boolean active = true;
+		String version= "2006-05-05";
+		
+		NotificationSpecification notification = new NotificationSpecification();
+		notification.setTransport(NotificationTransport.REST);
+		notification.setDestination(destination);
+		notification.setVersion(version);
+		List<EventType> events = new ArrayList<EventType>();
+		events.add(EventType.HITReviewable);
+		
+		notification.setEventType(events.toArray(new EventType[0]));
+		
+		this.service.setHITTypeNotification(hitTypeId, notification, active);
+		
 	}
     
 }
