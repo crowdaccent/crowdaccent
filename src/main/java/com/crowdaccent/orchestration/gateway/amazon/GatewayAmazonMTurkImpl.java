@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.amazonaws.mturk.util.PropertiesClientConfig;
+import com.amazonaws.mturk.addon.HITDataInput;
+import com.amazonaws.mturk.addon.HITProperties;
+import com.amazonaws.mturk.addon.HITQuestion;
 import com.amazonaws.mturk.requester.Assignment;
 import com.amazonaws.mturk.requester.AssignmentStatus;
 import com.amazonaws.mturk.requester.GetAssignmentsForHITResult;
@@ -15,7 +17,7 @@ import com.amazonaws.mturk.requester.HIT;
 import com.amazonaws.mturk.requester.ReviewableHITStatus;
 import com.amazonaws.mturk.requester.SortDirection;
 import com.amazonaws.mturk.service.exception.ServiceException;
-
+import com.amazonaws.mturk.util.PropertiesClientConfig;
 import com.crowdaccent.orchestration.Requester;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
@@ -312,5 +314,14 @@ public class GatewayAmazonMTurkImpl implements Gateway {
     public String getWebsiteURL() {
     	return this.service.getWebsiteURL();
     }
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.orchestration.gateway.Gateway#createIntroductionHITWithImage(com.amazonaws.mturk.addon.HITProperties, com.amazonaws.mturk.addon.HITDataInput, com.amazonaws.mturk.addon.HITQuestion)
+	 */
+	@Override
+	public HIT createIntroductionHITWithImage(HITProperties hitProperties,
+			HITDataInput hitDataInputReader, HITQuestion hitQuestion) {
+		return this.service.createHIT(hitProperties, hitDataInputReader, hitQuestion);
+	}
     
 }

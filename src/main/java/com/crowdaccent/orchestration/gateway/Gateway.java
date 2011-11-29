@@ -1,5 +1,9 @@
 package com.crowdaccent.orchestration.gateway;
 
+import com.amazonaws.mturk.addon.HITDataInput;
+import com.amazonaws.mturk.addon.HITDataReader;
+import com.amazonaws.mturk.addon.HITProperties;
+import com.amazonaws.mturk.addon.HITQuestion;
 import com.amazonaws.mturk.requester.Assignment;
 import com.amazonaws.mturk.requester.AssignmentStatus;
 import com.amazonaws.mturk.requester.GetAssignmentsForHITResult;
@@ -122,5 +126,14 @@ public interface Gateway {
 	 * @return String website URL
 	 */
 	public String getWebsiteURL();
+
+	/**
+	 * @param hitProperties
+	 * @param hitDataInputReader
+	 * @param hitQuestion
+	 * @return
+	 */
+	public HIT createIntroductionHITWithImage(HITProperties hitProperties,
+			HITDataInput hitDataInputReader, HITQuestion hitQuestion);
 	
 }
