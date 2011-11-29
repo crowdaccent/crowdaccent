@@ -9,7 +9,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.crowdaccent.entity.Hit;
-import com.crowdaccent.entity.Product;
 
 /**
  * @author mkutare
@@ -77,7 +75,7 @@ public class HitDAOImpl implements HitDAO {
         Session s = this.sessionFactory.getCurrentSession();
         Criteria crt = s.createCriteria(Hit.class);
         List<Hit> hit = crt.add(Restrictions.eq(HIT_ID.getPropertyName(), (Object)(hit_id))).list();
-        return hit.get(0);
+        return hit.isEmpty()? null : hit.get(0);
     }
 
 	/* (non-Javadoc)
