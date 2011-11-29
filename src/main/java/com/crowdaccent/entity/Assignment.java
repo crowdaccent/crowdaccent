@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,12 +21,16 @@ public class Assignment {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@ManyToOne
+	private Hit hit;
+
 	@Column(length = 512)
 	private String assignment_id;
 	@Column(length = 512)
 	private String worker_id;
 	@Column(length = 512)
-	private String hit_id;
+	private String hitID;
     @Column(length = 512)
     private String assignment_status;
     @Temporal(TemporalType.TIMESTAMP)
@@ -83,18 +88,6 @@ public class Assignment {
      */
     public void setWorker_id(String worker_id) {
         this.worker_id = worker_id;
-    }
-    /**
-     * @return the hit_id
-     */
-    public String getHit_id() {
-        return hit_id;
-    }
-    /**
-     * @param hit_id the hit_id to set
-     */
-    public void setHit_id(String hit_id) {
-        this.hit_id = hit_id;
     }
     /**
      * @return the assignment_status
@@ -192,5 +185,29 @@ public class Assignment {
     public void setRequester_feedback(String requester_feedback) {
         this.requester_feedback = requester_feedback;
     }
+	/**
+	 * @return the hit
+	 */
+	public Hit getHit() {
+		return hit;
+	}
+	/**
+	 * @param hit the hit to set
+	 */
+	public void setHit(Hit hit) {
+		this.hit = hit;
+	}
+	/**
+	 * @return the hitID
+	 */
+	public String getHitID() {
+		return hitID;
+	}
+	/**
+	 * @param hitID the hitID to set
+	 */
+	public void setHitID(String hitID) {
+		this.hitID = hitID;
+	}
 
 }

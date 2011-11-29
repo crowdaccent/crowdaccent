@@ -47,7 +47,7 @@ public class TestResultDAO extends
 	public void createResult() throws ParseException {
 		Result r = new Result();
 		r.setHit_type_id("2NDW4ZMAZHHRSR21UJEN2RH1KH2AJ7");
-		r.setHit_id("244HGYQ4J3NACCYQGA6O5YIT14AOBN");
+		r.setHitID("244HGYQ4J3NACCYQGA6O5YIT14AOBN");
 		r.setTitle("Product Image and Category Validation");
 		r.setDescription("Answer questions about the product image, title, description and validate the existing categorization of the product");
 		r.setKeywords("product, image, url, validation, categorization, crowdaccent");

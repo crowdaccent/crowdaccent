@@ -20,8 +20,9 @@ public class Result {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	@Column(length = 256)
-	private String hit_id;
+	private String hitID;
 	@Column(length = 512)
 	private String hit_type_id;
     @Column(columnDefinition = "TEXT")
@@ -109,18 +110,6 @@ public class Result {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-    /**
-     * @return the hit_id
-     */
-    public String getHit_id() {
-        return hit_id;
-    }
-    /**
-     * @param hit_id the hit_id to set
-     */
-    public void setHit_id(String hit_id) {
-        this.hit_id = hit_id;
     }
     /**
      * @return the hit_type_id
@@ -506,5 +495,17 @@ public class Result {
     public void setAnswers(String answers) {
         this.answers = answers;
     }
+	/**
+	 * @return the hitID
+	 */
+	public String getHitID() {
+		return hitID;
+	}
+	/**
+	 * @param hitID the hitID to set
+	 */
+	public void setHitID(String hitID) {
+		this.hitID = hitID;
+	}
 
 }

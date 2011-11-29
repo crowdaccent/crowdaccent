@@ -84,7 +84,7 @@ public class ResultServiceImpl implements ResultService {
 		    Hit rhit = new Hit();
 	        results = new Result();
 		    rhit.setHit_id(dhit[i].getHITId());
-            results.setHit_id(dhit[i].getHITId());
+            results.setHitID(dhit[i].getHITId());
 
 		    rhit.setHit_type_id(dhit[i].getHITTypeId());
 	        results.setHit_type_id(dhit[i].getHITTypeId());
@@ -149,23 +149,34 @@ public class ResultServiceImpl implements ResultService {
 		    if(assign != null) {
                 for(int j = 0; j < assign.length; j++) {
                     Assignment judgement = new Assignment(); 
-                    judgement.setHit_id(assign[j].getHITId());
+                    judgement.setHitID(assign[j].getHITId());
                     judgement.setAssignment_id(assign[j].getAssignmentId());
                     judgement.setWorker_id(assign[j].getWorkerId());
                     judgement.setAccept_time(assign[j].getAcceptTime().getTime());
-                    judgement.setApproval_time(assign[j].getApprovalTime().getTime());
-                    judgement.setRejection_time(assign[j].getRejectionTime().getTime());
+                    if (assign[j].getApprovalTime() != null){
+                    	judgement.setApproval_time(assign[j].getApprovalTime().getTime());
+                    }
+                    if (assign[j].getRejectionTime() != null){
+                    	judgement.setRejection_time(assign[j].getRejectionTime().getTime());
+                    }
                     judgement.setAssignment_status(assign[j].getAssignmentStatus().getValue());
-                    judgement.setAuto_approval_time(assign[j].getAutoApprovalTime().getTime());
+                    if (assign[j].getAutoApprovalTime() != null){
+                        judgement.setAuto_approval_time(assign[j].getAutoApprovalTime().getTime());
+                    }
+                    judgement.setHit(phit);
                     assignmentDAO.save(judgement);
                     
                     results.setAnswers(assign[i].getAnswer());
                     results.setAccept_time(assign[i].getAcceptTime().getTime());
-                    results.setApproval_time(assign[i].getApprovalTime().getTime());
+                    if (assign[i].getApprovalTime() != null){
+                    	results.setApproval_time(assign[i].getApprovalTime().getTime());
+                    }
                     results.setAssignment_id(assign[i].getAssignmentId());
                     results.setAssignment_status(assign[i].getAssignmentStatus().getValue());
                     results.setAuto_approval_time(assign[i].getAutoApprovalTime().getTime());
-                    results.setRejection_time(assign[i].getRejectionTime().getTime());
+                    if (assign[i].getRejectionTime() != null){
+                        results.setRejection_time(assign[i].getRejectionTime().getTime());
+                    }
                     results.setRequester_feedback(assign[i].getRequesterFeedback());
                     results.setWorker_id(assign[i].getWorkerId());
                 }

@@ -49,7 +49,7 @@ public class TestResultService extends
 	        if(r.getAssignment_id() != null) {
 	            assertNotNull(r.getAssignment_id());
 	        }
-			assertNotNull(r.getHit_id());
+			assertNotNull(r.getHitID());
 			number++;
 		}
 		_log.info("Total number of answers in the database " + number);
@@ -59,18 +59,18 @@ public class TestResultService extends
 	public void getNumResults() {
 		List<Result> results = resultService.getNumResults(5);
 		for (Result r : results) {
-			assertNotNull(r.getHit_id());
+			assertNotNull(r.getHitID());
 		}
 	}
 	
 	@Test
     public void getResultsForHIT() {
-        Result results = resultService.getResultsForHIT("28P0G5R98D8JW1LLMLJTQYCG7SETDW");
+        Result results = resultService.getResultsForHIT("25KL92HECWA6Y9LZ6760FP5K1VHIJU");
         _log.info("Result info " + results.getAnswers());
         if(results.getAssignment_id() != null) {
             assertNotNull(results.getAssignment_id());
         }
-        assertNotNull(results.getHit_id());
+        assertNotNull(results.getHitID());
         _log.info("Total number of answers available for the HIT " + results.getNumber_of_assignments_available());
         _log.info("Total number of answers complete for the HIT " + results.getNumber_of_assignments_completed());
         _log.info("Total number of answers pending for the HIT " + results.getNumber_of_assignments_pending());
