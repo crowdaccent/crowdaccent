@@ -77,15 +77,14 @@ public class TestProductService extends
 
 	@Test
 	public void createIntroductionHITWithImage() {
-		List<Product> products = productService.getNumValidProducts(3);
+		List<Product> products = productService.getNumValidProducts(1);
 		int num = 0;
 		for (Product p : products) {
-			_log.warn("Creating HIT for product id " + p.getId());
+			_log.info("Creating HIT for product id " + p.getId() + " and category : " + p.getCategory());
 			this.productService.createIntroductionHITWithImage(p.getId() + "");
 			assertNotNull(p.getImageURL());
-			_log.warn("Existing Product Category " + p.getCategory());
 			num++;
 		}
-		_log.warn("Total hits created = " + num);
+		_log.info("Total hits created = " + num);
 	}
 }
