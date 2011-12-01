@@ -106,8 +106,7 @@ public class ResultServiceImpl implements ResultService {
 	 */
 	private void updateAssignment(Hit databaseHit,
 			com.amazonaws.mturk.requester.Assignment assignment) {
-		//TODO: Get the assignment if exists in database and update.
-		
+	
 		Assignment databaseAssignment = assignmentService.getAssignmentById(assignment.getAssignmentId());
 		if (databaseAssignment == null){
 			databaseAssignment = new Assignment();
