@@ -16,4 +16,10 @@ public interface AssignmentService {
 	 */
 	void save(Assignment assignment);
 
+	/**
+	 * @param assignmentId
+	 * @return
+	 */
+	Assignment getAssignmentById(String assignmentId);
+
 }

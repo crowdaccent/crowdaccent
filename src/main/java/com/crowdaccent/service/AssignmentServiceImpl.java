@@ -32,5 +32,13 @@ public class AssignmentServiceImpl implements AssignmentService {
 	public void save(Assignment assignment) {
 		assignmentDAO.save(assignment);
 	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.AssignmentService#getAssignmentById(java.lang.String)
+	 */
+	@Override
+	public Assignment getAssignmentById(String assignmentId) {
+		return assignmentDAO.getAssignmentById(assignmentId);
+	}
 	
 }

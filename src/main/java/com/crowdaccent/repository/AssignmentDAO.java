@@ -34,5 +34,10 @@ public interface AssignmentDAO {
 	 * @return List of Assignments.
 	 */
 	public List<Assignment> getNumAssignments(int number);
+	/**
+	 * @param assignmentId
+	 * @return
+	 */
+	public Assignment getAssignmentById(String assignmentId);
 
 }
