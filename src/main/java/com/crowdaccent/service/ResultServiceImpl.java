@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.mturk.requester.HIT;
+import com.amazonaws.mturk.requester.HITStatus;
 import com.crowdaccent.entity.Assignment;
 import com.crowdaccent.entity.Hit;
 import com.crowdaccent.entity.Result;
@@ -75,19 +76,13 @@ public class ResultServiceImpl implements ResultService {
 	    Hit databaseHit = hitService.getByHitId(hit_id);
         
 	    Gateway gw = new GatewayAmazonMTurkImpl();
-	    HIT[] remoteHits = gw.getAllReviewableHITs(databaseHit.getHit_type_id());
-		//TODO - All the hits that are reviewable and those that are already in the database are overlapping set.
-		//TODO - Take the difference of the once we got now and those that we have in db before updating the database
-		for (int i = 0; i < remoteHits.length; i++) {
-			HIT remoteHit = remoteHits[i];
-			// Get the HIT we are interested in
-			if (remoteHit.getHITId().equals(databaseHit.getHit_id())) {
-				updateDatabaseHit(databaseHit, remoteHit);
-				com.amazonaws.mturk.requester.Assignment[] assignments = gw
-						.getAllAssignmentsForHIT(databaseHit.getHit_id());
-				updateAssignments(databaseHit, assignments);
-			}
-		}
+	    HIT remoteHit = gw.getHIT(hit_id);
+	    if (remoteHit != null && remoteHit.getHITStatus() == HITStatus.Reviewable){
+	    	updateDatabaseHit(databaseHit, remoteHit);
+	    	com.amazonaws.mturk.requester.Assignment[] assignments = gw
+	    			.getAllAssignmentsForHIT(databaseHit.getHit_id());
+	    	updateAssignments(databaseHit, assignments);
+	    }
         return null;
 	}
 
@@ -131,6 +126,7 @@ public class ResultServiceImpl implements ResultService {
 		if (assignment.getAutoApprovalTime() != null){
 		    databaseAssignment.setAuto_approval_time(assignment.getAutoApprovalTime().getTime());
 		}
+		databaseAssignment.setSubmit_time(assignment.getSubmitTime().getTime());
 		databaseAssignment.setHit(databaseHit);
 		assignmentService.save(databaseAssignment);
 	}
@@ -148,7 +144,7 @@ public class ResultServiceImpl implements ResultService {
 		}
 		databaseHit.setTitle(remoteHit.getTitle());
 		databaseHit.setDescription(remoteHit.getDescription());
-		databaseHit.setKeywords(remoteHit.getTitle());
+		databaseHit.setKeywords(remoteHit.getKeywords());
 		databaseHit.setMax_assignments(remoteHit.getMaxAssignments());
 		databaseHit.setNum_similar_hits(remoteHit.getNumberOfSimilarHITs());
 		

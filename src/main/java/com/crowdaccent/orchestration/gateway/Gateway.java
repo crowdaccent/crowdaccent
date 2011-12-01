@@ -145,5 +145,11 @@ public interface Gateway {
 	 * @param destination
 	 */
 	public void setNotificationURL(String hitTypeId, String destination);
+
+	/**
+	 * @param hit_id
+	 * @return
+	 */
+	public HIT getHIT(String hit_id);
 	
 }

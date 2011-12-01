@@ -367,5 +367,13 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 		this.service.setHITTypeNotification(hitTypeId, notification, active);
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.orchestration.gateway.Gateway#getHIT(java.lang.String)
+	 */
+	@Override
+	public HIT getHIT(String hit_id) {
+		return this.service.getHIT(hit_id);
+	}
     
 }
