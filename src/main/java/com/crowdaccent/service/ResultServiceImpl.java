@@ -15,7 +15,6 @@ import com.crowdaccent.entity.Hit;
 import com.crowdaccent.entity.Result;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
-import com.crowdaccent.repository.AssignmentDAO;
 import com.crowdaccent.repository.ResultDAO;
 
 /**

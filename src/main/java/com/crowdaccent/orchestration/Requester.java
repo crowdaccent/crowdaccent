@@ -56,7 +56,7 @@ public class Requester extends RequesterService {
     		title, 
     		description, 
     		keywords, // keywords 
-    		this.getBasicFreeTextQuestion(question), 
+    		getBasicFreeTextQuestion(question), 
     		reward, 
             assignmentDurationInSeconds, 
             autoApprovalDelayInSeconds, 

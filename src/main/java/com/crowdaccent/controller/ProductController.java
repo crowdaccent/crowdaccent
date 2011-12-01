@@ -79,7 +79,6 @@ public class ProductController {
    
    @RequestMapping(method = RequestMethod.GET, value = "/createIntroductionHITWithImage/{id}")
    public String createIntroductionHITWithImage(@PathVariable String id, HttpServletRequest httpServletRequest){
-       ModelAndView m = new ModelAndView();
        Product p = productService.createIntroductionHITWithImage(id);
        return "redirect:/hits/listByProduct/" + encodeUrlPathSegment(p.getId().toString(), httpServletRequest);
    }
