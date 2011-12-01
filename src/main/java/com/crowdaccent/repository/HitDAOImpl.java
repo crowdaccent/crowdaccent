@@ -74,8 +74,8 @@ public class HitDAOImpl implements HitDAO {
     public Hit getByHitId(String hit_id) {
         Session s = this.sessionFactory.getCurrentSession();
         Criteria crt = s.createCriteria(Hit.class);
-        List<Hit> hit = crt.add(Restrictions.eq(HIT_ID.getPropertyName(), (Object)(hit_id))).list();
-        return hit.isEmpty()? null : hit.get(0);
+        Hit hit = (Hit)crt.add(Restrictions.eq(HIT_ID.getPropertyName(), (Object)(hit_id))).uniqueResult();
+        return hit;
     }
 
 	/* (non-Javadoc)
