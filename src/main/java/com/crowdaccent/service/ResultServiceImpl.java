@@ -194,20 +194,7 @@ public class ResultServiceImpl implements ResultService {
     public void setResultDAO(ResultDAO resultDAO) {
 		this.resultDAO = resultDAO;
 	}
-    /**
-     * @param HitDAO the hitDAO to set
-     */
-    @Autowired
-    public void setResultDAO(HitDAO hitDAO) {
-        this.hitDAO = hitDAO;
-    }
-    /**
-     * @param assignmentDAO the assignmentDAO to set
-     */
-    @Autowired
-    public void setAssignmenttDAO(AssignmentDAO assignmentDAO) {
-        this.assignmentDAO = assignmentDAO;
-    }
+   
 
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.ResultService#getAsyncResultsForHIT(java.lang.String)
@@ -216,5 +203,21 @@ public class ResultServiceImpl implements ResultService {
 	@Async
 	public void getAsyncResultsForHIT(String id) {
 		this.getResultsForHIT(id);
+	}
+
+	/**
+	 * @param hitDAO the hitDAO to set
+	 */
+	@Autowired
+	public void setHitDAO(HitDAO hitDAO) {
+		this.hitDAO = hitDAO;
+	}
+
+	/**
+	 * @param assignmentDAO the assignmentDAO to set
+	 */
+	@Autowired
+	public void setAssignmentDAO(AssignmentDAO assignmentDAO) {
+		this.assignmentDAO = assignmentDAO;
 	}
 }

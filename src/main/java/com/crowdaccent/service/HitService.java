@@ -56,4 +56,9 @@ public interface HitService {
 	 * @return
 	 */
 	public List<Hit> getAllByProduct(Long id);
+	/**
+	 * @param string
+	 * @return
+	 */
+	public Hit getByHitId(String string);
 }

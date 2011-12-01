@@ -48,5 +48,10 @@ public class TestHitService extends
 		}
 		_log.info("Total number of hits for this product in the database " + number);
 	}
+	@Test
+	public void getHIT(){
+		Hit hit = hitService.getByHitId("2UVP8PJWKUDD939MXLU920B6YZCJ8N");
+	    _log.info("Hit info: " + hit.getHit_id());
+	}
 
 }

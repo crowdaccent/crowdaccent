@@ -131,6 +131,14 @@ public class HitServiceImpl implements HitService {
 		return hitDAO.getAllByProduct(id);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.HitService#getByHitId(java.lang.String)
+	 */
+	@Override
+	public Hit getByHitId(String string) {
+		return hitDAO.getByHitId(string);
+	}
+
 	/*@Scheduled(cron = "05 * * * * ?")
 	public void runHourly() {
 		_log.info("Running Hourly Task : it is " + new Date());
