@@ -16,7 +16,6 @@ import com.crowdaccent.entity.Result;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.repository.AssignmentDAO;
-import com.crowdaccent.repository.HitDAO;
 import com.crowdaccent.repository.ResultDAO;
 
 /**
@@ -26,8 +25,8 @@ import com.crowdaccent.repository.ResultDAO;
 @Service
 public class ResultServiceImpl implements ResultService {
 	private ResultDAO resultDAO;
-	private HitDAO hitDAO;
-	private AssignmentDAO assignmentDAO;
+	private HitService hitService;
+	private AssignmentService assignmentService;
 	
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.ResultService#save(com.crowdaccent.entity.Result)
@@ -76,7 +75,7 @@ public class ResultServiceImpl implements ResultService {
 	public Result getResultsForHIT(String hit_id) {
 	    Gateway gw = new GatewayAmazonMTurkImpl();
 	    Result results = null;
-		Hit phit = hitDAO.getByHitId(hit_id);
+		Hit phit = hitService.getByHitId(hit_id);
         
 		HIT[] dhit = gw.getAllReviewableHITs(phit.getHit_type_id());
 		//TODO - All the hits that are reviewable and those that are already in the database are overlapping set.
@@ -165,7 +164,7 @@ public class ResultServiceImpl implements ResultService {
                         judgement.setAuto_approval_time(assign[j].getAutoApprovalTime().getTime());
                     }
                     judgement.setHit(phit);
-                    assignmentDAO.save(judgement);
+                    assignmentService.save(judgement);
                     
                     results.setAnswers(assign[i].getAnswer());
                     results.setAccept_time(assign[i].getAcceptTime().getTime());
@@ -206,18 +205,18 @@ public class ResultServiceImpl implements ResultService {
 	}
 
 	/**
-	 * @param hitDAO the hitDAO to set
+	 * @param hitService the hitService to set
 	 */
 	@Autowired
-	public void setHitDAO(HitDAO hitDAO) {
-		this.hitDAO = hitDAO;
+	public void setHitService(HitService hitService) {
+		this.hitService = hitService;
 	}
 
 	/**
-	 * @param assignmentDAO the assignmentDAO to set
+	 * @param assignmentService the assignmentService to set
 	 */
 	@Autowired
-	public void setAssignmentDAO(AssignmentDAO assignmentDAO) {
-		this.assignmentDAO = assignmentDAO;
+	public void setAssignmentService(AssignmentService assignmentService) {
+		this.assignmentService = assignmentService;
 	}
 }

@@ -27,7 +27,6 @@ import com.crowdaccent.orchestration.gateway.HITRequest;
 import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
-import com.crowdaccent.repository.HitDAO;
 import com.crowdaccent.repository.ProductDAO;
 
 /**
@@ -79,8 +78,8 @@ public class ProductServiceImpl implements ProductService {
 			"Minimal", "HITDetail", "HITQuestion", "HITAssignmentSummary" };
 
 	private ProductDAO productDAO;
-	private HitDAO hitDAO;
 
+	private HitService hitService;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -184,7 +183,7 @@ public class ProductServiceImpl implements ProductService {
 		h.setDescription(hit.getDescription());
 		h.setKeywords(hit.getKeywords());
 
-		hitDAO.save(h);
+		hitService.save(h);
 		p.setDateCreated(new Date());
 		this.save(p);
 		return p;
@@ -278,7 +277,7 @@ public class ProductServiceImpl implements ProductService {
 		h.setDescription(hit.getDescription());
 		h.setKeywords(hit.getKeywords());
 
-		hitDAO.save(h);
+		hitService.save(h);
 		p.setDateCreated(new Date());
 		this.save(p);
 		return p;
@@ -405,7 +404,7 @@ public class ProductServiceImpl implements ProductService {
 					.getNumberOfAssignmentsPending());
 		}
 
-		hitDAO.save(h);
+		hitService.save(h);
 	}
 
 	/*
@@ -418,15 +417,7 @@ public class ProductServiceImpl implements ProductService {
 		return this.productDAO.getNumValidProducts(number);
 	}
 
-	/**
-	 * @param hitDAO
-	 *            the hitDAO to set
-	 */
-	@Autowired
-	public void setHitDAO(HitDAO hitDAO) {
-		this.hitDAO = hitDAO;
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -445,5 +436,13 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Float countProducts() {
 		return productDAO.countProducts();
+	}
+
+	/**
+	 * @param hitService the hitService to set
+	 */
+	@Autowired
+	public void setHitService(HitService hitService) {
+		this.hitService = hitService;
 	}
 }
