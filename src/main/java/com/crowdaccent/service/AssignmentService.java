@@ -28,4 +28,16 @@ public interface AssignmentService {
 	 */
 	void updateAssignments(Hit hit);
 
+	/**
+	 * @param hitId
+	 * @param assignmentId
+	 */
+	void updateAssignment(String hitId, String assignmentId);
+
+	/**
+	 * @param hitId
+	 * @param assignmentId
+	 */
+	void updateAsyncAssignment(String hitId, String assignmentId);
+
 }

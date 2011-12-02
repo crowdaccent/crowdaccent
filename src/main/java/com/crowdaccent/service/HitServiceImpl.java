@@ -168,8 +168,7 @@ public class HitServiceImpl implements HitService {
 	@Override
 	public Hit getResultsForHIT(Hit hit) {
 		HIT remoteHit = gateway.getHIT(hit.getHit_id());
-		if (remoteHit != null
-				&& remoteHit.getHITStatus() == HITStatus.Reviewable) {
+		if (remoteHit != null) {
 			updateDatabaseHit(hit, remoteHit);
 			assignmentService.updateAssignments(hit);
 		}

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.amazonaws.mturk.requester.EventType;
+import com.crowdaccent.service.AssignmentService;
 import com.crowdaccent.service.HitService;
 
 /**
@@ -24,9 +26,36 @@ import com.crowdaccent.service.HitService;
 @Controller
 @RequestMapping("/notifications")
 public class NotificationsController {
+	/**
+	 * 
+	 */
+	private static final String EVENT_TIME = ".EventTime";
+	/**
+	 * 
+	 */
+	private static final String ASSIGNMENT_ID = ".AssignmentId";
+	/**
+	 * 
+	 */
+	private static final String HIT_ID = ".HITId";
+	/**
+	 * 
+	 */
+	private static final String HIT_TYPE_ID = ".HITTypeId";
+	/**
+	 * 
+	 */
+	private static final String EVENT = "Event.";
+	/**
+	 * 
+	 */
+	private static final String EVENT_TYPE = ".EventType";
 	private static final Logger _log = LoggerFactory
 			.getLogger(NotificationsController.class);
-	private @Autowired HitService hitService;
+	private @Autowired
+	HitService hitService;
+	private @Autowired
+	AssignmentService assignmentService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(
@@ -43,16 +72,27 @@ public class NotificationsController {
 		 * &Event.1.HITTypeId=KDSFO4455LKDAF3 &Event.1.HITId=KDSFO4455LKDAF3
 		 * &Event.1.AssignmentId=KDSFO4455LKDAF3KDSFO4455LKDAF3
 		 */
-		Enumeration e = request.getParameterNames();
-		while (e.hasMoreElements()) {
-			String key = (String) e.nextElement();
-			if (key.matches("Event.*HITId")) {
-				String value = request.getParameter(key);
-				_log.info("Getting Results for " + value);
-				hitService.getAsyncResultsForHIT(value);
-				_log.info("Finished Results for " + value);
+		int counter = 1;
+		while (true) {
+			String eventType = request.getParameter(EVENT+ counter + EVENT_TYPE);
+			if (eventType == null){
+				break;
+			}
+			String eventTime = request.getParameter(EVENT+ counter + EVENT_TIME);
+			String hitTypeId = request.getParameter(EVENT+ counter + HIT_TYPE_ID);
+			String hitId = request.getParameter(EVENT+ counter + HIT_ID);
+			String assignmentId = request.getParameter(EVENT+ counter + ASSIGNMENT_ID);
+			_log.info("Event " + eventType + " eventTime " + eventTime + " HitTypeId " + hitTypeId + " HITId " 
+			+ hitId + " assignmentId " + assignmentId);
+			if (EventType.HITReviewable.equals(eventType)) {
+				hitService.getAsyncResultsForHIT(hitId);
+			} else if (EventType.AssignmentSubmitted.equals(eventType)){
+				//TODO: No way to update single assignment using AMT. Darn!
+				//assignmentService.updateAsyncAssignment(hitId, assignmentId);
+				hitService.getAsyncResultsForHIT(hitId);
 			}
 		}
+		
 		return "/";
 	}
 }

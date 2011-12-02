@@ -151,5 +151,12 @@ public interface Gateway {
 	 * @return
 	 */
 	public HIT getHIT(String hit_id);
+
+	/**
+	 * @param assignmentId
+	 * @return
+	 */
+	public com.amazonaws.mturk.requester.Assignment getAssignment(
+			String assignmentId);
 	
 }

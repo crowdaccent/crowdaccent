@@ -4,11 +4,13 @@
 package com.crowdaccent.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.crowdaccent.entity.Assignment;
 import com.crowdaccent.entity.Hit;
 import com.crowdaccent.orchestration.gateway.Gateway;
+import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.repository.AssignmentDAO;
 
 /**
@@ -20,6 +22,8 @@ public class AssignmentServiceImpl implements AssignmentService {
 	private @Autowired AssignmentDAO assignmentDAO;
 
 	private @Autowired Gateway gateway;
+	
+	private @Autowired HitService hitService;
 
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.AssignmentService#save(com.crowdaccent.entity.Assignment)
@@ -88,5 +92,27 @@ public class AssignmentServiceImpl implements AssignmentService {
 		databaseAssignment.setSubmit_time(assignment.getSubmitTime().getTime());
 		databaseAssignment.setHit(databaseHit);
 		this.save(databaseAssignment);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.AssignmentService#updateAssignment(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void updateAssignment(String hitId, String assignmentId) {
+		Hit hit = hitService.getByHitId(hitId);
+		
+		com.amazonaws.mturk.requester.Assignment assignment = gateway.getAssignment(assignmentId);
+		if (assignment != null){
+			updateAssignment(hit, assignment);
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.AssignmentService#updateAsyncAssignment(java.lang.String, java.lang.String)
+	 */
+	@Override
+	@Async
+	public void updateAsyncAssignment(String hitId, String assignmentId) {
+		this.updateAssignment(hitId, assignmentId);
 	}
 }

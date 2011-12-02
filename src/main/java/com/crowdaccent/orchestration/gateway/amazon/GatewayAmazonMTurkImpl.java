@@ -360,6 +360,7 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 		notification.setVersion(appConfiguration.getRESTVersion());
 		List<EventType> events = new ArrayList<EventType>();
 		events.add(EventType.HITReviewable);
+		events.add(EventType.AssignmentSubmitted);
 		
 		notification.setEventType(events.toArray(new EventType[0]));
 		
@@ -373,6 +374,15 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	@Override
 	public HIT getHIT(String hit_id) {
 		return this.service.getHIT(hit_id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.orchestration.gateway.Gateway#getAssignment(java.lang.String)
+	 */
+	@Override
+	public Assignment getAssignment(String assignmentId) {
+		//TODO: Unimplemented as of now.
+		return null;
 	}
 
 	/**
