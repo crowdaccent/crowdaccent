@@ -26,7 +26,6 @@ import com.amazonaws.mturk.util.ClientConfig;
 import com.amazonaws.mturk.util.PropertiesClientConfig;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
-import com.crowdaccent.service.TestProductService;
 
 @Component
 public class Requester extends RequesterService {
