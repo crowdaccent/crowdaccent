@@ -23,7 +23,7 @@ import com.amazonaws.mturk.requester.NotificationTransport;
 import com.amazonaws.mturk.requester.ReviewableHITStatus;
 import com.amazonaws.mturk.requester.SortDirection;
 import com.amazonaws.mturk.service.exception.ServiceException;
-import com.amazonaws.mturk.util.PropertiesClientConfig;
+import com.crowdaccent.config.AppConfiguration;
 import com.crowdaccent.orchestration.Requester;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITRequest;
@@ -37,7 +37,7 @@ import com.crowdaccent.orchestration.gateway.HITRequest;
 public class GatewayAmazonMTurkImpl implements Gateway {
 
 	private @Autowired Requester service;
-	
+	private @Autowired AppConfiguration appConfiguration;
 	public static final int DEFAULT_PAGE_NUM = 1;
 	public static final int DEFAULT_PAGE_SIZE = 10;
 	public static final SortDirection DEFAULT_SORT_DIRECTION = SortDirection.Ascending;
@@ -353,12 +353,11 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	@Override
 	public void setNotificationURL(String hitTypeId, String destination) {
 		Boolean active = true;
-		String version= "2006-05-05";
 		
 		NotificationSpecification notification = new NotificationSpecification();
 		notification.setTransport(NotificationTransport.REST);
 		notification.setDestination(destination);
-		notification.setVersion(version);
+		notification.setVersion(appConfiguration.getRESTVersion());
 		List<EventType> events = new ArrayList<EventType>();
 		events.add(EventType.HITReviewable);
 		

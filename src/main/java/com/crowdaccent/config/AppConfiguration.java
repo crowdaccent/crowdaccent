@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfiguration {
 	private @Value("${callback.url}") String callbackURL;
+	private @Value("${rest.version}") String RESTVersion;
 
 	/**
 	 * @return the callbackURL
@@ -26,5 +27,19 @@ public class AppConfiguration {
 	 */
 	public void setCallbackURL(String callbackURL) {
 		this.callbackURL = callbackURL;
+	}
+
+	/**
+	 * @param rESTVersion the rESTVersion to set
+	 */
+	public void setRESTVersion(String rESTVersion) {
+		RESTVersion = rESTVersion;
+	}
+
+	/**
+	 * @return the rESTVersion
+	 */
+	public String getRESTVersion() {
+		return RESTVersion;
 	}
 }

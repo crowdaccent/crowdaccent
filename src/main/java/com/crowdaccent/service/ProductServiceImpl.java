@@ -321,7 +321,8 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		rows.add(r.toString());
-		rows.add(r.toString());
+		//TODO: fix this
+		//rows.add(r.toString());
 		HITDataInput hitDataInputReader = new HITDataInputReader(fieldNames.toArray(new String[0]), rows.toArray(new String[0]));
 
 		HITQuestion hitQuestion = null;
