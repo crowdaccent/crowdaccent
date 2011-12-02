@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfiguration {
 	private @Value("${callback.url}") String callbackURL;
 	private @Value("${rest.version}") String RESTVersion;
+	private @Value("${preview.url}") String previewURL;
 
 	/**
 	 * @return the callbackURL
@@ -41,5 +42,19 @@ public class AppConfiguration {
 	 */
 	public String getRESTVersion() {
 		return RESTVersion;
+	}
+
+	/**
+	 * @return the previewURL
+	 */
+	public String getPreviewURL() {
+		return previewURL;
+	}
+
+	/**
+	 * @param previewURL the previewURL to set
+	 */
+	public void setPreviewURL(String previewURL) {
+		this.previewURL = previewURL;
 	}
 }

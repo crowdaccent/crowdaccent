@@ -322,7 +322,7 @@ public class ProductServiceImpl implements ProductService {
 
 		rows.add(r.toString());
 		//TODO: fix this
-		//rows.add(r.toString());
+		rows.add(r.toString());
 		HITDataInput hitDataInputReader = new HITDataInputReader(fieldNames.toArray(new String[0]), rows.toArray(new String[0]));
 
 		HITQuestion hitQuestion = null;
@@ -354,7 +354,7 @@ public class ProductServiceImpl implements ProductService {
 		h.setTitle(hit.getTitle());
 		h.setDescription(hit.getDescription());
 		h.setKeywords(hit.getKeywords());
-		h.setHit_url(url);
+		h.setHit_url(url + appConfiguration.getPreviewURL()+hit.getHITTypeId());
 
 		if (hit.getHITStatus() != null) {
 			h.setHit_status(hit.getHITStatus().getValue());
