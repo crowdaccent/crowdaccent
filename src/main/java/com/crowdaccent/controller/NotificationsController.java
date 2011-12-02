@@ -3,8 +3,6 @@
  */
 package com.crowdaccent.controller;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -78,6 +76,7 @@ public class NotificationsController {
 			if (eventType == null){
 				break;
 			}
+			counter++;
 			String eventTime = request.getParameter(EVENT+ counter + EVENT_TIME);
 			String hitTypeId = request.getParameter(EVENT+ counter + HIT_TYPE_ID);
 			String hitId = request.getParameter(EVENT+ counter + HIT_ID);
