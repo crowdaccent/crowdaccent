@@ -89,8 +89,6 @@ public class NotificationsController {
 			} else if (EventType.AssignmentSubmitted.equals(EventType.fromString(eventType))){
 				//TODO: No way to update single assignment using AMT. Darn!
 				//assignmentService.updateAsyncAssignment(hitId, assignmentId);
-				_log.info("Update HIT results for " + hitId);
-				hitService.getAsyncResultsForHIT(hitId);
 			}
 		}
 		
