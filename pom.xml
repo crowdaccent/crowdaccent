@@ -17,7 +17,7 @@
 		<maven.scaladoc.vscaladocVersion>1.2-m1</maven.scaladoc.vscaladocVersion>
 		<vscaladoc.links.liftweb.pathsufix>scaladocs/</vscaladoc.links.liftweb.pathsufix>
 		<vscaladoc.links.liftweb.baseurl>http://scala-tools.org/mvnsites-snapshots/liftweb</vscaladoc.links.liftweb.baseurl>
-		<amazon-aws-version>1.2.2.1</amazon-aws-version>
+		<amazon-aws-version>1.5.0.1</amazon-aws-version>
 		<org.springframework.version>3.0.6.RELEASE</org.springframework.version>
 		<hibernate.annotations.version>3.4.0.GA-A</hibernate.annotations.version>
 		<hibernate.annotations.common.version>4.0.0.CR2</hibernate.annotations.common.version>
@@ -293,6 +293,16 @@
 			<artifactId>spring-rabbit</artifactId>
 			<version>1.0.0.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math</artifactId>
+			<version>2.2</version>
+		</dependency>
+        <dependency>
+            <groupId>weka</groupId>
+            <artifactId>weka</artifactId>
+            <version>1.0</version>
+        </dependency>
 
 	</dependencies>
 	<build>
