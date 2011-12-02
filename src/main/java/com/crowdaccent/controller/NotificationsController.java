@@ -83,10 +83,10 @@ public class NotificationsController {
 			_log.info("Event " + eventType + " eventTime " + eventTime + " HitTypeId " + hitTypeId + " HITId " 
 			+ hitId + " assignmentId " + assignmentId);
 			counter++;
-			if (EventType.HITReviewable.equals(eventType)) {
+			if (EventType.HITReviewable.equals(EventType.fromString(eventType))) {
 				_log.info("Update HIT results for " + hitId);
 				hitService.getAsyncResultsForHIT(hitId);
-			} else if (EventType.AssignmentSubmitted.equals(eventType)){
+			} else if (EventType.AssignmentSubmitted.equals(EventType.fromString(eventType))){
 				//TODO: No way to update single assignment using AMT. Darn!
 				//assignmentService.updateAsyncAssignment(hitId, assignmentId);
 				_log.info("Update HIT results for " + hitId);
