@@ -76,13 +76,13 @@ public class NotificationsController {
 			if (eventType == null){
 				break;
 			}
-			counter++;
 			String eventTime = request.getParameter(EVENT+ counter + EVENT_TIME);
 			String hitTypeId = request.getParameter(EVENT+ counter + HIT_TYPE_ID);
 			String hitId = request.getParameter(EVENT+ counter + HIT_ID);
 			String assignmentId = request.getParameter(EVENT+ counter + ASSIGNMENT_ID);
 			_log.info("Event " + eventType + " eventTime " + eventTime + " HitTypeId " + hitTypeId + " HITId " 
 			+ hitId + " assignmentId " + assignmentId);
+			counter++;
 			if (EventType.HITReviewable.equals(eventType)) {
 				hitService.getAsyncResultsForHIT(hitId);
 			} else if (EventType.AssignmentSubmitted.equals(eventType)){
