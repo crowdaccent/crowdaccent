@@ -1,6 +1,7 @@
 package com.crowdaccent.orchestration;
 
 import org.apache.axis.utils.XMLUtils;
+import org.springframework.stereotype.Component;
 
 import com.amazonaws.mturk.addon.HITDataInput;
 import com.amazonaws.mturk.addon.HITDataReader;
@@ -20,9 +21,11 @@ import com.amazonaws.mturk.requester.SortDirection;
 import com.amazonaws.mturk.service.axis.RequesterService;
 import com.amazonaws.mturk.service.exception.ServiceException;
 import com.amazonaws.mturk.util.ClientConfig;
+import com.amazonaws.mturk.util.PropertiesClientConfig;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
 
+@Component
 public class Requester extends RequesterService {
 
     //-------------------------------------------------------------
@@ -43,6 +46,10 @@ public class Requester extends RequesterService {
         "HITAssignmentSummary" 
     };
       
+    public Requester() {
+		super(new PropertiesClientConfig("META-INF/spring/mturk.properties"));
+
+    }
     public Requester(ClientConfig config) {
 		super(config);
 	}

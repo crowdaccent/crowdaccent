@@ -24,7 +24,6 @@ import com.crowdaccent.entity.Product;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITDataInputReader;
 import com.crowdaccent.orchestration.gateway.HITRequest;
-import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
 import com.crowdaccent.repository.ProductDAO;
@@ -80,6 +79,8 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDAO productDAO;
 
 	private HitService hitService;
+	
+	private Gateway gateway;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -151,7 +152,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product createHIT(String id) {
 		Product p = this.getById(id);
-		Gateway gw = new GatewayAmazonMTurkImpl();
 		HITRequest hrequest = new HITRequest();
 		hrequest.setTitle(p.getSubject());
 		hrequest.setDescription(p.getSummary());
@@ -174,7 +174,7 @@ public class ProductServiceImpl implements ProductService {
 
 		hrequest.setQualificationRequirement(qualificationRequirement);
 		hrequest.setResponseGroup(DEFAULT_HIT_RESPONSE_GROUP);
-		HIT hit = gw.createBasicFreeTextHIT(hrequest);
+		HIT hit = gateway.createBasicFreeTextHIT(hrequest);
 
 		Hit h = new Hit();
 		h.setHit_id(hit.getHITId());
@@ -199,7 +199,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product createIntroductionHIT(String id) {
 		Product p = this.getById(id);
-		Gateway gw = new GatewayAmazonMTurkImpl();
 		HITRequest hRequest = new HITRequest();
 		hRequest.setTitle("Product Image and Category Validation");
 		hRequest.setDescription("Validate categories of the products");
@@ -268,7 +267,7 @@ public class ProductServiceImpl implements ProductService {
 		qualificationRequirement[0].setComparator(Comparator.EqualTo);
 		qualificationRequirement[0].setIntegerValue(1);
 
-		HIT hit = gw.createIntroductionHIT(hRequest);
+		HIT hit = gateway.createIntroductionHIT(hRequest);
 
 		Hit h = new Hit();
 		h.setHit_id(hit.getHITId());
@@ -338,13 +337,12 @@ public class ProductServiceImpl implements ProductService {
 			e.printStackTrace();
 		}
 
-		Gateway gw = new GatewayAmazonMTurkImpl();
-
-		HIT hit = gw.createIntroductionHITWithImage(hitProperties, hitDataInputReader, hitQuestion);
+		HIT hit = gateway.createIntroductionHITWithImage(hitProperties, hitDataInputReader, hitQuestion);
 		//gw.setNotificationEmail(hit.getHITTypeId(), "bhallakapil@gmail.com");
-		gw.setNotificationURL(hit.getHITTypeId(), "http://poc.crowdaccent.com/crowdaccent/notifications.json");
+		//TODO: Configuration
+		gateway.setNotificationURL(hit.getHITTypeId(), "http://poc.crowdaccent.com/crowdaccent/notifications.json");
 		
-		persistHITData(p, gw.getWebsiteURL(), hit);
+		persistHITData(p, gateway.getWebsiteURL(), hit);
 		return p;
 	}
 
@@ -444,5 +442,13 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	public void setHitService(HitService hitService) {
 		this.hitService = hitService;
+	}
+
+	/**
+	 * @param gateway the gateway to set
+	 */
+	@Autowired
+	public void setGateway(Gateway gateway) {
+		this.gateway = gateway;
 	}
 }

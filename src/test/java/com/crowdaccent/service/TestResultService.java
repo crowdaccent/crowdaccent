@@ -62,17 +62,4 @@ public class TestResultService extends
 			assertNotNull(r.getHitID());
 		}
 	}
-	
-	@Test
-    public void getResultsForHIT() {
-        Result results = resultService.getResultsForHIT("2BI0OQKKA4IITEFDOXX83EW0G65ZZ2");
-     /*   _log.info("Result info " + results.getAnswers());
-        if(results.getAssignment_id() != null) {
-            assertNotNull(results.getAssignment_id());
-        }
-        assertNotNull(results.getHitID());
-        _log.info("Total number of answers available for the HIT " + results.getNumber_of_assignments_available());
-        _log.info("Total number of answers complete for the HIT " + results.getNumber_of_assignments_completed());
-        _log.info("Total number of answers pending for the HIT " + results.getNumber_of_assignments_pending());
-	*/}
 }

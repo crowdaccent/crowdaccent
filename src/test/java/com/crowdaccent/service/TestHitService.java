@@ -50,8 +50,13 @@ public class TestHitService extends
 	}
 	@Test
 	public void getHIT(){
-		Hit hit = hitService.getByHitId("248Q7Q67051QLIA2VXKQF1XMKOXXD4");
+		Hit hit = hitService.getByHitId("23T3Q39Z0B6UUUT4Y9MSWVRKKWZLWN");
 	    _log.info("Hit info: " + hit.getHit_id());
+	}
+	@Test
+	public void getResults(){
+		Hit hit = hitService.getResultsForHIT("23T3Q39Z0B6UUUT4Y9MSWVRKKWZLWN");
+		_log.info("Hit info " + hit.getHit_id());
 	}
 
 }

@@ -61,4 +61,17 @@ public interface HitService {
 	 * @return
 	 */
 	public Hit getByHitId(String string);
+	/**
+	 * @param hitId
+	 */
+	public void getAsyncResultsForHIT(String hitId);
+	/**
+	 * @param hitId
+	 */
+	public Hit getResultsForHIT(String hitId);
+
+	/**
+	 * @param hit
+	 */
+	public Hit getResultsForHIT(Hit hit);
 }

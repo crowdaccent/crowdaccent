@@ -32,13 +32,4 @@ public interface ResultService {
 	 * @return
 	 */
 	public List<Result> getNumResults(int number);
-	/**
-	 * @param id
-	 * @return
-	 */
-	public Result getResultsForHIT(String id);
-	/**
-	 * @param value
-	 */
-	public void getAsyncResultsForHIT(String id);
 }

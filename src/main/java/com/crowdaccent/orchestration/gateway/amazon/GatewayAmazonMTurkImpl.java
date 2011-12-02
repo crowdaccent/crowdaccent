@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.amazonaws.mturk.addon.HITDataInput;
 import com.amazonaws.mturk.addon.HITProperties;
 import com.amazonaws.mturk.addon.HITQuestion;
@@ -30,6 +33,7 @@ import com.crowdaccent.orchestration.gateway.HITRequest;
  * @author mkutare
  *
  */
+@Component
 public class GatewayAmazonMTurkImpl implements Gateway {
 
 	private Requester service;
@@ -51,10 +55,6 @@ public class GatewayAmazonMTurkImpl implements Gateway {
     private static final AssignmentStatus[] SUBMITTED_ASSIGNMENT_STATUS = new AssignmentStatus[] { 
       AssignmentStatus.Submitted
     };
-	
-    public GatewayAmazonMTurkImpl() {
-		service = new Requester(new PropertiesClientConfig("META-INF/spring/mturk.properties"));
-	}
 	
 	public HIT createBasicFreeTextHIT(HITRequest hRequest) {
     	
@@ -374,6 +374,14 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	@Override
 	public HIT getHIT(String hit_id) {
 		return this.service.getHIT(hit_id);
+	}
+
+	/**
+	 * @param service the service to set
+	 */
+	@Autowired
+	public void setService(Requester service) {
+		this.service = service;
 	}
     
 }

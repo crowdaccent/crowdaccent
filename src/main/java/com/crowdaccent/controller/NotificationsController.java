@@ -11,12 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.crowdaccent.service.ResultService;
+import com.crowdaccent.service.HitService;
 
 /**
  * @author kbhalla
@@ -25,9 +24,9 @@ import com.crowdaccent.service.ResultService;
 @Controller
 @RequestMapping("/notifications")
 public class NotificationsController {
-	private ResultService resultService;
 	private static final Logger _log = LoggerFactory
 			.getLogger(NotificationsController.class);
+	private HitService hitService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(
@@ -50,7 +49,7 @@ public class NotificationsController {
 			if (key.matches("Event.*HITId")) {
 				String value = request.getParameter(key);
 				_log.info("Getting Results for " + value);
-				resultService.getAsyncResultsForHIT(value);
+				hitService.getAsyncResultsForHIT(value);
 				_log.info("Finished Results for " + value);
 			}
 		}
@@ -58,11 +57,11 @@ public class NotificationsController {
 	}
 
 	/**
-	 * @param resultService
-	 *            the resultService to set
+	 * @param hitService the hitService to set
 	 */
 	@Autowired
-	public void setResultService(ResultService resultService) {
-		this.resultService = resultService;
+	public void setHitService(HitService hitService) {
+		this.hitService = hitService;
 	}
+
 }

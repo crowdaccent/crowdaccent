@@ -77,7 +77,7 @@ public class TestProductService extends
 
 	@Test
 	public void createIntroductionHITWithImage() {
-		List<Product> products = productService.getNumValidProducts(1);
+		List<Product> products = productService.getNumValidProducts(2);
 		int num = 0;
 		for (Product p : products) {
 			_log.info("Creating HIT for product id " + p.getId() + " and category : " + p.getCategory());
