@@ -1,6 +1,8 @@
 package com.crowdaccent.orchestration;
 
 import org.apache.axis.utils.XMLUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.amazonaws.mturk.addon.HITDataInput;
@@ -24,11 +26,15 @@ import com.amazonaws.mturk.util.ClientConfig;
 import com.amazonaws.mturk.util.PropertiesClientConfig;
 import com.crowdaccent.orchestration.gateway.amazon.Overview;
 import com.crowdaccent.orchestration.gateway.amazon.Question;
+import com.crowdaccent.service.TestProductService;
 
 @Component
 public class Requester extends RequesterService {
 
-    //-------------------------------------------------------------
+	private static final Logger _log = LoggerFactory
+			.getLogger(Requester.class);
+
+	//-------------------------------------------------------------
     // Constants
     //-------------------------------------------------------------
     public static final int DEFAULT_PAGE_NUM = 1;
@@ -395,5 +401,4 @@ public class Requester extends RequesterService {
 		HIT hits[] = super.createHITs((HITDataReader)hitDataInputReader, hitProperties, hitQuestion);
 		return hits != null && hits.length > 0 ? hits[0] : null;
 	}
-	
 }

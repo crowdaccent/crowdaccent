@@ -321,7 +321,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		rows.add(r.toString());
-		//TODO: fix this
+		//TODO: off by one error in SDK. Leaving it open as of now.
 		rows.add(r.toString());
 		HITDataInput hitDataInputReader = new HITDataInputReader(fieldNames.toArray(new String[0]), rows.toArray(new String[0]));
 
