@@ -17,16 +17,9 @@ import com.crowdaccent.repository.AssignmentDAO;
  */
 @Service
 public class AssignmentServiceImpl implements AssignmentService {
-	private AssignmentDAO assignmentDAO;
+	private @Autowired AssignmentDAO assignmentDAO;
 
-	private Gateway gateway;
-	/**
-	 * @param assignmentDAO the assignmentDAO to set
-	 */
-	@Autowired
-	public void setAssignmentDAO(AssignmentDAO assignmentDAO) {
-		this.assignmentDAO = assignmentDAO;
-	}
+	private @Autowired Gateway gateway;
 
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.AssignmentService#save(com.crowdaccent.entity.Assignment)
@@ -95,13 +88,5 @@ public class AssignmentServiceImpl implements AssignmentService {
 		databaseAssignment.setSubmit_time(assignment.getSubmitTime().getTime());
 		databaseAssignment.setHit(databaseHit);
 		this.save(databaseAssignment);
-	}
-
-	/**
-	 * @param gateway the gateway to set
-	 */
-	@Autowired
-	public void setGateway(Gateway gateway) {
-		this.gateway = gateway;
 	}
 }

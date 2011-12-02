@@ -17,9 +17,9 @@ import com.crowdaccent.repository.ResultDAO;
  */
 @Service
 public class ResultServiceImpl implements ResultService {
-	private ResultDAO resultDAO;
-	private HitService hitService;
-	private AssignmentService assignmentService;
+	private @Autowired ResultDAO resultDAO;
+	private @Autowired HitService hitService;
+	private @Autowired AssignmentService assignmentService;
 	
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.ResultService#save(com.crowdaccent.entity.Result)
@@ -59,30 +59,5 @@ public class ResultServiceImpl implements ResultService {
 	@Override
 	public List<Result> getNumResults(int number) {
 		return resultDAO.getNumResults(number);
-	}
-
-		/**
-	 * @param resultDAO the resultDAO to set
-	 */
-    @Autowired
-    public void setResultDAO(ResultDAO resultDAO) {
-		this.resultDAO = resultDAO;
-	}
-   
-
-		/**
-	 * @param hitService the hitService to set
-	 */
-	@Autowired
-	public void setHitService(HitService hitService) {
-		this.hitService = hitService;
-	}
-
-	/**
-	 * @param assignmentService the assignmentService to set
-	 */
-	@Autowired
-	public void setAssignmentService(AssignmentService assignmentService) {
-		this.assignmentService = assignmentService;
 	}
 }

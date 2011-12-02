@@ -26,13 +26,8 @@ import com.crowdaccent.entity.Assignment;
 public class AssignmentDAOImpl implements AssignmentDAO {
 
 	 static Property ASSIGNMENT_ID = Property.forName("assignment_id");
-	 private SessionFactory sessionFactory;
+	 private @Autowired SessionFactory sessionFactory;
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
 	@Override
     public void save(Assignment assignment) {
         Session s = this.sessionFactory.getCurrentSession();

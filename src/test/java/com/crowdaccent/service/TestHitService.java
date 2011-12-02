@@ -26,17 +26,9 @@ import com.crowdaccent.entity.Hit;
 @ContextConfiguration(locations = { "classpath:**/applicationContext.xml" })
 public class TestHitService extends
 		AbstractTransactionalJUnit4SpringContextTests {
-	private HitService hitService;
+	private @Autowired HitService hitService;
 	private static final Logger _log = LoggerFactory
 			.getLogger(TestHitService.class);
-
-	/**
-	 * @param hitService  the hitService to set
-	 */
-	@Autowired
-	public void setResultService(HitService resultService) {
-		this.hitService = resultService;
-	}
 
 	@Test
 	public void listHits() {
@@ -50,12 +42,12 @@ public class TestHitService extends
 	}
 	@Test
 	public void getHIT(){
-		Hit hit = hitService.getByHitId("23T3Q39Z0B6UUUT4Y9MSWVRKKWZLWN");
+		Hit hit = hitService.getByHitId("2X7GSNTL0XULSMA45EUMPDX5JWAM0O");
 	    _log.info("Hit info: " + hit.getHit_id());
 	}
 	@Test
 	public void getResults(){
-		Hit hit = hitService.getResultsForHIT("23T3Q39Z0B6UUUT4Y9MSWVRKKWZLWN");
+		Hit hit = hitService.getResultsForHIT("2X7GSNTL0XULSMA45EUMPDX5JWAM0O");
 		_log.info("Hit info " + hit.getHit_id());
 	}
 

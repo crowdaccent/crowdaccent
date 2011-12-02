@@ -24,11 +24,11 @@ import com.crowdaccent.repository.HitDAO;
 @Service
 public class HitServiceImpl implements HitService {
 
-	private HitDAO hitDAO;
+	private @Autowired HitDAO hitDAO;
 
-	private AssignmentService assignmentService;
+	private @Autowired AssignmentService assignmentService;
 
-	private Gateway gateway;
+	private @Autowired Gateway gateway;
 	
 	public static final Logger _log = LoggerFactory
 			.getLogger(HitServiceImpl.class);
@@ -92,15 +92,6 @@ public class HitServiceImpl implements HitService {
 	@Override
 	public Float countHits() {
 		return hitDAO.countHits();
-	}
-
-	/**
-	 * @param hitdao
-	 *            the hitdao to set
-	 */
-	@Autowired
-	public void setHitDAO(HitDAO hitDAO) {
-		this.hitDAO = hitDAO;
 	}
 
 	/*
@@ -223,23 +214,6 @@ public class HitServiceImpl implements HitService {
 				.getNumberOfAssignmentsPending());
 		this.save(databaseHit);
 	}
-
-	/**
-	 * @param assignmentService the assignmentService to set
-	 */
-	@Autowired
-	public void setAssignmentService(AssignmentService assignmentService) {
-		this.assignmentService = assignmentService;
-	}
-
-	/**
-	 * @param gateway the gateway to set
-	 */
-	@Autowired
-	public void setGateway(Gateway gateway) {
-		this.gateway = gateway;
-	}
-
 
 	/*
 	 * @Scheduled(cron = "05 * * * * ?") public void runHourly() {

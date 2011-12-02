@@ -28,18 +28,9 @@ import com.crowdaccent.entity.Product;
 @ContextConfiguration(locations = { "classpath:**/applicationContext.xml" })
 public class TestProductService extends
 		AbstractTransactionalJUnit4SpringContextTests {
-	private ProductService productService;
+	private @Autowired ProductService productService;
 	private static final Logger _log = LoggerFactory
 			.getLogger(TestProductService.class);
-
-	/**
-	 * @param productService
-	 *            the productService to set
-	 */
-	@Autowired
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
 
 	@Test
 	public void listProducts() {
@@ -77,7 +68,7 @@ public class TestProductService extends
 
 	@Test
 	public void createIntroductionHITWithImage() {
-		List<Product> products = productService.getNumValidProducts(2);
+		List<Product> products = productService.getNumValidProducts(1);
 		int num = 0;
 		for (Product p : products) {
 			_log.info("Creating HIT for product id " + p.getId() + " and category : " + p.getCategory());

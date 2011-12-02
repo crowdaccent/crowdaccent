@@ -28,17 +28,9 @@ import com.crowdaccent.entity.Result;
 @ContextConfiguration(locations = { "classpath:**/applicationContext.xml" })
 public class TestResultService extends
 		AbstractTransactionalJUnit4SpringContextTests {
-	private ResultService resultService;
+	private @Autowired ResultService resultService;
 	private static final Logger _log = LoggerFactory
 			.getLogger(TestResultService.class);
-
-	/**
-	 * @param resultService  the resultService to set
-	 */
-	@Autowired
-	public void setResultService(ResultService resultService) {
-		this.resultService = resultService;
-	}
 
 	@Test
 	public void listResults() {

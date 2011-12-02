@@ -35,16 +35,8 @@ import com.crowdaccent.service.ProductService;
 @Controller
 @RequestMapping ("/products")
 public class ProductController {
-	private ProductService productService;
+	private @Autowired ProductService productService;
 
-	/**
-	 * @param productService the productService to set
-	 */
-	@Autowired
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
-	
 	@RequestMapping(method = RequestMethod.GET, value = "/list")
 	public ModelAndView listProducts(){
 		ModelAndView m = new ModelAndView();

@@ -26,12 +26,7 @@ public class ProductDAOImpl implements ProductDAO {
 	static Property IMAGE = Property.forName("imageURL");
 	static Property CATEGORY = Property.forName("category");
 
-	private SessionFactory sessionFactory;
-
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	private @Autowired SessionFactory sessionFactory;
 
 	/*
 	 * (non-Javadoc)

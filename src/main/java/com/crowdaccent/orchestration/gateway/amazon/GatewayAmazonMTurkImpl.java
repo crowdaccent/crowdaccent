@@ -36,7 +36,7 @@ import com.crowdaccent.orchestration.gateway.HITRequest;
 @Component
 public class GatewayAmazonMTurkImpl implements Gateway {
 
-	private Requester service;
+	private @Autowired Requester service;
 	
 	public static final int DEFAULT_PAGE_NUM = 1;
 	public static final int DEFAULT_PAGE_SIZE = 10;
@@ -379,9 +379,4 @@ public class GatewayAmazonMTurkImpl implements Gateway {
 	/**
 	 * @param service the service to set
 	 */
-	@Autowired
-	public void setService(Requester service) {
-		this.service = service;
-	}
-    
 }

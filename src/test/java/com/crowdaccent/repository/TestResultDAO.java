@@ -33,15 +33,10 @@ import com.crowdaccent.entity.Result;
 @ContextConfiguration(locations = { "classpath:**/applicationContext.xml" })
 public class TestResultDAO extends
 		AbstractTransactionalJUnit4SpringContextTests {
-	private ResultDAO resultDAO;
+	private @Autowired ResultDAO resultDAO;
 	private Long id;
 	private static final Logger _log = LoggerFactory
 			.getLogger(TestResultDAO.class);
-
-	@Autowired
-	public void setResultDAO(ResultDAO resultDAO) {
-		this.resultDAO = resultDAO;
-	}
 
 	@Test
 	public void createResult() throws ParseException {

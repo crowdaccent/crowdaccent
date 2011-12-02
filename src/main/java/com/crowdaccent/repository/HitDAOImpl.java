@@ -29,13 +29,8 @@ public class HitDAOImpl implements HitDAO {
     static Property HIT_ID = Property.forName("hit_id");
     static Property CREATION_TIME = Property.forName("creation_time");
     
-	private SessionFactory sessionFactory;
+	private @Autowired SessionFactory sessionFactory;
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
 	@Override
     public void save(Hit hit) {
         Session s = this.sessionFactory.getCurrentSession();

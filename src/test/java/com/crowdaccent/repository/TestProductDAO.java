@@ -29,15 +29,10 @@ import com.crowdaccent.repository.ProductDAO;
 @ContextConfiguration(locations = { "classpath:**/applicationContext.xml" })
 public class TestProductDAO extends
 		AbstractTransactionalJUnit4SpringContextTests {
-	private ProductDAO productDAO;
+	private @Autowired ProductDAO productDAO;
 	private Long id;
 	private static final Logger _log = LoggerFactory
 			.getLogger(TestProductDAO.class);
-
-	@Autowired
-	public void setProductDAO(ProductDAO productDAO) {
-		this.productDAO = productDAO;
-	}
 
 	@Test
 	public void createProduct() {

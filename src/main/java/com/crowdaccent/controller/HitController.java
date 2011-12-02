@@ -34,15 +34,8 @@ import com.crowdaccent.service.HitService;
 @Controller
 @RequestMapping ("/hits")
 public class HitController {
-	private HitService hitService;
+	private @Autowired HitService hitService;
 
-	/**
-	 * @param hitService the hitService to set
-	 */
-	@Autowired
-	public void setHitService(HitService hitService) {
-		this.hitService = hitService;
-	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/list/{id}")
 	public ModelAndView listHit(@PathVariable String id){

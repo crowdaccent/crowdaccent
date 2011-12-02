@@ -19,6 +19,7 @@ import com.amazonaws.mturk.addon.HITQuestion;
 import com.amazonaws.mturk.requester.Comparator;
 import com.amazonaws.mturk.requester.HIT;
 import com.amazonaws.mturk.requester.QualificationRequirement;
+import com.crowdaccent.config.AppConfiguration;
 import com.crowdaccent.entity.Hit;
 import com.crowdaccent.entity.Product;
 import com.crowdaccent.orchestration.gateway.Gateway;
@@ -76,11 +77,13 @@ public class ProductServiceImpl implements ProductService {
 	private static final String[] DEFAULT_HIT_RESPONSE_GROUP = new String[] {
 			"Minimal", "HITDetail", "HITQuestion", "HITAssignmentSummary" };
 
-	private ProductDAO productDAO;
+	private @Autowired ProductDAO productDAO;
 
-	private HitService hitService;
+	private @Autowired HitService hitService;
 	
-	private Gateway gateway;
+	private @Autowired Gateway gateway;
+	
+	private @Autowired AppConfiguration appConfiguration;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -123,15 +126,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAll() {
 		return productDAO.getAll();
-	}
-
-	/**
-	 * @param productDAO
-	 *            the productDAO to set
-	 */
-	@Autowired
-	public void setProductDAO(ProductDAO productDAO) {
-		this.productDAO = productDAO;
 	}
 
 	/*
@@ -338,9 +332,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		HIT hit = gateway.createIntroductionHITWithImage(hitProperties, hitDataInputReader, hitQuestion);
-		//gw.setNotificationEmail(hit.getHITTypeId(), "bhallakapil@gmail.com");
-		//TODO: Configuration
-		gateway.setNotificationURL(hit.getHITTypeId(), "http://poc.crowdaccent.com/crowdaccent/notifications.json");
+		gateway.setNotificationURL(hit.getHITTypeId(), appConfiguration.getCallbackURL());
 		
 		persistHITData(p, gateway.getWebsiteURL(), hit);
 		return p;
@@ -434,21 +426,5 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Float countProducts() {
 		return productDAO.countProducts();
-	}
-
-	/**
-	 * @param hitService the hitService to set
-	 */
-	@Autowired
-	public void setHitService(HitService hitService) {
-		this.hitService = hitService;
-	}
-
-	/**
-	 * @param gateway the gateway to set
-	 */
-	@Autowired
-	public void setGateway(Gateway gateway) {
-		this.gateway = gateway;
 	}
 }

@@ -26,7 +26,7 @@ import com.crowdaccent.service.HitService;
 public class NotificationsController {
 	private static final Logger _log = LoggerFactory
 			.getLogger(NotificationsController.class);
-	private HitService hitService;
+	private @Autowired HitService hitService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(
@@ -55,13 +55,4 @@ public class NotificationsController {
 		}
 		return "/";
 	}
-
-	/**
-	 * @param hitService the hitService to set
-	 */
-	@Autowired
-	public void setHitService(HitService hitService) {
-		this.hitService = hitService;
-	}
-
 }

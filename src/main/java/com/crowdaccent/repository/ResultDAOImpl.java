@@ -22,13 +22,8 @@ import com.crowdaccent.entity.Result;
 @Transactional
 public class ResultDAOImpl implements ResultDAO {
 
-	private SessionFactory sessionFactory;
+	private @Autowired SessionFactory sessionFactory;
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
 	@Override
     public void save(Result result) {
         Session s = this.sessionFactory.getCurrentSession();
