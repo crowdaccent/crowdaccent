@@ -53,6 +53,10 @@ public class Assignment {
     private Date deadline;
     @Column(length = 512)
     private String requester_feedback;
+
+    @Column(length = 512)
+    private String answer;
+
     /**
      * @return the id
      */
@@ -208,6 +212,18 @@ public class Assignment {
 	 */
 	public void setHitID(String hitID) {
 		this.hitID = hitID;
+	}
+	/**
+	 * @return the answer
+	 */
+	public String getAnswer() {
+		return answer;
+	}
+	/**
+	 * @param answer the answer to set
+	 */
+	public void setAnswer(String answer) {
+		this.answer = answer;
 	}
 
 }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.crowdaccent.entity.Assignment;
 import com.crowdaccent.entity.Hit;
 import com.crowdaccent.orchestration.gateway.Gateway;
-import com.crowdaccent.orchestration.gateway.amazon.GatewayAmazonMTurkImpl;
 import com.crowdaccent.repository.AssignmentDAO;
 
 /**
@@ -90,6 +89,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 		    databaseAssignment.setAuto_approval_time(assignment.getAutoApprovalTime().getTime());
 		}
 		databaseAssignment.setSubmit_time(assignment.getSubmitTime().getTime());
+		databaseAssignment.setAnswer(assignment.getAnswer());
 		databaseAssignment.setHit(databaseHit);
 		this.save(databaseAssignment);
 	}
