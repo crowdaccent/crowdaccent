@@ -69,6 +69,10 @@ public interface HitDAO {
 	 * @return
 	 */
 	public List<Hit> getAllByProduct(Long id);
+	/**
+	 * @return
+	 */
+	public List<Hit> getUpdateableHITs();
 
 	
 }

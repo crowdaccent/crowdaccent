@@ -74,4 +74,12 @@ public interface HitService {
 	 * @param hit
 	 */
 	public Hit getResultsForHIT(Hit hit);
+	/**
+	 * @return
+	 */
+	public List<Hit> getUpdateableHITs();
+	/**
+	 * @param hit
+	 */
+	public void getAsyncResultsForHIT(Hit hit);
 }

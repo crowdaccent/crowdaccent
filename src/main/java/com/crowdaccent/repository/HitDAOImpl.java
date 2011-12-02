@@ -3,6 +3,7 @@
  */
 package com.crowdaccent.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.amazonaws.mturk.requester.HITStatus;
 import com.crowdaccent.entity.Hit;
 
 /**
@@ -26,7 +28,15 @@ import com.crowdaccent.entity.Hit;
 @Transactional
 public class HitDAOImpl implements HitDAO {
 
-    static Property HIT_ID = Property.forName("hit_id");
+    /**
+	 * 
+	 */
+	private static final String PRODUCT_ID = "product.id";
+	/**
+	 * 
+	 */
+	private static final String HIT_STATUS = "hit_status";
+	static Property HIT_ID = Property.forName("hit_id");
     static Property CREATION_TIME = Property.forName("creation_time");
     
 	private @Autowired SessionFactory sessionFactory;
@@ -99,7 +109,7 @@ public class HitDAOImpl implements HitDAO {
 	public List<Hit> findHitEntriesByProduct(Long id, int firstResult,
 			int sizeNo) {
 		Session s = this.sessionFactory.getCurrentSession();
-		return (List<Hit>)s.createCriteria(Hit.class).add(Restrictions.eq("product.id", id)).setFirstResult(firstResult).
+		return (List<Hit>)s.createCriteria(Hit.class).add(Restrictions.eq(PRODUCT_ID, id)).setFirstResult(firstResult).
 				setMaxResults(sizeNo).addOrder(CREATION_TIME.desc()).list();
 	}
 
@@ -109,7 +119,7 @@ public class HitDAOImpl implements HitDAO {
 	@Override
 	public Float countHitsByProduct(Long id) {
 		Session s = this.sessionFactory.getCurrentSession();
-		return new Float((Integer)s.createCriteria(Hit.class).add(Restrictions.eq("product.id", id)).addOrder(CREATION_TIME.desc()).setProjection(Projections.rowCount()).uniqueResult());
+		return new Float((Integer)s.createCriteria(Hit.class).add(Restrictions.eq(PRODUCT_ID, id)).addOrder(CREATION_TIME.desc()).setProjection(Projections.rowCount()).uniqueResult());
 	}
 
 	/* (non-Javadoc)
@@ -118,6 +128,22 @@ public class HitDAOImpl implements HitDAO {
 	@Override
 	public List<Hit> getAllByProduct(Long id) {
         Session s = this.sessionFactory.getCurrentSession();
-       return (List<Hit>)s.createCriteria(Hit.class).add(Restrictions.eq("product.id", id)).addOrder(CREATION_TIME.desc()).list();
+       return (List<Hit>)s.createCriteria(Hit.class).add(Restrictions.eq(PRODUCT_ID, id)).addOrder(CREATION_TIME.desc()).list();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.repository.HitDAO#getUpdateableHITs()
+	 */
+	@Override
+	public List<Hit> getUpdateableHITs() {
+		Session s = this.sessionFactory.getCurrentSession();
+		List<String> status = new ArrayList<String>();
+		status.add(HITStatus.Assignable.toString());
+		status.add(HITStatus.Unassignable.toString());
+		
+		return (List<Hit>) s.createCriteria(Hit.class).add(Restrictions.disjunction()
+				.add(Property.forName(HIT_STATUS).in(status))
+				.add(Property.forName(HIT_STATUS).isNull()))
+				.addOrder(CREATION_TIME.asc()).list();
 	}
 }

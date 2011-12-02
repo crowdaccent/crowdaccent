@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.amazonaws.mturk.requester.HIT;
-import com.amazonaws.mturk.requester.HITStatus;
 import com.crowdaccent.entity.Hit;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.repository.HitDAO;
@@ -29,7 +28,7 @@ public class HitServiceImpl implements HitService {
 	private @Autowired AssignmentService assignmentService;
 
 	private @Autowired Gateway gateway;
-	
+
 	public static final Logger _log = LoggerFactory
 			.getLogger(HitServiceImpl.class);
 
@@ -162,8 +161,13 @@ public class HitServiceImpl implements HitService {
 		Hit databaseHit = this.getByHitId(hitId);
 		return this.getResultsForHIT(databaseHit);
 	}
-	/* (non-Javadoc)
-	 * @see com.crowdaccent.service.HitService#getResultsForHIT(com.crowdaccent.entity.Hit)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.crowdaccent.service.HitService#getResultsForHIT(com.crowdaccent.entity
+	 * .Hit)
 	 */
 	@Override
 	public Hit getResultsForHIT(Hit hit) {
@@ -214,9 +218,20 @@ public class HitServiceImpl implements HitService {
 		this.save(databaseHit);
 	}
 
-	/*
-	 * @Scheduled(cron = "05 * * * * ?") public void runHourly() {
-	 * _log.info("Running Hourly Task : it is " + new Date()); }
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.HitService#getUpdateableHITs()
 	 */
+	@Override
+	public List<Hit> getUpdateableHITs() {
+		return hitDAO.getUpdateableHITs();
+	}
 
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.HitService#getAsyncResultsForHIT(com.crowdaccent.entity.Hit)
+	 */
+	@Override
+	@Async
+	public void getAsyncResultsForHIT(Hit hit) {
+		this.getResultsForHIT(hit);
+	}
 }
