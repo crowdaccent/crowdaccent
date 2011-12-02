@@ -29,15 +29,15 @@ public interface AssignmentService {
 	void updateAssignments(Hit hit);
 
 	/**
-	 * @param hitId
+	 * @param hit
 	 * @param assignmentId
 	 */
-	void updateAssignment(String hitId, String assignmentId);
+	void updateAssignment(Hit hit, String assignmentId);
 
 	/**
-	 * @param hitId
+	 * @param hit
 	 * @param assignmentId
 	 */
-	void updateAsyncAssignment(String hitId, String assignmentId);
+	void updateAsyncAssignment(Hit hit, String assignmentId);
 
 }

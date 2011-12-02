@@ -21,8 +21,6 @@ public class AssignmentServiceImpl implements AssignmentService {
 	private @Autowired AssignmentDAO assignmentDAO;
 
 	private @Autowired Gateway gateway;
-	
-	private @Autowired HitService hitService;
 
 	/* (non-Javadoc)
 	 * @see com.crowdaccent.service.AssignmentService#save(com.crowdaccent.entity.Assignment)
@@ -98,9 +96,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 	 * @see com.crowdaccent.service.AssignmentService#updateAssignment(java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void updateAssignment(String hitId, String assignmentId) {
-		Hit hit = hitService.getByHitId(hitId);
-		
+	public void updateAssignment(Hit hit, String assignmentId) {
 		com.amazonaws.mturk.requester.Assignment assignment = gateway.getAssignment(assignmentId);
 		if (assignment != null){
 			updateAssignment(hit, assignment);
@@ -112,7 +108,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 	 */
 	@Override
 	@Async
-	public void updateAsyncAssignment(String hitId, String assignmentId) {
-		this.updateAssignment(hitId, assignmentId);
+	public void updateAsyncAssignment(Hit hit, String assignmentId) {
+		this.updateAssignment(hit, assignmentId);
 	}
 }
