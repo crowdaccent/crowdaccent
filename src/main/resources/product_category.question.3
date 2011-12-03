@@ -1,8 +1,80 @@
-<?xml version="1.0"?>
-<!-- Note the inclusion of the $urls variable which is defined as a field in the input file.  Apache Velocity is the template engine that is 
-used to perform the merging of variables into template files.  You can learn more about Velocity's capabilities at http://velocity.apache.org.
--->
-<ExternalQuestion xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2006-07-14/ExternalQuestion.xsd">
-	<ExternalURL>http://s3.amazonaws.com/mturk/samples/sitecategory/externalpage.htm?url=${helper.urlencode($imageURL)}</ExternalURL>	
-	<FrameHeight>400</FrameHeight>
-</ExternalQuestion>
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+    <QuestionForm xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd\">
+        <Overview>
+            <Title>$overviewtitle</Title>
+                <Text>$overviewinformation</Text>
+                    <EmbeddedBinary>
+                        <EmbeddedMimeType>
+                          <Type>$imagetype</Type>"; //Image :
+                          <SubType>$imagesubtype</SubType>"; //Image :
+                        </EmbeddedMimeType>";
+                        <DataURL>$image1daaurl</DataURL>
+                        <AltText>$image1alttext</AltText>
+                        <Width>$image1width</Width>
+                        <Height>$image1height</Height>
+                        <ApplicationParameter>
+                            <Name>$image1appname</Name>
+                            <Value>$imagea1ppvalue</Value>
+                        </ApplicationParameter>";
+                     </EmbeddedBinary>";
+                <Text>$overviewtitle</Text>
+                <Text>$overviewdescription</Text>
+        </Overview> 
+        <Question> 
+            <QuestionIdentifier>$question1identifier</QuestionIdentifier>
+            <DisplayName>$questiondisplayname</DisplayName>
+            <IsRequired>$questionisrequired</IsRequired>
+            <QuestionContent>
+                <Text>$questiontext</Text>
+            </QuestionContent>
+            <AnswerSpecification>
+                <SelectionAnswer>
+                    <MinSelectionCount>$question1minselectioncount</MinSelectionCount>
+                    <StyleSuggestion>checkbox</StyleSuggestion>
+                        <Selections>
+                            <Selection>
+                                <SelectionIdentifier>$question1selectionidentifier</SelectionIdentifier>
+                                    <Text>$question1select1option0</Text>
+                                    <Text>$question1select1option1</Text>
+                                    <Text>$question1select1option2</Text>
+                                </Selection>
+                            <Selection>
+                                <SelectionIdentifier>$question1selectionidentifier</SelectionIdentifier>
+                                    <Text>$question1select2option0</Text>
+                                    <Text>$question1select2option0</Text>
+                                    <Text>$question1select2option0</Text>
+                                </Selection>
+                        </Selections>
+                </SelectionAnswer>
+            </AnswerSpecification> 
+          </Question>
+        <Question> 
+            <QuestionIdentifier>$question2identifier</QuestionIdentifier>
+            <DisplayName>$question2displayname</DisplayName>
+            <IsRequired>$question2isrequired</IsRequired>
+          <QuestionContent>
+            <Text>$question2text</Text>
+          </QuestionContent>"
+          <AnswerSpecification>
+          <SelectionAnswer>
+            <MinSelectionCount>$question2answerminselectioncount</MinSelectionCount>
+            <StyleSuggestion>radiobutton</StyleSuggestion>
+            <Selections>
+                <Selection>
+                    <SelectionIdentifier>$level0</SelectionIdentifier>
+                    <Text>$leve21text</Text>
+                </Selection>
+            </Selections>
+          </SelectionAnswer>
+         </AnswerSpecification> 
+        </Question>
+        <Question>
+            <QuestionIdentifier>$question3identifier</QuestionIdentifier>
+            <QuestionContent>
+                <Text>$question3text</Text>
+            </QuestionContent>
+            <AnswerSpecification>
+                <FreeTextAnswer/>
+            </AnswerSpecification>
+        </Question>
+</QuestionForm>
