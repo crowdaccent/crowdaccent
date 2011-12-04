@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,11 @@ import com.crowdaccent.repository.ProductDAO;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
+
+	/**
+	 * 
+	 */
+	private static final String PRODUCT_CATEGORY_HITDATA = "product_category/product_category.hitdata";
 
 	/**
 	 * 
@@ -320,6 +327,22 @@ public class ProductServiceImpl implements ProductService {
 			r.append(cat).append(HITDataInputReader.DEFAULT_DELIM);
 		}
 
+		Properties hitData = new Properties();
+		try {
+			hitData.load(this.getClass().getClassLoader()
+					.getResourceAsStream(PRODUCT_CATEGORY_HITDATA));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		Enumeration<Object> keys = hitData.keys();
+		while (keys.hasMoreElements()){
+			String key = keys.nextElement().toString();
+			String value = hitData.getProperty(key);
+			fieldNames.add(key);
+			r.append(value).append(HITDataInputReader.DEFAULT_DELIM);
+		}
+		
 		rows.add(r.toString());
 		//TODO: off by one error in SDK. Leaving it open as of now.
 		rows.add(r.toString());

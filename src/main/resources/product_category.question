@@ -1,5 +1,5 @@
-<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<QuestionForm xmlns=\"http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd\">
+<?xml version="1.0" encoding="UTF-8"?>
+<QuestionForm xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd">
     <Overview>
         <Title>$overviewtitle</Title>
             <Text>$overviewinformation</Text>
@@ -8,7 +8,7 @@
                       <Type>$imagetype</Type>
                       <SubType>$imagesubtype</SubType>
                     </EmbeddedMimeType>
-                    <DataURL>$image1daaurl</DataURL>
+                    <DataURL>$imageURL</DataURL>
                     <AltText>$image1alttext</AltText>
                     <Width>$image1width</Width>
                     <Height>$image1height</Height>
@@ -17,8 +17,8 @@
                         <Value>$imagea1ppvalue</Value>
                     </ApplicationParameter>
                  </EmbeddedBinary>
-            <Text>$overviewtitle</Text>
-            <Text>$overviewdescription</Text>
+            <Text>$subject</Text>
+            <Text>$summary</Text>
     </Overview> 
     <Question> 
         <QuestionIdentifier>$question1identifier</QuestionIdentifier>
@@ -50,7 +50,7 @@
         <IsRequired>$question2isrequired</IsRequired>
       <QuestionContent>
         <Text>$question2text</Text>
-      </QuestionContent>"
+      </QuestionContent>
       <AnswerSpecification>
       <SelectionAnswer>
         <MinSelectionCount>$question2answerminselectioncount</MinSelectionCount>
