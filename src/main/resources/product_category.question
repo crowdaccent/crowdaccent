@@ -8,13 +8,13 @@
                       <Type>$imagetype</Type>
                       <SubType>$imagesubtype</SubType>
                     </EmbeddedMimeType>
-                    <DataURL>$imageURL</DataURL>
-                    <AltText>$image1alttext</AltText>
-                    <Width>$image1width</Width>
-                    <Height>$image1height</Height>
+                    <DataURL>$imageurl</DataURL>
+                    <AltText>$imagealttext</AltText>
+                    <Width>$imagewidth</Width>
+                    <Height>$imageheight</Height>
                     <ApplicationParameter>
-                        <Name>$image1appname</Name>
-                        <Value>$imagea1ppvalue</Value>
+                        <Name>$imageappname</Name>
+                        <Value>$imageappvalue</Value>
                     </ApplicationParameter>
                  </EmbeddedBinary>
             <Text>$subject</Text>
