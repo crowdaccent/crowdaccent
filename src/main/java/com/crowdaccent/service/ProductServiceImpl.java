@@ -71,7 +71,7 @@ public class ProductServiceImpl implements ProductService {
 	/**
 	 * 
 	 */
-	private static final String IMAGE_URL = "imageURL";
+	private static final String IMAGE_URL = "imageurl";
 
 	/**
 	 * 
