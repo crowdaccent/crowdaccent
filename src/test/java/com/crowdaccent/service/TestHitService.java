@@ -42,13 +42,13 @@ public class TestHitService extends
 	}
 	@Test
 	public void getHIT(){
-		Hit hit = hitService.getByHitId("2X7GSNTL0XULSMA45EUMPDX5JWAM0O");
+		Hit hit = hitService.getByHitId("23T3Q39Z0B6UUUT4Y9MSWVRKKW0WLZ");
 	    _log.info("Hit info: " + hit.getHit_id());
 	}
 	@Test
 	public void getResults(){
-		Hit hit = hitService.getResultsForHIT("2X7GSNTL0XULSMA45EUMPDX5JWAM0O");
-		_log.info("Hit info " + hit.getHit_id());
+		Hit hit = hitService.getResultsForHIT("23T3Q39Z0B6UUUT4Y9MSWVRKKW0WLZ");
+		_log.info("Hit results for " + hit.getHit_id());
 	}
 
 }

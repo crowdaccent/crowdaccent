@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
 	/**
 	 * 
 	 */
-	private static final String PRODUCT_CATEGROY_QUESTION = "product_category.question.";
+	private static final String PRODUCT_CATEGROY_QUESTION = "product_category.question";
 
 	/**
 	 * 
@@ -327,7 +327,7 @@ public class ProductServiceImpl implements ProductService {
 
 		HITQuestion hitQuestion = null;
 		try {
-			hitQuestion = new HITQuestion(PRODUCT_CATEGROY_QUESTION + categoryNum);
+			hitQuestion = new HITQuestion(PRODUCT_CATEGROY_QUESTION);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
