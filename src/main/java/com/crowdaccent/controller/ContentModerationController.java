@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
@@ -113,13 +112,9 @@ public class ContentModerationController {
 	        catch (UnsupportedEncodingException uee) {}
 	        return pathSegment;
 	    }
-		@RequestMapping(method = RequestMethod.GET, value = "/createHIT/{id}")
-		public ModelAndView createHIT(@PathVariable String id){
-			ModelAndView m = new ModelAndView();
-			ContentModeration p = contentModerationService.createHIT(id);
-			m.addObject(p);
-			return m;
-		}
-
-
+	    @RequestMapping(method = RequestMethod.GET, value = "/createHIT/{id}")
+	    public String createHIT(@PathVariable String id, HttpServletRequest httpServletRequest){
+	    	ContentModeration p = contentModerationService.createHIT(id);
+	        return "redirect:/hits/listByTask/" + encodeUrlPathSegment(p.getId().toString(), httpServletRequest);
+	    }
 }

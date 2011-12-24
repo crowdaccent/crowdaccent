@@ -5,12 +5,12 @@
     <page:show id="ps_com_crowdaccent_Product" object="${product}" path="/products" z="/0zGE7dgsvGYA+fAatb6yTOeOf0=">
         <field:display field="category" id="s_com_crowdaccent_Product_category" object="${product}" z="Xm4b0/J5WNGYwxe9w2lqTdfxp9g="/>
         <field:display date="true" dateTimePattern="${product_datecreated_date_format}" field="dateCreated" id="s_com_crowdaccent_Product_dateCreated" object="${product}" z="UwTnT16vsR6xARQ/CNhNN2/jRiQ="/>
-        <field:display field="imageURL" id="s_com_crowdaccent_Product_imageURL" object="${product}" z="boZ/DTOBINfPlugbDyQaDw7S3hE="/>
+        <field:display url="true" field="imageURL" id="s_com_crowdaccent_Product_imageURL" object="${product}" z="boZ/DTOBINfPlugbDyQaDw7S3hE="/>
         <field:display field="subject" id="s_com_crowdaccent_Product_subject" object="${product}" z="MtExedtnwjzBxizXT3ammWdT0wU="/>
         <field:display field="summary" id="s_com_crowdaccent_Product_summary" object="${product}" z="JPthdqgKK4cDivG7z3SxlfZysfk="/>
     </page:show>
     <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
-            <menu:item id="i_product_hit_new" messageCode="global_menu_new" url="/products/createIntroductionHITWithImage/${product.id}" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
+            <menu:item id="i_product_hit_new" messageCode="global_menu_new" url="/products/createHIT/${product.id}" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
             <menu:item id="i_product_hit_list" messageCode="global_menu_list" url="/hits/listByTask/${product.id}?page=1&amp;size=${empty param.size ? 10 : param.size}" z="kEeyCmUUYXShbDEWwOLheaAkM50="/>
     </menu:menu>
 </div>

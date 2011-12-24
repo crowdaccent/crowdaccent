@@ -53,26 +53,10 @@ public class ProductController {
 		return m;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/createHIT/{id}")
-	public ModelAndView createHIT(@PathVariable String id){
-		ModelAndView m = new ModelAndView();
-		Product p = productService.createHIT(id);
-		m.addObject(p);
-		return m;
-	}
-
-   @RequestMapping(method = RequestMethod.GET, value = "/createIntroductionHIT/{id}")
-    public ModelAndView createIntroductionHIT(@PathVariable String id){
-        ModelAndView m = new ModelAndView();
-        Product p = productService.createIntroductionHIT(id);
-        m.addObject(p);
-        return m;
-    }
-   
-   @RequestMapping(method = RequestMethod.GET, value = "/createIntroductionHITWithImage/{id}")
-   public String createIntroductionHITWithImage(@PathVariable String id, HttpServletRequest httpServletRequest){
+   @RequestMapping(method = RequestMethod.GET, value = "/createHIT/{id}")
+   public String createHIT(@PathVariable String id, HttpServletRequest httpServletRequest){
        Product p = productService.createIntroductionHITWithImage(id);
-       return "redirect:/hits/listByProduct/" + encodeUrlPathSegment(p.getId().toString(), httpServletRequest);
+       return "redirect:/hits/listByTask/" + encodeUrlPathSegment(p.getId().toString(), httpServletRequest);
    }
    
    @RequestMapping(method = RequestMethod.POST)
