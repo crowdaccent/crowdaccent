@@ -97,34 +97,34 @@ public class HitServiceImpl implements HitService {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.crowdaccent.service.HitService#findHitEntriesByProduct(java.lang.
+	 * com.crowdaccent.service.HitService#findHitEntriesByTask(java.lang.
 	 * Long, int, int)
 	 */
 	@Override
-	public List<Hit> findHitEntriesByProduct(Long id, int firstResult,
+	public List<Hit> findHitEntriesByTask(Long id, int firstResult,
 			int sizeNo) {
-		return hitDAO.findHitEntriesByProduct(id, firstResult, sizeNo);
+		return hitDAO.findHitEntriesByTask(id, firstResult, sizeNo);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * com.crowdaccent.service.HitService#countHitsByProduct(java.lang.Long)
+	 * com.crowdaccent.service.HitService#countHitsByTask(java.lang.Long)
 	 */
 	@Override
-	public Float countHitsByProduct(Long id) {
-		return hitDAO.countHitsByProduct(id);
+	public Float countHitsByTask(Long id) {
+		return hitDAO.countHitsByTask(id);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.crowdaccent.service.HitService#getAllByProduct(java.lang.Long)
+	 * @see com.crowdaccent.service.HitService#getAllByTask(java.lang.Long)
 	 */
 	@Override
-	public List<Hit> getAllByProduct(Long id) {
-		return hitDAO.getAllByProduct(id);
+	public List<Hit> getAllByTask(Long id) {
+		return hitDAO.getAllByTask(id);
 	}
 
 	/*

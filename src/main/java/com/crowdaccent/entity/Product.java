@@ -1,14 +1,8 @@
 package com.crowdaccent.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * Product Entity.
@@ -17,10 +11,8 @@ import javax.persistence.TemporalType;
  * 
  */
 @Entity
-public class Product {
-	@Id
-	@GeneratedValue
-	private Long id;
+@DiscriminatorValue("PR")
+public class Product extends Task{
 	@Column(length = 200)
 	private String subject;
 	@Column(length = 512)
@@ -30,30 +22,6 @@ public class Product {
 	@Column(columnDefinition = "TEXT")
 	private String summary;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column
-	private Date dateCreated;
-
-	@PrePersist
-	protected void onCreate() {
-		dateCreated = new Date();
-	}
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	/**
 	 * @return the subject
 	 */
@@ -112,21 +80,6 @@ public class Product {
 	 */
 	public void setCategory(String category) {
 		this.category = category;
-	}
-
-	/**
-	 * @return the dateCreated
-	 */
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	/**
-	 * @param dateCreated
-	 *            the dateCreated to set
-	 */
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
 	}
 
 }

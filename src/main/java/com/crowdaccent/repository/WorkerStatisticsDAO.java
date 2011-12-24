@@ -13,11 +13,11 @@ import com.crowdaccent.entity.WorkerStatistics;
  */
 public interface WorkerStatisticsDAO {
 	/**
-	 * @param product
+	 * @param workerstats
 	 */
 	public void save(WorkerStatistics workerstats);
 	/**
-	 * @param product
+	 * @param workerstats
 	 */
 	public void delete(WorkerStatistics workerstats);
 	/**

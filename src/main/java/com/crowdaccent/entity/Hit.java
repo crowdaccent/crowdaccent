@@ -27,7 +27,7 @@ public class Hit {
 	private Long id;
 	
 	@ManyToOne
-	private Product product;
+	private Task task;
 		
 	@Column(length = 200, nullable = false)
 	private String hit_id;
@@ -288,15 +288,15 @@ public class Hit {
         this.number_of_assignments_completed = number_of_assignments_completed;
     }
 	/**
-	 * @return the product
+	 * @return the task
 	 */
-	public Product getProduct() {
-		return product;
+	public Task getTask() {
+		return task;
 	}
 	/**
-	 * @param product the product to set
+	 * @param task the task to set
 	 */
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setTask(Task task) {
+		this.task = task;
 	}
 }

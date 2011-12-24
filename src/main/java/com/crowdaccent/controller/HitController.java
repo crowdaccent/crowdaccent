@@ -143,11 +143,11 @@ public class HitController {
        if (page != null || size != null) {
            int sizeNo = size == null ? 10 : size.intValue();
            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-           uiModel.addAttribute("hits", hitService.findHitEntriesByProduct(id, firstResult, sizeNo));
-           float nrOfPages = (float) hitService.countHitsByProduct(id) / sizeNo;
+           uiModel.addAttribute("hits", hitService.findHitEntriesByTask(id, firstResult, sizeNo));
+           float nrOfPages = (float) hitService.countHitsByTask(id) / sizeNo;
            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
        } else {
-           uiModel.addAttribute("hits", hitService.getAllByProduct(id));
+           uiModel.addAttribute("hits", hitService.getAllByTask(id));
        }
        addDateTimeFormatPatterns(uiModel);
        return "hits/list";

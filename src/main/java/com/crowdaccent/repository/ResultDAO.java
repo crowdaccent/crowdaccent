@@ -13,11 +13,11 @@ import com.crowdaccent.entity.Result;
  */
 public interface ResultDAO {
 	/**
-	 * @param product
+	 * @param result
 	 */
 	public void save(Result result);
 	/**
-	 * @param product
+	 * @param result
 	 */
 	public void delete(Result result);
 	/**

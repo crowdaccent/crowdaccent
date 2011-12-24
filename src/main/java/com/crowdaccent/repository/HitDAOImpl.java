@@ -31,7 +31,7 @@ public class HitDAOImpl implements HitDAO {
     /**
 	 * 
 	 */
-	private static final String PRODUCT_ID = "product.id";
+	private static final String TASK_ID = "task.id";
 	/**
 	 * 
 	 */
@@ -103,32 +103,32 @@ public class HitDAOImpl implements HitDAO {
 	}
 
 	/* (non-Javadoc)
-	 * @see com.crowdaccent.repository.HitDAO#findHitEntriesByProduct(java.lang.Long, int, int)
+	 * @see com.crowdaccent.repository.HitDAO#findHitEntriesByTask(java.lang.Long, int, int)
 	 */
 	@Override
-	public List<Hit> findHitEntriesByProduct(Long id, int firstResult,
+	public List<Hit> findHitEntriesByTask(Long id, int firstResult,
 			int sizeNo) {
 		Session s = this.sessionFactory.getCurrentSession();
-		return (List<Hit>)s.createCriteria(Hit.class).add(Restrictions.eq(PRODUCT_ID, id)).setFirstResult(firstResult).
+		return (List<Hit>)s.createCriteria(Hit.class).add(Restrictions.eq(TASK_ID, id)).setFirstResult(firstResult).
 				setMaxResults(sizeNo).addOrder(CREATION_TIME.desc()).list();
 	}
 
 	/* (non-Javadoc)
-	 * @see com.crowdaccent.repository.HitDAO#countHitsByProduct(java.lang.Long)
+	 * @see com.crowdaccent.repository.HitDAO#countHitsByTask(java.lang.Long)
 	 */
 	@Override
-	public Float countHitsByProduct(Long id) {
+	public Float countHitsByTask(Long id) {
 		Session s = this.sessionFactory.getCurrentSession();
-		return new Float((Integer)s.createCriteria(Hit.class).add(Restrictions.eq(PRODUCT_ID, id)).addOrder(CREATION_TIME.desc()).setProjection(Projections.rowCount()).uniqueResult());
+		return new Float((Integer)s.createCriteria(Hit.class).add(Restrictions.eq(TASK_ID, id)).addOrder(CREATION_TIME.desc()).setProjection(Projections.rowCount()).uniqueResult());
 	}
 
 	/* (non-Javadoc)
-	 * @see com.crowdaccent.repository.HitDAO#getAllByProduct(java.lang.Long)
+	 * @see com.crowdaccent.repository.HitDAO#getAllByTask(java.lang.Long)
 	 */
 	@Override
-	public List<Hit> getAllByProduct(Long id) {
+	public List<Hit> getAllByTask(Long id) {
         Session s = this.sessionFactory.getCurrentSession();
-       return (List<Hit>)s.createCriteria(Hit.class).add(Restrictions.eq(PRODUCT_ID, id)).addOrder(CREATION_TIME.desc()).list();
+       return (List<Hit>)s.createCriteria(Hit.class).add(Restrictions.eq(TASK_ID, id)).addOrder(CREATION_TIME.desc()).list();
 	}
 
 	/* (non-Javadoc)

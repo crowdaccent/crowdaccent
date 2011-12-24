@@ -45,17 +45,17 @@ public interface HitService {
 	 * @param sizeNo
 	 * @return
 	 */
-	public List<Hit> findHitEntriesByProduct(Long id, int firstResult, int sizeNo);
+	public List<Hit> findHitEntriesByTask(Long id, int firstResult, int sizeNo);
 	/**
 	 * @param id
 	 * @return
 	 */
-	public Float countHitsByProduct(Long id);
+	public Float countHitsByTask(Long id);
 	/**
 	 * @param id
 	 * @return
 	 */
-	public List<Hit> getAllByProduct(Long id);
+	public List<Hit> getAllByTask(Long id);
 	/**
 	 * @param string
 	 * @return

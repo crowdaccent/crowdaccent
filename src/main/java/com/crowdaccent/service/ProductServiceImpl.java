@@ -371,7 +371,7 @@ public class ProductServiceImpl implements ProductService {
 		if (hit == null)
 			return;
 		Hit h = new Hit();
-		h.setProduct(p);
+		h.setTask(p);
 		h.setHit_id(hit.getHITId());
 		h.setHit_type_id(hit.getHITTypeId());
 		h.setTitle(hit.getTitle());

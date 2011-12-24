@@ -32,7 +32,7 @@ public class TestHitService extends
 
 	@Test
 	public void listHits() {
-		List<Hit> hits = hitService.getAllByProduct(new Long(2));
+		List<Hit> hits = hitService.getAllByTask(new Long(2));
 		int number = 0;
 		for (Hit h : hits) {
 			_log.info("Hit info " + h.getHit_id());

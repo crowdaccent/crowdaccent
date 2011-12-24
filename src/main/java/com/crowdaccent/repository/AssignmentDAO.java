@@ -13,11 +13,11 @@ import com.crowdaccent.entity.Assignment;
  */
 public interface AssignmentDAO {
 	/**
-	 * @param product
+	 * @param assignment
 	 */
 	public void save(Assignment assignment);
 	/**
-	 * @param product
+	 * @param assignment
 	 */
 	public void delete(Assignment assignment);
 	/**
