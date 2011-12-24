@@ -1,0 +1,11 @@
+overviewtitle=Content Moderation
+question3identifier=Q3Identifier
+question3text=Please provide your feedback:
+question1identifier=Q1Identifier
+questiondisplayname=Classify if following is spam or not:
+questionisrequired=true
+question2answerminselectioncount=1
+level0=1
+level0text=Yes
+level1=0
+level1text=No

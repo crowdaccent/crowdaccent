@@ -5,7 +5,9 @@ package com.crowdaccent.service;
 
 import java.util.List;
 
+import com.amazonaws.mturk.requester.HIT;
 import com.crowdaccent.entity.Hit;
+import com.crowdaccent.entity.Task;
 
 /**
  * @author kbhalla
@@ -82,4 +84,10 @@ public interface HitService {
 	 * @param hit
 	 */
 	public void getAsyncResultsForHIT(Hit hit);
+	/**
+	 * @param t
+	 * @param websiteURL
+	 * @param hit
+	 */
+	public void persistHITData(Task t, String websiteURL, HIT hit);
 }

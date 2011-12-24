@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,7 @@ import com.amazonaws.mturk.requester.QualificationRequirement;
 import com.crowdaccent.config.AppConfiguration;
 import com.crowdaccent.entity.Hit;
 import com.crowdaccent.entity.Product;
+import com.crowdaccent.entity.Task;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.orchestration.gateway.HITDataInputReader;
 import com.crowdaccent.orchestration.gateway.HITRequest;
@@ -358,67 +358,10 @@ public class ProductServiceImpl implements ProductService {
 		HIT hit = gateway.createIntroductionHITWithImage(hitProperties, hitDataInputReader, hitQuestion);
 		gateway.setNotificationURL(hit.getHITTypeId(), appConfiguration.getCallbackURL());
 		
-		persistHITData(p, gateway.getWebsiteURL(), hit);
+		String websiteURL = gateway.getWebsiteURL() + appConfiguration.getPreviewURL()+hit.getHITTypeId();
+		
+		hitService.persistHITData((Task)p, websiteURL, hit);
 		return p;
-	}
-
-	/**
-	 * @param p
-	 * @param url
-	 * @param hit
-	 */
-	private void persistHITData(Product p, String url, HIT hit) {
-		if (hit == null)
-			return;
-		Hit h = new Hit();
-		h.setTask(p);
-		h.setHit_id(hit.getHITId());
-		h.setHit_type_id(hit.getHITTypeId());
-		h.setTitle(hit.getTitle());
-		h.setDescription(hit.getDescription());
-		h.setKeywords(hit.getKeywords());
-		h.setHit_url(url + appConfiguration.getPreviewURL()+hit.getHITTypeId());
-
-		if (hit.getHITStatus() != null) {
-			h.setHit_status(hit.getHITStatus().getValue());
-		}
-		if (hit.getHITReviewStatus() != null) {
-			h.setHit_review_status(hit.getHITReviewStatus().getValue());
-		}
-		if (hit.getCreationTime() != null) {
-			h.setCreation_time(hit.getCreationTime().getTime());
-		}
-		if (hit.getAutoApprovalDelayInSeconds() != null) {
-			h.setAuto_approval_delay_in_secs(hit
-					.getAutoApprovalDelayInSeconds().intValue());
-		}
-		if (hit.getMaxAssignments() != null) {
-			h.setMax_assignments(hit.getMaxAssignments());
-		}
-		if (hit.getReward() != null) {
-			h.setReward(hit.getReward().getAmount().doubleValue());
-		}
-		if (hit.getNumberOfSimilarHITs() != null) {
-			h.setNum_similar_hits(hit.getNumberOfSimilarHITs());
-		}
-		if (hit.getNumberOfAssignmentsAvailable() != null) {
-			h.setNumber_of_assignments_available(hit
-					.getNumberOfAssignmentsAvailable());
-		}
-		if (hit.getNumberOfAssignmentsAvailable() != null) {
-			h.setNumber_of_assignments_available(hit
-					.getNumberOfAssignmentsAvailable());
-		}
-		if (hit.getNumberOfAssignmentsCompleted() != null) {
-			h.setNumber_of_assignments_completed(hit
-					.getNumberOfAssignmentsCompleted());
-		}
-		if (hit.getNumberOfAssignmentsPending() != null) {
-			h.setNumber_of_assignments_pending(hit
-					.getNumberOfAssignmentsPending());
-		}
-
-		hitService.save(h);
 	}
 
 	/*

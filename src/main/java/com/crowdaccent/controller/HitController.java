@@ -138,7 +138,7 @@ public class HitController {
        return pathSegment;
    }
    
-   @RequestMapping(value = "/listByProduct/{id}", method = RequestMethod.GET)
+   @RequestMapping(value = "/listByTask/{id}", method = RequestMethod.GET)
    public String listByProduct(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
        if (page != null || size != null) {
            int sizeNo = size == null ? 10 : size.intValue();

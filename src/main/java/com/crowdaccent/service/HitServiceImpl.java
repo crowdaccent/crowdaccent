@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.amazonaws.mturk.requester.HIT;
 import com.crowdaccent.entity.Hit;
+import com.crowdaccent.entity.Task;
 import com.crowdaccent.orchestration.gateway.Gateway;
 import com.crowdaccent.repository.HitDAO;
 
@@ -23,11 +24,14 @@ import com.crowdaccent.repository.HitDAO;
 @Service
 public class HitServiceImpl implements HitService {
 
-	private @Autowired HitDAO hitDAO;
+	private @Autowired
+	HitDAO hitDAO;
 
-	private @Autowired AssignmentService assignmentService;
+	private @Autowired
+	AssignmentService assignmentService;
 
-	private @Autowired Gateway gateway;
+	private @Autowired
+	Gateway gateway;
 
 	public static final Logger _log = LoggerFactory
 			.getLogger(HitServiceImpl.class);
@@ -96,21 +100,18 @@ public class HitServiceImpl implements HitService {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.crowdaccent.service.HitService#findHitEntriesByTask(java.lang.
+	 * @see com.crowdaccent.service.HitService#findHitEntriesByTask(java.lang.
 	 * Long, int, int)
 	 */
 	@Override
-	public List<Hit> findHitEntriesByTask(Long id, int firstResult,
-			int sizeNo) {
+	public List<Hit> findHitEntriesByTask(Long id, int firstResult, int sizeNo) {
 		return hitDAO.findHitEntriesByTask(id, firstResult, sizeNo);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * com.crowdaccent.service.HitService#countHitsByTask(java.lang.Long)
+	 * @see com.crowdaccent.service.HitService#countHitsByTask(java.lang.Long)
 	 */
 	@Override
 	public Float countHitsByTask(Long id) {
@@ -218,7 +219,9 @@ public class HitServiceImpl implements HitService {
 		this.save(databaseHit);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.crowdaccent.service.HitService#getUpdateableHITs()
 	 */
 	@Override
@@ -226,12 +229,78 @@ public class HitServiceImpl implements HitService {
 		return hitDAO.getUpdateableHITs();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.crowdaccent.service.HitService#getAsyncResultsForHIT(com.crowdaccent.entity.Hit)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.crowdaccent.service.HitService#getAsyncResultsForHIT(com.crowdaccent
+	 * .entity.Hit)
 	 */
 	@Override
 	@Async
 	public void getAsyncResultsForHIT(Hit hit) {
 		this.getResultsForHIT(hit);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.crowdaccent.service.HitService#persistHITData(com.crowdaccent.entity
+	 * .Task, java.lang.String, com.amazonaws.mturk.requester.HIT)
+	 */
+	@Override
+	public void persistHITData(Task t, String websiteURL, HIT hit) {
+		if (hit == null)
+			return;
+		Hit h = new Hit();
+		h.setTask(t);
+		h.setHit_id(hit.getHITId());
+		h.setHit_type_id(hit.getHITTypeId());
+		h.setTitle(hit.getTitle());
+		h.setDescription(hit.getDescription());
+		h.setKeywords(hit.getKeywords());
+		h.setHit_url(websiteURL);
+
+		if (hit.getHITStatus() != null) {
+			h.setHit_status(hit.getHITStatus().getValue());
+		}
+		if (hit.getHITReviewStatus() != null) {
+			h.setHit_review_status(hit.getHITReviewStatus().getValue());
+		}
+		if (hit.getCreationTime() != null) {
+			h.setCreation_time(hit.getCreationTime().getTime());
+		}
+		if (hit.getAutoApprovalDelayInSeconds() != null) {
+			h.setAuto_approval_delay_in_secs(hit
+					.getAutoApprovalDelayInSeconds().intValue());
+		}
+		if (hit.getMaxAssignments() != null) {
+			h.setMax_assignments(hit.getMaxAssignments());
+		}
+		if (hit.getReward() != null) {
+			h.setReward(hit.getReward().getAmount().doubleValue());
+		}
+		if (hit.getNumberOfSimilarHITs() != null) {
+			h.setNum_similar_hits(hit.getNumberOfSimilarHITs());
+		}
+		if (hit.getNumberOfAssignmentsAvailable() != null) {
+			h.setNumber_of_assignments_available(hit
+					.getNumberOfAssignmentsAvailable());
+		}
+		if (hit.getNumberOfAssignmentsAvailable() != null) {
+			h.setNumber_of_assignments_available(hit
+					.getNumberOfAssignmentsAvailable());
+		}
+		if (hit.getNumberOfAssignmentsCompleted() != null) {
+			h.setNumber_of_assignments_completed(hit
+					.getNumberOfAssignmentsCompleted());
+		}
+		if (hit.getNumberOfAssignmentsPending() != null) {
+			h.setNumber_of_assignments_pending(hit
+					.getNumberOfAssignmentsPending());
+		}
+
+		this.save(h);
 	}
 }
