@@ -44,3 +44,4 @@ Initially we will use Description only. We may add/delete more check-in informat
 
 Description should be 'describe in english what you have done'. e.g. If added a functionaly describing that functionality. If it is a bug fix, describe what the issue technically and the fix. 
 Comments like edited, added files doesn't convey any information. It is available as part of the check.
+
