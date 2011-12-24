@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_crowdaccent_Hit" object="${hit}" path="/hits" z="MFPwyNTgbnMlS/O7M1P32zWAzPI=">
-        <field:display field="id" id="s_com_crowdaccent_Hit_product" object="${hit.product}" z="om7l/edGJBJgHjv1MysjDZHpKzI="/>
+        <field:display field="id" id="s_com_crowdaccent_Hit_product" object="${hit.task}" z="om7l/edGJBJgHjv1MysjDZHpKzI="/>
         <field:display field="description" id="s_com_crowdaccent_Hit_description" object="${hit}" z="NItc22R1BItFSoW0NbFjrWIAMEA="/>
         <field:display field="hit_id" id="s_com_crowdaccent_Hit_hit_id" object="${hit}" z="6wJwW8b2C7T1nPjkPtgSmj+vQGM="/>
         <field:display field="hit_url" id="s_com_crowdaccent_Hit_hit_url" object="${hit}" z="zvzn6x9+1P+C5C+TY041ZHu1Rd0="/>

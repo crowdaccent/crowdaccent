@@ -20,7 +20,6 @@ import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
 import com.crowdaccent.entity.ContentModeration;
-import com.crowdaccent.entity.Product;
 import com.crowdaccent.service.ContentModerationService;
 
 
