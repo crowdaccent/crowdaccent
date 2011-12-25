@@ -127,8 +127,9 @@ public class ContentModerationController {
 
 	    @RequestMapping(method = RequestMethod.POST, value = "/checkContent")
 	    public String checkContent(@Valid ContentModeration contentModeration, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-	        String key = (String)httpServletRequest.getAttribute("key");
-	        if (key == null || key.equalsIgnoreCase("crowdaccentapikey")){
+	    	//TODO: Remove this following line
+	    	String key = (String)httpServletRequest.getParameter("key");
+	        if (key == null || !key.equalsIgnoreCase("crowdaccentapikey")){
 	        	return "redirect:/";
 	        }
 	    	if (bindingResult.hasErrors()) {
