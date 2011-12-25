@@ -6,5 +6,6 @@
         <field:input field="content" id="c_com_crowdaccent_ContentModeration_content" z="mhR8OIRh+ssndAIiK1K4Dx4DyiY="/>
         <field:input field="callbackURL" id="c_com_crowdaccent_ContentModeration_callbackURL" z="9h82cBFrf6FhdCIc9VqeCUwZUbU="/>
         <field:input field="instructions" id="c_com_crowdaccent_ContentModeration_instructions" z="K4ZXYAZlJycn9iakOPaiMThhNQU="/>
+        <field:input field="identifier" id="c_com_crowdaccent_ContentModeration_identifier" z="K4ZXYAZlJycn9iakOPaiMThhNQU="/>
     </form:update>
 </div>

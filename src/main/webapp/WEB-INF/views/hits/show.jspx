@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"  xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_com_crowdaccent_Hit" object="${hit}" path="/hits" z="MFPwyNTgbnMlS/O7M1P32zWAzPI=">
@@ -8,5 +8,9 @@
         <field:display field="hit_id" id="s_com_crowdaccent_Hit_hit_id" object="${hit}" z="6wJwW8b2C7T1nPjkPtgSmj+vQGM="/>
         <field:display url="true" field="hit_url" id="s_com_crowdaccent_Hit_hit_url" object="${hit}" z="zvzn6x9+1P+C5C+TY041ZHu1Rd0="/>
         <field:display field="title" id="s_com_crowdaccent_Hit_title" object="${hit}" z="cuqhdFgMa7SDPOXX3SSXhruPQnk="/>
+        <field:display field="Type" id="s_com_crowdaccent_Hit_type" object="${hit.task}" z="cuqhdegMa7SDPOXX3SSXhruPQnk="/>
     </page:show>
+       <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
+            <menu:item id="i_hit_result_list" messageCode="global_menu_list" url="/${hit.task.type}/results/${hit.id}" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>
+    </menu:menu>
 </div>

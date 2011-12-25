@@ -6,6 +6,7 @@
         <field:display field="content" id="s_com_crowdaccent_ContentModeration_content" object="${contentmoderation}" z="fRxOvD6q/P4CLL/WB2nYMvrDyCM="/>
         <field:display url="true" field="callbackURL" id="s_com_crowdaccent_ContentModeration_callbackURL" object="${contentmoderation}" z="OrvYC78C0JDD7fPP7U9EI7DaSz4="/>
         <field:display field="instructions" id="s_com_crowdaccent_ContentModeration_instructions" object="${contentmoderation}" z="3J7iOWyT3WLVD4Xj9skrSRSbK/o="/>
+        <field:display field="identifier" id="s_com_crowdaccent_ContentModeration_identifier" object="${contentmoderation}" z="3J7iOWyT3WLVD4Xj9skrSRSbK/o="/>
     </page:show>
     <menu:menu id="_menu" z="nZaf43BjUg1iM0v70HJVEsXDopc=">
             <menu:item id="i_content_hit_new" messageCode="global_menu_new" url="/contentmoderations/createHIT/${contentmoderation.id}" z="Ezf8cTW61d2RkMNEcYkDJpG01kc="/>

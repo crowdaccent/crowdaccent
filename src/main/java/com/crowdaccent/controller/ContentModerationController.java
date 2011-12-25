@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
@@ -117,4 +118,27 @@ public class ContentModerationController {
 	    	ContentModeration p = contentModerationService.createHIT(id);
 	        return "redirect:/hits/listByTask/" + encodeUrlPathSegment(p.getId().toString(), httpServletRequest);
 	    }
+	    
+	    @RequestMapping(method = RequestMethod.GET, value = "/results/{id}")
+	    public ModelAndView results(@PathVariable String id, HttpServletRequest httpServletRequest){
+	 		ModelAndView m = new ModelAndView();
+	 		return m;
+	    }
+
+	    @RequestMapping(method = RequestMethod.POST, value = "/checkContent")
+	    public String checkContent(@Valid ContentModeration contentModeration, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
+	        String key = (String)httpServletRequest.getAttribute("key");
+	        if (key == null || key.equalsIgnoreCase("crowdaccentapikey")){
+	        	return "redirect:/";
+	        }
+	    	if (bindingResult.hasErrors()) {
+	            uiModel.addAttribute("contentModeration", contentModeration);
+	            return "contentmoderations/create";
+	        }
+	        uiModel.asMap().clear();
+	        contentModerationService.save(contentModeration);
+	        contentModerationService.createHIT(contentModeration.getId().toString());
+	        return "redirect:/contentmoderations/" + encodeUrlPathSegment(contentModeration.getId().toString(), httpServletRequest);
+	    }
+	
 }

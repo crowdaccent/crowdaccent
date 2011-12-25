@@ -13,4 +13,7 @@
 <definition extends="default" name="contentmoderations/update">
         <put-attribute name="body" value="/WEB-INF/views/contentmoderations/update.jspx"/>
     </definition>
+<definition extends="default" name="contentmoderations/results">
+        <put-attribute name="body" value="/WEB-INF/views/contentmoderations/results.jspx"/>
+    </definition>
 </tiles-definitions>

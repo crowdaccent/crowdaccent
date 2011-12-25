@@ -7,6 +7,7 @@
             <table:column id="c_com_crowdaccent_ContentModeration_content" property="content" z="TPJN7DBJhzB6SeMilZUbSNyFKV0="/>
             <table:column id="c_com_crowdaccent_ContentModeration_callbackURL" property="callbackURL" z="jr19Wfk+/jZgqHJ3Sq9PWTx3sFU="/>
             <table:column id="c_com_crowdaccent_ContentModeration_instructions" property="instructions" z="ryImUaQlRKqoS0e6wV7lXqDjsHs="/>
+            <table:column id="c_com_crowdaccent_ContentModeration_identifier" property="identifier" z="ryImUaQlRKqoS0e6wV7lXqDjsHs="/>
         </table:table>
     </page:list>
 </div>

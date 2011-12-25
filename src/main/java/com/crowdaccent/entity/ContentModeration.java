@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-@DiscriminatorValue("CM")
+@DiscriminatorValue("contentmoderations")
 
 public class ContentModeration extends Task {
 	@Column(length = 1024)
@@ -23,6 +23,9 @@ public class ContentModeration extends Task {
 
 	@Column(length = 4000)
 	private String instructions;
+
+	@Column(length = 255)
+	private String identifier;
 
 	/**
 	 * @return the content
@@ -64,5 +67,19 @@ public class ContentModeration extends Task {
 	 */
 	public void setInstructions(String instructions) {
 		this.instructions = instructions;
+	}
+
+	/**
+	 * @return the identifier
+	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * @param identifier the identifier to set
+	 */
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 }

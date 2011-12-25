@@ -150,6 +150,10 @@ public class ProductController {
        catch (UnsupportedEncodingException uee) {}
        return pathSegment;
    }
-   
 
+   @RequestMapping(method = RequestMethod.GET, value = "/results/{id}")
+   public ModelAndView results(@PathVariable String id, HttpServletRequest httpServletRequest){
+		ModelAndView m = new ModelAndView();
+		return m;
+   }
 }

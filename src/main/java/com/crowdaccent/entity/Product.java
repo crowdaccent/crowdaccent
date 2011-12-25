@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  * 
  */
 @Entity
-@DiscriminatorValue("PR")
+@DiscriminatorValue("products")
 public class Product extends Task{
 	@Column(length = 200)
 	private String subject;

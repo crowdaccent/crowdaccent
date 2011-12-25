@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,8 +23,9 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Inheritance (strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Type")
+@DiscriminatorColumn(name="Type",discriminatorType=DiscriminatorType.STRING, length = 25)
 public class Task {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -31,6 +33,9 @@ public class Task {
 	@Column
 	private Date dateCreated;
 
+	@Column(name="Type", insertable = false, updatable = false)
+	private String type;
+	
 	@PrePersist
 	protected void onCreate() {
 		dateCreated = new Date();
@@ -63,6 +68,20 @@ public class Task {
 	 */
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 
 
