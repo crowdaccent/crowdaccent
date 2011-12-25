@@ -137,7 +137,7 @@ public class ContentModerationController {
 	        }
 	        uiModel.asMap().clear();
 	        contentModerationService.save(contentModeration);
-	        contentModerationService.createHIT(contentModeration.getId().toString());
+	        contentModerationService.createHIT(contentModeration.getId()+"");
 	        return "redirect:/contentmoderations/" + encodeUrlPathSegment(contentModeration.getId().toString(), httpServletRequest);
 	    }
 	
