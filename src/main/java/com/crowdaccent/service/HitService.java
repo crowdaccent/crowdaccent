@@ -90,4 +90,9 @@ public interface HitService {
 	 * @param hit
 	 */
 	public void persistHITData(Task t, String websiteURL, HIT hit);
+	
+	/**
+	 * @param hit
+	 */
+	public void sendNotification(Hit hit);
 }

@@ -3,8 +3,16 @@
  */
 package com.crowdaccent.service;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.httpclient.Credentials;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.UsernamePasswordCredentials;
+import org.apache.commons.httpclient.auth.AuthScope;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -302,5 +310,37 @@ public class HitServiceImpl implements HitService {
 		}
 
 		this.save(h);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.crowdaccent.service.HitService#sendNotification(com.crowdaccent.entity.Hit)
+	 */
+	@Override
+	public void sendNotification(Hit hit) {
+		//TODO: Remove hardcoding
+		String uri = "http://www1.crowdaccent.com/crowdaccent/notification";
+
+		PostMethod post = new PostMethod(uri);
+		NameValuePair[] parametersBody = {
+		          new NameValuePair("key", "crowdaccentapikey"),
+		          new NameValuePair("identifier", "11"),
+		          new NameValuePair("result", "1")
+		        };
+		post.setRequestBody(parametersBody);
+		post.setDoAuthentication(true);
+		
+
+		HttpClient httpClient = new HttpClient();
+		httpClient.getParams().setAuthenticationPreemptive(true);
+		Credentials defaultcreds = new UsernamePasswordCredentials("kapil", "nonehere");
+		httpClient.getState().setCredentials(new AuthScope("www1.crowdaccent.com", 80, AuthScope.ANY_REALM), defaultcreds);
+		
+		try {
+			httpClient.executeMethod(post);
+		} catch (HttpException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
