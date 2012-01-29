@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <title>Behavior Accent Demo</title>
+   </head>
+   <body>
+   <a href="http://jquery.com/">jQuery</a>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script src="events.js"></script>
+   <script>
+   $(document).ready(function(){
+   $("a").click(function(event){
+      alert("As you can see, the link no longer took you to jquery.com");
+      var time = event.timeStamp;
+      alert(time);
+      event.preventDefault();
+   });
+   $(document).change(function(event){
+      var allInputs = $(":input");
+      var imgLoad = $('input:radio[name=imageLoad]:checked').val();
+      var time = event.timeStamp;
+      alert(imgLoad);
+      alert(time);
+      $.post("results.jspx", {key: imageLoad, val: imgLoad, time: time})
+   });
+   });
+   </script>
+<h1><b>Product Image and Category Validation</b></h1>
+<p><b>Summary:</b></p>
+   <ul>
+   <li>This task involves validation of product image with its associated title and description along with the category hierarchy.</li>
+    </ul>
+    <h3><b>Please go through the following product details:</b></h3>
+    <p><b>Product Image:</b></p>
+    <p><img alt="kidrobot" src="http://images.urbanoutfitters.com/is/image/UrbanOutfitters/16920738_01_b?$detailmain$" /></p>
+    <p><b>Title:</b> Futurama by Kidrobot</p>
+    <p><b>Description:</b> We got frye and although it's cute would rather get bender or zoidberg :) but hey that's a blindbox for you. nice gift
+    nonetheless.</p>
+    <h3><b>Now answer the following questions:</b></h3>
+    <p>Q1: Does the image load correctly for you ? <input type="radio" name="imageLoad" value="1" /> Yes <input type="radio" name="imageLoad" value="0" />
+    No</p>
+    <p>Q2: Does the title match with the image ?  <input type="radio" name="title" value="1" /> Yes  <input type="radio" name="title" value="0" /> No</p>
+    <p>Q3: Does the description match with the image ?  <input type="radio" name="description" value="1" /> Yes  <input type="radio" name="description"
+    value="0" /> No</p>
+    <h3><b>The existing product categories are: Entertainment&gt;DVDs &amp; Videos&gt;Children's</b></h3>
+    <p>Q4: <b><u>Entertainment</u></b> - Is this the correct category associated with the product in the image? <input type="radio" name="Level0" value="1" />
+    Yes <input type="radio" name="Level0" value="0" /> No</p>
+    <p>Q5: <b><u>DVDs &amp; Videos</u></b> - Is this the correct sub-category associated with the product in the image? <input type="radio" name="Level1"
+    value="1" /> Yes <input type="radio" name="Level1" value="0" /> No</p>
+    <p>Q6: <b><u>Children's</u></b> - Is this the correct sub-sub-category associated with the product in the image? <input type="radio" name="Level2"
+    value="1" /> Yes <input type="radio" name="Level2" value="0" /> No</p>
+    <p>Please select the numbers of questions that you have answered confidently:</p>
+    <p><input type="radio" name="Confidence" value="0" />None  <input type="radio" name="Confidence" value="1" />1 Out of 6  <input type="radio"
+    name="Confidence" value="2" />2 Out of 6 <input type="radio" name="Confidence" value="3" />3 Out of 6 <input type="radio" name="Confidence" value="4"
+    />All</p>
+    <p>The number of questions asked for this task are:</p>
+    <p><input type="radio" name="quesLoad" value="3" />Too Little <input type="radio" name="quesLoad" value="1" /> Just Right <input type="radio"
+    name="quesLoad" value="2" /> Too Many</p>
+    <p>Please provide any comments you may have below, we appreciate your input!</p>
+    <p><textarea name="comment" cols="60" rows="2"></textarea></p>
+    </body>
+ </html>

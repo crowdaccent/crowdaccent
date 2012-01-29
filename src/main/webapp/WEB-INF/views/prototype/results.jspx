@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <title>Behavior Accent Demo</title>
+   </head>
+   <body>
+   <a href="http://jquery.com/">jQuery</a>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+   <script src="events.js"></script>
+    <h1><b>Behavior Results</b></h1>
+    <p><b>Q1 Answers:</b></p>
+    <h3><b>$results</b></h3>
+    </body>
+ </html>
